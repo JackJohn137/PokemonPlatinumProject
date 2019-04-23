@@ -1,0 +1,1 @@
+Staraptor / 012 / staraptor.front.png / staraptor.back.png / Brave_Bird / Ning / false / MEDIUM_SLOW /  1 / NORMAL / NORMAL / JOLLY / 85 / 120 / 70 / 50 / 50 / 100 / 172 / 3 / ATK / 0 / NONE         
