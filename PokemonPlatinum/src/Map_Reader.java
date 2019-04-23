@@ -7,22 +7,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Map_Reader {
-	private int[][] grid;
+	private Tile[][] grid;
 	private int r;
 	private int c;
 	private File map_grid;
+	private File map_warps;
 	
 	/**
 	 * Takes Pokedex.txt and uses it to create pokedex
-	 * @throws FileNotFoundException
+	 * @throws IOException 
 	 */
-	public Map_Reader (String map_name) throws FileNotFoundException
+	public Map_Reader (String map_name) throws IOException
 	{
 		this.map_grid = new File("src/map_file/" + map_name + ".txt");
 		analyze_raw_data();
 	}
 	
-	private void analyze_raw_data () throws FileNotFoundException
+	private void analyze_raw_data () throws IOException
 	{
 		Scanner grid_y = new Scanner(map_grid);
 		int r = 0;
@@ -38,7 +39,7 @@ public class Map_Reader {
 		int c = grid_x.next().split("").length;
 		grid_x.close();
 		
-		this.grid = new int[r][c];
+		this.grid = new Tile[r][c];
 		Scanner grid_scanner = new Scanner(map_grid);
 		int index = 0;
 		
@@ -46,9 +47,16 @@ public class Map_Reader {
 		{
 			String[] this_row = grid_scanner.nextLine().split("");
 			for (int i = 0; i < grid[index].length; i++)
-			{
+			{	
 				int type = Integer.parseInt(this_row[i]);
-				grid[index][i] = type;
+				if (type != 9)
+				{
+					grid[index][i] = new Tile(type, index, i, 0, index, i);
+				}
+				else 
+				{
+					grid[index][i] = new Tile(type, index, i, 1, index + 5, i + 5);
+				}
 			}
 			index++;
 		}
@@ -56,7 +64,7 @@ public class Map_Reader {
 	}
 	
 	
-	public int[][] getGrid() {
+	public Tile[][] getGrid() {
 		return grid;
 	}
 }

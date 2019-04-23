@@ -13,7 +13,7 @@ public class Pokemon_Map {
 	private ArrayList<Pokemon_Trainer> trainers;
 	private int r;
 	private int c;
-	private int[][] grid;
+	private Tile[][] grid;
 	private final Map_Reader mr;
 	
 	public Pokemon_Map (String map_name, int initial_x, int initial_y) throws IOException
@@ -36,7 +36,12 @@ public class Pokemon_Map {
 		this.c = 0;
 	}
 	
-	public int[][] getGrid()
+	public Tile getTile(int row, int col)
+	{
+		return grid[row][col];
+	}
+	
+	public Tile[][] getGrid()
 	{
 		return grid;
 	}

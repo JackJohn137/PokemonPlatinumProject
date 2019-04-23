@@ -17,22 +17,35 @@ public class Pokemon_Platinum_Game {
 	}
 	
 	// What do you want to do when a key is hit?
-	public void keyHit(String s) {
-		int[][] temp = current_map.getGrid();
+	public void keyHit(String s) 
+	{
+		Tile[][] temp = current_map.getGrid();
 		int r = player.getGrid_y();
 		int c = player.getGrid_x();
 		
 		if (s.equals("up"))
 		{
-			if (player.isCan_move() == true && player.getDirection() == Direction.UP && r > 0 && temp[r - 1][c] <= 1 )
+			if (player.isCan_move() == true) 
 			{
-				player.setGrid_y(r - 1);
+				if (player.getDirection() == Direction.UP)
+				{
+					if (r > 0 && temp[r - 1][c].getType() <= 1)
+					{
+						player.setGrid_y(r - 1);
+					}
+					else if (r > 0 && temp[r - 1][c].getType() == 9)
+					{	
+						player.setGrid_y(this.current_map.getTile(r - 1, c).getWarp().getRow());
+						player.setGrid_x(this.current_map.getTile(r - 1, c).getWarp().getCol());
+						this.current_map = map_storage.getMap_storage().get(this.current_map.getTile(r - 1, c).getWarp().getWarp_index());
+					}
+				}
 			}
 			player.setDirection(Direction.UP);
 		}
 		else if (s.equals("down"))
 		{
-			if (player.isCan_move() == true && player.getDirection() == Direction.DOWN && r < temp.length - 1 && temp[r + 1][c] <= 1)
+			if (player.isCan_move() == true && player.getDirection() == Direction.DOWN && r < temp.length - 1 && temp[r + 1][c].getType() <= 1)
 			{
 				player.setGrid_y(r + 1);
 			}
@@ -40,7 +53,7 @@ public class Pokemon_Platinum_Game {
 		}
 		else if (s.equals("left"))
 		{
-			if (player.isCan_move() == true && player.getDirection() == Direction.LEFT && c > 0 && temp[r][c - 1] <= 1)
+			if (player.isCan_move() == true && player.getDirection() == Direction.LEFT && c > 0 && temp[r][c - 1].getType() <= 1)
 			{
 				player.setGrid_x(c - 1);
 			}
@@ -48,7 +61,7 @@ public class Pokemon_Platinum_Game {
 		}
 		else if (s.equals("right"))
 		{
-			if (player.isCan_move() == true && player.getDirection() == Direction.RIGHT && c < temp[r].length - 1 && temp[r][c + 1] <= 1)
+			if (player.isCan_move() == true && player.getDirection() == Direction.RIGHT && c < temp[r].length - 1 && temp[r][c + 1].getType() <= 1)
 			{
 				player.setGrid_x(c + 1);
 			}
