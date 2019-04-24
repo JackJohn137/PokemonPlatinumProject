@@ -1,4 +1,3 @@
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -69,6 +68,10 @@ public class Pokemon_Map {
 	public void draw(Graphics g)
 	{
 		g.drawImage(getPokemon_map(), 0, 0, null);
+	}
+
+	public String getMap_name() {
+		return map_name;
 	}
 }
 

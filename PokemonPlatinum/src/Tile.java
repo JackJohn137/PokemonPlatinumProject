@@ -11,7 +11,7 @@ public class Tile {
 	private int type;
 	private int row;
 	private int col;
-	public final Warp warp;
+	public Warp warp;
 	
 	public Tile(int type, int row, int col, int warp_index, int warp_row, int warp_col) throws IOException
 	{
@@ -40,6 +40,10 @@ public class Tile {
 		this.col = col;
 	}
 
+	public void setWarp(String map_name, int row, int col) throws IOException
+	{
+		this.warp = new Warp(map_name, row, col);
+	}
 	public Warp getWarp() {
 		return warp;
 	}

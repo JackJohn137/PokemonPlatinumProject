@@ -20,10 +20,12 @@ public class Map_Reader {
 	public Map_Reader (String map_name) throws IOException
 	{
 		this.map_grid = new File("src/map_file/" + map_name + ".txt");
-		analyze_raw_data();
+		this.map_warps = new File("src/map_warp/" + map_name + ".txt");
+		analyze_map_data();
+		analyze_warp_data();
 	}
 	
-	private void analyze_raw_data () throws IOException
+	private void analyze_map_data () throws IOException
 	{
 		Scanner grid_y = new Scanner(map_grid);
 		int r = 0;
@@ -63,6 +65,33 @@ public class Map_Reader {
 		grid_scanner.close();
 	}
 	
+	private void analyze_warp_data() throws IOException
+	{
+		Scanner warp_reader = new Scanner(map_warps);
+		while (warp_reader.hasNextLine())
+		{
+			String entry = warp_reader.nextLine();
+			
+			for (int i = 0; i < entry.length(); i++)
+			{
+				if(entry.substring(i, i + 1).equals(" "))
+				{
+					entry = entry.substring(0, i) + entry.substring(i + 1);
+					i--;
+				}
+			}
+			
+			String[] entry_array = entry.split("/");
+			String map_name = entry_array[0];
+			int initial_row = Integer.parseInt(entry_array[1]);
+			int initial_col = Integer.parseInt(entry_array[2]);		
+			int final_row = Integer.parseInt(entry_array[3]);	
+			int final_col = Integer.parseInt(entry_array[4]);	
+			grid[initial_row][initial_col].setWarp(map_name, final_row, final_col);
+		}
+		
+		warp_reader.close();
+	}
 	
 	public Tile[][] getGrid() {
 		return grid;
