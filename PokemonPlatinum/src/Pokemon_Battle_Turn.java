@@ -6,7 +6,7 @@ public class Pokemon_Battle_Turn{
 	private Pokemon opponent_field;
 	private Pokemon_Move you_move;
 	private Pokemon_Move opponent_move;
-	
+	private boolean end;
 	public Pokemon_Battle_Turn(Player you, Pokemon_Trainer opponent, Pokemon_Move you_move, Pokemon_Move opponent_move)
 	{
 		this.you = you;
