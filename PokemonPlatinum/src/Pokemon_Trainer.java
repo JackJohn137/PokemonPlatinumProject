@@ -60,11 +60,11 @@ public class Pokemon_Trainer {
 		this.name = name;
 	}
 	
-	public Pokemon_Storage getPokedex_storage() {
+	public Pokemon_Storage getPokemon_storage() {
 		return pokemon_storage;
 	}
 	
-	public void setPokedex_storage(Pokemon_Storage pokedex_storage) {
+	public void setPokemon_storage(Pokemon_Storage pokedex_storage) {
 		this.pokemon_storage = pokedex_storage;
 	}
 

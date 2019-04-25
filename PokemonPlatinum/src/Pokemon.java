@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  */
 public class Pokemon{
-	//Visible
+	private boolean fainted;
 	private final String name;
 	private final int pokedex_number;
 	private final Image front_image;
@@ -75,6 +75,7 @@ public class Pokemon{
 			Pokemon_Item held_item, 
 			Effort_Value_Drop ev_drop)
 	{
+		this.fainted = false;
 		this.name = name;
 		this.pokedex_number = pokedex_number;
 		this.front_image = front_image;
@@ -112,6 +113,7 @@ public class Pokemon{
 
 	public Pokemon (Pokemon p, Individual_Values iv, Effort_Values ev)
 	{
+		this.fainted = false;
 		this.name = p.getName();
 		this.pokedex_number = p.getPokedex_number()	;
 		this.front_image = p.getFront_image();
@@ -259,6 +261,14 @@ public class Pokemon{
 
 	public Effort_Value_Drop getEv_Drop() {
 		return ev_drop;
+	}
+
+	public boolean isFainted() {
+		return fainted;
+	}
+
+	public void setFainted(boolean fainted) {
+		this.fainted = fainted;
 	}
 
 

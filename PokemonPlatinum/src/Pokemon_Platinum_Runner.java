@@ -25,8 +25,7 @@ public class Pokemon_Platinum_Runner {
 	private int ticks;
 	private Direction direction;
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	public static final int X = (int) (screenSize.getWidth()), 
-			Y = (int) (screenSize.getHeight());
+	public static final int X = (int) (screenSize.getWidth()), Y = (int) (screenSize.getHeight());
 	private static final int REFRESH_RATE = 1000;
 	
 	
