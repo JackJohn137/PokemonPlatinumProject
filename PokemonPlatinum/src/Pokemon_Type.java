@@ -46,8 +46,8 @@ public class Pokemon_Type{
 	 * @param pokemon_type
 	 * @return
 	 */
-	public double effectiveness_against(Type move_type, Type pokemon_type) {
-		switch (move_type)
+	public double effectiveness_against(Type pokemon_type) {
+		switch (this.type)
 		{
 			case NORMAL:
 				switch (pokemon_type)
