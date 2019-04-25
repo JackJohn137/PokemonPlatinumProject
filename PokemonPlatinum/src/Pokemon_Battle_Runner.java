@@ -25,7 +25,7 @@ public class Pokemon_Battle_Runner {
 	private static Pokemon opponent_field;
 	private static Pokemon_Move you_move;
 	private static Pokemon_Move opponent_move;
-	
+	private int init;
 	private JPanel panel;
 	private Timer timer;
 	private int ticks;
