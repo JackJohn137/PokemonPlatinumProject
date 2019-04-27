@@ -3,7 +3,7 @@ public class Battle_Damage {
 	private final Pokemon attacker;
 	private final Pokemon defender;
 	private final Pokemon_Move pokemon_move;
-	private int damage_dealt;
+	private final int damage_dealt;
 	
 	public Battle_Damage (Pokemon attacker, Pokemon defender, Pokemon_Move pokemon_move)
 	{

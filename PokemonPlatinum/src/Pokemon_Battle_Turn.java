@@ -1,17 +1,13 @@
 
 public class Pokemon_Battle_Turn{
-	private Player you;
-	private Pokemon_Trainer opponent;
-	private Pokemon you_field;
-	private Pokemon opponent_field;
+	private Pokemon you;
+	private Pokemon opponent;
 	private Pokemon_Move you_move;
 	private Pokemon_Move opponent_move;
-	public Pokemon_Battle_Turn(Player you, Pokemon_Trainer opponent, Pokemon_Move you_move, Pokemon_Move opponent_move)
+	public Pokemon_Battle_Turn(Pokemon you, Pokemon opponent, Pokemon_Move you_move, Pokemon_Move opponent_move)
 	{
 		this.you = you;
 		this.opponent = opponent;
-		this.you_field = you.getPokemon_storage().getPokemon(0);
-		this.opponent_field =  opponent.getPokemon_storage().getPokemon(0);
 		this.you_move = you_move;
 		this.opponent_move = opponent_move;
 		battle();
@@ -19,20 +15,20 @@ public class Pokemon_Battle_Turn{
 
 	private void battle() {
 		
-		if(this.you_field.getCurrent_stats().getSpd() > this.opponent_field.getCurrent_stats().getSpd())
+		if(this.you.getCurrent_stats().getSpd() > this.opponent.getCurrent_stats().getSpd())
 		{
-			this.opponent_field.getCurrent_stats().setHp(this.opponent_field.getCurrent_stats().getHp() - new Battle_Damage(this.you_field, this.opponent_field, this.you_move).getDamage_dealt());
-			if (this.opponent_field.getCurrent_stats().getHp() > 0)
+			this.opponent.getCurrent_stats().setHp(this.opponent.getCurrent_stats().getHp() - new Battle_Damage(this.you, this.opponent, this.you_move).getDamage_dealt());
+			if (this.opponent.getCurrent_stats().getHp() > 0)
 			{
-				this.you_field.getCurrent_stats().setHp(this.you_field.getCurrent_stats().getHp() - new Battle_Damage(this.opponent_field, this.you_field, this.opponent_move).getDamage_dealt());
+				this.you.getCurrent_stats().setHp(this.you.getCurrent_stats().getHp() - new Battle_Damage(this.opponent, this.you, this.opponent_move).getDamage_dealt());
 			}
 		}
 		else
 		{
-			this.you_field.getCurrent_stats().setHp(this.you_field.getCurrent_stats().getHp() - new Battle_Damage(this.opponent_field, this.you_field, this.opponent_move).getDamage_dealt());
-			if (this.you_field.getCurrent_stats().getHp() > 0)
+			this.you.getCurrent_stats().setHp(this.you.getCurrent_stats().getHp() - new Battle_Damage(this.opponent, this.you, this.opponent_move).getDamage_dealt());
+			if (this.you.getCurrent_stats().getHp() > 0)
 			{
-				this.opponent_field.getCurrent_stats().setHp(this.opponent_field.getCurrent_stats().getHp() - new Battle_Damage(this.you_field, this.opponent_field, this.you_move).getDamage_dealt());
+				this.opponent.getCurrent_stats().setHp(this.opponent.getCurrent_stats().getHp() - new Battle_Damage(this.you, this.opponent, this.you_move).getDamage_dealt());
 			}
 		}
 	}
