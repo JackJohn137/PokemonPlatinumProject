@@ -13,7 +13,6 @@ public class Pokemon_Platinum_Game {
 		this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
 		this.player.setGrid_x(11);
 		this.player.setGrid_y(11);
-		
 	}
 	
 	// What do you want to do when a key is hit?
