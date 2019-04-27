@@ -39,4 +39,18 @@ public class Map_Storage {
 	{
 		return map_storage;
 	}
+	
+	public Pokemon_Map getPokemon_map(String map_name)
+	{
+		for (Pokemon_Map pm : this.map_storage)
+		{
+			if (pm.getMap_name().equals(map_name))
+			{
+				return pm;
+			}
+		}
+		
+		return null;
+		
+	}
 }

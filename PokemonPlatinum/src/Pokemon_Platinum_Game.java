@@ -10,7 +10,7 @@ public class Pokemon_Platinum_Game {
 	public Pokemon_Platinum_Game() throws IOException {
 		this.map_storage = new Map_Storage();
 		this.player = new Player("Cynthia", "Cynthia", Direction.DOWN);
-		this.current_map = map_storage.getMap_storage().get(0);
+		this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
 		this.player.setGrid_x(11);
 		this.player.setGrid_y(11);
 	}
