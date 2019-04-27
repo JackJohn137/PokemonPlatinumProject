@@ -19,8 +19,8 @@ public class Map_Reader {
 	 */
 	public Map_Reader (String map_name) throws IOException
 	{
-		this.map_grid = new File("src/map_file/" + map_name + ".txt");
-		this.map_warps = new File("src/map_warp/" + map_name + ".txt");
+		this.map_grid = new File("src/map_file/" + map_name);
+		this.map_warps = new File("src/map_warp/" + map_name);
 		analyze_map_data();
 		analyze_warp_data();
 	}
@@ -89,7 +89,6 @@ public class Map_Reader {
 			int final_col = Integer.parseInt(entry_array[4]);	
 			grid[initial_row][initial_col].setWarp(map_name, final_row, final_col);
 		}
-		
 		warp_reader.close();
 	}
 	

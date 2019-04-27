@@ -19,18 +19,20 @@ public class Map_Storage {
 
 	private void add_names() throws FileNotFoundException {
 		this.map_names = new ArrayList<>();
-		Scanner read_names = new Scanner(new File("src/map_file/map_names"));
+		Scanner read_names = new Scanner(new File("src/map_names"));
 		
 		while (read_names.hasNextLine())
 		{
 			map_names.add(read_names.nextLine());
 		}
+		
+		read_names.close();
 	}
 
 	private void add_maps() throws IOException {
 		for (String map_name : map_names)
 		{
-			map_storage.add(new Pokemon_Map(map_name)); 
+			map_storage.add(new Pokemon_Map(map_name));
 		}
 		
 	}

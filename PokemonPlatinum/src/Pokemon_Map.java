@@ -26,8 +26,9 @@ public class Pokemon_Map {
 	}
 	
 	public Pokemon_Map (String map_name) throws IOException
-	{
-		this.pokemon_map = ImageIO.read(getClass().getResource("pokemon_map/" + map_name + ".png"));
+	{   
+		System.out.println("Loading " + map_name + "...");
+		this.pokemon_map = ImageIO.read(getClass().getResource("pokemon_map/" + map_name + "_Pt.png"));
 		this.map_name = map_name;
 		this.mr = new Map_Reader(map_name);
 		this.grid = mr.getGrid();
