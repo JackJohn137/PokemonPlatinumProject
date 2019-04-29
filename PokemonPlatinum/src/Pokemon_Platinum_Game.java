@@ -26,25 +26,55 @@ public class Pokemon_Platinum_Game {
 		{
 			if (player.isCan_move() == true) 
 			{
-				if (player.getDirection() == Direction.UP)
+				if (r > 0)
 				{
-					if (r > 0 && temp[r - 1][c].getType() <= 1)
+					switch (temp[r - 1][c].getType())
 					{
-						player.setGrid_y(r - 1);
-					}
-					else if (r > 0 && temp[r - 1][c].getType() == 9)
-					{
-						player.setGrid_y(this.current_map.getTile(r - 1, c).getWarp().getRow());
-						player.setGrid_x(this.current_map.getTile(r - 1, c).getWarp().getCol());
+						case 0:
+							player.setGrid_y(r - 1);
+							break;
+							
+						case 1:
+							player.setGrid_y(r - 1);
+							break;
 						
-						for (Pokemon_Map m : map_storage.getMap_storage())
-						{
-							if (m.getMap_name().equals(this.current_map.getTile(r - 1, c).getWarp().getWarp_map_name()))
+						case 2:
+							break;
+							
+						case 3: 
+							break;
+							
+						case 4:
+							break;
+							
+						case 5:
+							break;
+							
+						case 6:
+							break;
+						
+						case 7:
+							break;
+							
+						case 8: 
+							break;
+							
+						case 9:
+							player.setGrid_y(this.current_map.getTile(r - 1, c).getWarp().getRow());
+							player.setGrid_x(this.current_map.getTile(r - 1, c).getWarp().getCol());
+							for (Pokemon_Map m : map_storage.getMap_storage())
 							{
-								this.current_map = m;
-								break;
+								if (m.getMap_name().equals(this.current_map.getTile(r - 1, c).getWarp().getWarp_map_name()))
+								{
+									this.current_map = m;
+									break;
+								}
 							}
-						}
+							break;
+							
+						default:
+							System.out.println("??? Tile: Terrain Error");
+							break;
 					}
 				}
 			}
@@ -56,22 +86,55 @@ public class Pokemon_Platinum_Game {
 			{
 				if (player.getDirection() == Direction.DOWN)
 				{
-					if (r < temp.length - 1 && temp[r + 1][c].getType() <= 1)
+					if (r < temp.length - 1)
 					{
-						player.setGrid_y(r + 1);
-					}
-					else if (r < temp.length - 1 && temp[r + 1][c].getType() == 9)
-					{
-						player.setGrid_y(this.current_map.getTile(r + 1, c).getWarp().getRow());
-						player.setGrid_x(this.current_map.getTile(r + 1, c).getWarp().getCol());
-						
-						for (Pokemon_Map m : map_storage.getMap_storage())
+						switch (temp[r + 1][c].getType())
 						{
-							if (m.getMap_name().equals(this.current_map.getTile(r + 1, c).getWarp().getWarp_map_name()))
-							{
-								this.current_map = m;
+							case 0:
+								player.setGrid_y(r + 1);
 								break;
-							}
+								
+							case 1:
+								player.setGrid_y(r + 1);
+								break;
+							
+							case 2:
+								break;
+								
+							case 3: 
+								break;
+								
+							case 4:
+								break;
+								
+							case 5:
+								break;
+								
+							case 6:
+								break;
+							
+							case 7:
+								break;
+								
+							case 8: 
+								break;
+								
+							case 9:
+								player.setGrid_y(this.current_map.getTile(r + 1, c).getWarp().getRow());
+								player.setGrid_x(this.current_map.getTile(r + 1, c).getWarp().getCol());
+								for (Pokemon_Map m : map_storage.getMap_storage())
+								{
+									if (m.getMap_name().equals(this.current_map.getTile(r + 1, c).getWarp().getWarp_map_name()))
+									{
+										this.current_map = m;
+										break;
+									}
+								}
+								break;
+								
+							default:
+								System.out.println("??? Tile: Terrain Error");
+								break;
 						}
 					}
 				}
@@ -80,17 +143,123 @@ public class Pokemon_Platinum_Game {
 		}
 		else if (s.equals("left"))
 		{
-			if (player.isCan_move() == true && player.getDirection() == Direction.LEFT && c > 0 && temp[r][c - 1].getType() <= 1)
+			if (player.isCan_move() == true) 
 			{
-				player.setGrid_x(c - 1);
+				if (player.getDirection() == Direction.LEFT)
+				{
+					if (c > 0)
+					{
+						switch (temp[r][c - 1].getType())
+						{
+							case 0:
+								player.setGrid_x(c - 1);
+								break;
+								
+							case 1:
+								player.setGrid_x(c - 1);
+								break;
+							
+							case 2:
+								break;
+								
+							case 3: 
+								break;
+								
+							case 4:
+								break;
+								
+							case 5:
+								break;
+								
+							case 6:
+								break;
+							
+							case 7:
+								break;
+								
+							case 8: 
+								break;
+								
+							case 9:
+								player.setGrid_y(this.current_map.getTile(r, c - 1).getWarp().getRow());
+								player.setGrid_x(this.current_map.getTile(r, c - 1).getWarp().getCol());
+								for (Pokemon_Map m : map_storage.getMap_storage())
+								{
+									if (m.getMap_name().equals(this.current_map.getTile(r, c - 1).getWarp().getWarp_map_name()))
+									{
+										this.current_map = m;
+										break;
+									}
+								}
+								break;
+								
+							default:
+								System.out.println("??? Tile: Terrain Error");
+								break;
+						}
+					}
+				}
 			}
 			player.setDirection(Direction.LEFT);
 		}
 		else if (s.equals("right"))
 		{
-			if (player.isCan_move() == true && player.getDirection() == Direction.RIGHT && c < temp[r].length - 1 && temp[r][c + 1].getType() <= 1)
+			if (player.isCan_move() == true) 
 			{
-				player.setGrid_x(c + 1);
+				if (player.getDirection() == Direction.RIGHT)
+				{
+					if (c < temp[r].length - 1)
+					{
+						switch (temp[r][c + 1].getType())
+						{
+							case 0:
+								player.setGrid_x(c + 1);
+								break;
+								
+							case 1:
+								player.setGrid_x(c + 1);
+								break;
+							
+							case 2:
+								break;
+								
+							case 3: 
+								break;
+								
+							case 4:
+								break;
+								
+							case 5:
+								break;
+								
+							case 6:
+								break;
+							
+							case 7:
+								break;
+								
+							case 8: 
+								break;
+								
+							case 9:
+								player.setGrid_y(this.current_map.getTile(r, c + 1).getWarp().getRow());
+								player.setGrid_x(this.current_map.getTile(r, c + 1).getWarp().getCol());
+								for (Pokemon_Map m : map_storage.getMap_storage())
+								{
+									if (m.getMap_name().equals(this.current_map.getTile(r, c + 1).getWarp().getWarp_map_name()))
+									{
+										this.current_map = m;
+										break;
+									}
+								}
+								break;
+								
+							default:
+								System.out.println("??? Tile: Terrain Error");
+								break;
+						}
+					}
+				}
 			}
 			player.setDirection(Direction.RIGHT);
 		}
