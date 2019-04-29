@@ -68,6 +68,7 @@ public class Pokemon_Battle_Runner {
 		set_up_team_menu();
 		for (JPanel jp : menu)
 		{
+			
 			jp.setBounds(0, 0, 750, 1000);
 			jp.setPreferredSize(new Dimension(750, 1000));
 			jp.setLayout(null);
