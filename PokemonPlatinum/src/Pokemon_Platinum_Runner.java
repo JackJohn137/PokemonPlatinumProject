@@ -27,7 +27,7 @@ public class Pokemon_Platinum_Runner {
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static final int X = (int) (screenSize.getWidth()), Y = (int) (screenSize.getHeight());
 	private static final int REFRESH_RATE = 1000;
-	
+	private boolean step=true;
 	
 	public Pokemon_Platinum_Runner() throws IOException {
 		this.direction = Direction.NONE;
@@ -55,6 +55,7 @@ public class Pokemon_Platinum_Runner {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
+				int r = 10;
 
 				game.getCurrent_map().draw(g);//Draws whatever map is currently showing
 
@@ -62,12 +63,13 @@ public class Pokemon_Platinum_Runner {
 				{
 				case UP:
 					game.getPlayer().setY_coord(game.getPlayer().getY_coord() - 2);
-					if (ticks % 8 < 4)
+					if (step)
 					{
 						g.drawImage(game.getPlayer().getMovements().getUp().getMove_1(),
 								game.getPlayer().getX_coord(),
 								game.getPlayer().getY_coord(),
 								null);
+					step=!step;
 					}
 					else
 					{
@@ -75,17 +77,19 @@ public class Pokemon_Platinum_Runner {
 								game.getPlayer().getX_coord(),
 								game.getPlayer().getY_coord(),
 								null);
+						step=!step;
 					}
 					break;
 
 				case DOWN:
 					game.getPlayer().setY_coord(game.getPlayer().getY_coord() + 2);
-					if (ticks % 8 < 4)
+					if (step)
 					{
 						g.drawImage(game.getPlayer().getMovements().getDown().getMove_1(),
 								game.getPlayer().getX_coord(),
 								game.getPlayer().getY_coord(),
 								null);
+						step=!step;
 					}
 					else
 					{
@@ -93,17 +97,19 @@ public class Pokemon_Platinum_Runner {
 								game.getPlayer().getX_coord(),
 								game.getPlayer().getY_coord(),
 								null);
+						step=!step;
 					}
 					break;
 
 				case LEFT:
 					game.getPlayer().setX_coord(game.getPlayer().getX_coord() - 2);
-					if (ticks % 8 < 4)
+					if (step)
 					{
 						g.drawImage(game.getPlayer().getMovements().getLeft().getMove_1(),
 								game.getPlayer().getX_coord(),
 								game.getPlayer().getY_coord(),
 								null);
+						step=!step;
 					}
 					else
 					{
@@ -111,24 +117,33 @@ public class Pokemon_Platinum_Runner {
 								game.getPlayer().getX_coord(),
 								game.getPlayer().getY_coord(),
 								null);
+						step=!step;
 					}
 					break;
 
 				case RIGHT:
 					game.getPlayer().setX_coord(game.getPlayer().getX_coord() + 2);
-					if (ticks % 8 < 4)
+					if (step)
 					{
+						while(r>0) {
 						g.drawImage(game.getPlayer().getMovements().getRight().getMove_1(),
-								game.getPlayer().getX_coord(),
+								game.getPlayer().getX_coord()-r,
 								game.getPlayer().getY_coord(),
 								null);
+						r--;
+						}
+					step=!step;
 					}
 					else
 					{
+						while(r>0) {
 						g.drawImage(game.getPlayer().getMovements().getRight().getMove_2(),
-								game.getPlayer().getX_coord(),
+								game.getPlayer().getX_coord()-r,
 								game.getPlayer().getY_coord(),
 								null);
+						r--;
+						}
+						step=!step;
 					}
 					break;
 
@@ -167,8 +182,9 @@ public class Pokemon_Platinum_Runner {
 		panel.repaint();//Repaints after each update
 
 		ticks++;//Adds to the timer
+		System.out.println(ticks);
 
-		if(ticks / REFRESH_RATE % 8 == 0) 
+		if(ticks / REFRESH_RATE % 10 == 0) 
 		{
 			
 			direction = Direction.NONE;
