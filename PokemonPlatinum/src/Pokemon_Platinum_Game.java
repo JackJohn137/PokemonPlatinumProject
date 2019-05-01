@@ -5,15 +5,21 @@ import java.util.*;
 
 public class Pokemon_Platinum_Game {
 	private Map_Storage map_storage;
+	private Pokedex pokedex;
+	private Movelist movelist;
+	private Trainer_Map_Storage trainer_map_storage;
 	private Player player;
 	private Pokemon_Map current_map;
 	public Pokemon_Platinum_Game() throws IOException {
+		this.pokedex = new Pokedex();
+		this.movelist = new Movelist();
+		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
 		this.map_storage = new Map_Storage();
 		this.player = new Player("Cynthia", "Cynthia", Direction.DOWN);
 		this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
 		//this.current_map = map_storage.getPokemon_map("Sinnoh_Route_212");
-		this.player.setGrid_x(11);
-		this.player.setGrid_y(11);
+		this.player.setGrid_x(8);
+		this.player.setGrid_y(12);
 	}
 	
 	// What do you want to do when a key is hit?
@@ -27,55 +33,71 @@ public class Pokemon_Platinum_Game {
 		{
 			if (player.isCan_move() == true) 
 			{
-				if (r > 0)
+				if (player.getDirection() == Direction.UP)
 				{
-					switch (temp[r - 1][c].getType())
+					if (r > 0)
 					{
-						case 0:
-							player.setGrid_y(r - 1);
-							break;
+						switch (temp[r - 1][c].getType())
+						{
+							case 0:
+								player.setGrid_y(r - 1);
+								break;
+								
+							case 1:
+								player.setGrid_y(r - 1);
+								break;
 							
-						case 1:
-							player.setGrid_y(r - 1);
-							break;
-						
-						case 2:
-							break;
+							case 2:
+								break;
+								
+							case 3: 
+								break;
+								
+							case 4:
+								break;
+								
+							case 5:
+								break;
+								
+							case 6:
+								break;
 							
-						case 3: 
-							break;
-							
-						case 4:
-							break;
-							
-						case 5:
-							break;
-							
-						case 6:
-							break;
-						
-						case 7:
-							break;
-							
-						case 8: 
-							break;
-							
-						case 9:
-							player.setGrid_y(this.current_map.getTile(r - 1, c).getWarp().getRow());
-							player.setGrid_x(this.current_map.getTile(r - 1, c).getWarp().getCol());
-							for (Pokemon_Map m : map_storage.getMap_storage())
-							{
-								if (m.getMap_name().equals(this.current_map.getTile(r - 1, c).getWarp().getWarp_map_name()))
+							case 7:
+								break;
+								
+							case 8: 
+								break;
+								
+							case 9:
+								player.setGrid_y(this.current_map.getTile(r - 1, c).getWarp().getRow());
+								player.setGrid_x(this.current_map.getTile(r - 1, c).getWarp().getCol());
+								for (Pokemon_Map m : map_storage.getMap_storage())
 								{
-									this.current_map = m;
-									break;
+									if (m.getMap_name().equals(this.current_map.getTile(r - 1, c).getWarp().getWarp_map_name()))
+									{
+										this.current_map = m;
+										break;
+									}
 								}
+								break;
+								
+							default:
+								System.out.println("??? Tile: Terrain Error");
+								break;
+						}
+					}
+					else if (temp[r][c].getType() == 9)
+					{
+						player.setGrid_y(this.current_map.getTile(r, c).getWarp().getRow());
+						player.setGrid_x(this.current_map.getTile(r, c).getWarp().getCol());
+						for (Pokemon_Map m : map_storage.getMap_storage())
+						{
+							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
+							{
+								this.current_map = m;
+								break;
 							}
-							break;
-							
-						default:
-							System.out.println("??? Tile: Terrain Error");
-							break;
+						}
 					}
 				}
 			}
@@ -136,6 +158,19 @@ public class Pokemon_Platinum_Game {
 							default:
 								System.out.println("??? Tile: Terrain Error");
 								break;
+						}
+					}
+					else if (temp[r][c].getType() == 9)
+					{
+						player.setGrid_y(this.current_map.getTile(r, c).getWarp().getRow());
+						player.setGrid_x(this.current_map.getTile(r, c).getWarp().getCol());
+						for (Pokemon_Map m : map_storage.getMap_storage())
+						{
+							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
+							{
+								this.current_map = m;
+								break;
+							}
 						}
 					}
 				}
@@ -199,6 +234,19 @@ public class Pokemon_Platinum_Game {
 								break;
 						}
 					}
+					else if (temp[r][c].getType() == 9)
+					{
+						player.setGrid_y(this.current_map.getTile(r, c).getWarp().getRow());
+						player.setGrid_x(this.current_map.getTile(r, c).getWarp().getCol());
+						for (Pokemon_Map m : map_storage.getMap_storage())
+						{
+							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
+							{
+								this.current_map = m;
+								break;
+							}
+						}
+					}
 				}
 			}
 			player.setDirection(Direction.LEFT);
@@ -260,6 +308,19 @@ public class Pokemon_Platinum_Game {
 								break;
 						}
 					}
+					else if (temp[r][c].getType() == 9)
+					{
+						player.setGrid_y(this.current_map.getTile(r, c).getWarp().getRow());
+						player.setGrid_x(this.current_map.getTile(r, c).getWarp().getCol());
+						for (Pokemon_Map m : map_storage.getMap_storage())
+						{
+							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
+							{
+								this.current_map = m;
+								break;
+							}
+						}
+					}
 				}
 			}
 			player.setDirection(Direction.RIGHT);
@@ -275,5 +336,29 @@ public class Pokemon_Platinum_Game {
 	public Pokemon_Map getCurrent_map()
 	{
 		return current_map;
+	}
+
+	public Pokedex getPokedex() {
+		return pokedex;
+	}
+
+	public void setPokedex(Pokedex pokedex) {
+		this.pokedex = pokedex;
+	}
+
+	public Movelist getMovelist() {
+		return movelist;
+	}
+
+	public void setMovelist(Movelist movelist) {
+		this.movelist = movelist;
+	}
+
+	public Trainer_Map_Storage getTrainer_map_storage() {
+		return trainer_map_storage;
+	}
+
+	public void setTrainer_map_storage(Trainer_Map_Storage trainer_map_storage) {
+		this.trainer_map_storage = trainer_map_storage;
 	}
 }

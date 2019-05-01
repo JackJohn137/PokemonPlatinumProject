@@ -47,7 +47,7 @@ public class Growth_Rate {
 	 * @param level
 	 * @return
 	 */
-	public int getExp(Rate growth_rate, int level)
+	public int getExp(int level)
 	{
 		switch (growth_rate)
 		{

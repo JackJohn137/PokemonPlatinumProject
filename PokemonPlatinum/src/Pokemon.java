@@ -271,5 +271,9 @@ public class Pokemon{
 		this.fainted = fainted;
 	}
 
+	public void addMove(Pokemon_Move move)
+	{
+		this.moveSet.add(move);
+	}
 
 }
