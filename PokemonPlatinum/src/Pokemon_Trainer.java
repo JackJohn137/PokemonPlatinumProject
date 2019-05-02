@@ -16,7 +16,7 @@ public class Pokemon_Trainer {
 	private int y_coord;
 	private int grid_x;
 	private int grid_y;
-	public Pokemon_Trainer(String name, String type, Direction direction) throws IOException{
+	public Pokemon_Trainer(String name, String type, Direction direction, int x, int y) throws IOException{
 		this.name = name;
 		this.type = type;
 		this.pokemon_storage = new Pokemon_Storage(6);
@@ -85,7 +85,7 @@ public class Pokemon_Trainer {
 	}
 
 	public int getY_coord() {
-		return this.grid_y * 16 - 16;
+		return this.grid_y * 12 - 12;
 	}
 
 	public int getGrid_x() {

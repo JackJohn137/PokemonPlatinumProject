@@ -11,7 +11,7 @@ public class Player extends Pokemon_Trainer{
 	private String nickname;
 	private int money;
 	public Player(String name, String type, Direction direction) throws IOException{
-		super(name, type, direction);
+		super(name, type, direction, 0, 0);
 		this.can_move = true;
 		this.badge_case = new ArrayList<Badge>();
 		this.money = 0;

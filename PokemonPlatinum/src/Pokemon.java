@@ -109,6 +109,7 @@ public class Pokemon{
 		this.exp_yield = exp_yield;
 		this.held_item = held_item;
 		this.ev_drop = ev_drop;
+		this.moveSet = new ArrayList<>();
 	}
 
 	public Pokemon (Pokemon p, Individual_Values iv, Effort_Values ev)
@@ -147,6 +148,7 @@ public class Pokemon{
 		this.exp_yield = p.getExp_yield();
 		this.held_item = p.getHeld_item();
 		this.ev_drop = p.getEv_Drop();
+		this.moveSet = new ArrayList<>();
 	}
 	
 	
@@ -271,5 +273,9 @@ public class Pokemon{
 		this.fainted = fainted;
 	}
 
+	public void addMove(Pokemon_Move move)
+	{
+		this.moveSet.add(move);
+	}
 
 }

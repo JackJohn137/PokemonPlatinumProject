@@ -62,4 +62,16 @@ public class Pokedex {
 	{
 		return pokedex;
 	}
+	
+	public Pokemon getPokemon(String name)
+	{
+		for (Pokemon pokemon : pokedex)
+		{
+			if (name.equals(pokemon.getName()))
+			{
+				return pokemon;
+			}
+		}
+		return null;
+	}
 }
