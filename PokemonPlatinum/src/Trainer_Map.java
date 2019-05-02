@@ -34,6 +34,7 @@ public class Trainer_Map {
 					i--;
 				}
 			}
+			
 			String[] trainer_raw_data = trainer_data.split("/");
 			Trainer_Reader temp = new Trainer_Reader(trainer_raw_data, this.pokedex, this.movelist);
 			this.trainer_list.add(temp.getTrainer());

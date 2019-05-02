@@ -35,17 +35,6 @@ public class Movelist {
 		return Movelist;
 	}
 	
-	public Pokemon_Move getPokemon(String name)
-	{
-		for (Pokemon_Move move : Movelist)
-		{
-			if (name.equals(move.getMove_name()))
-			{
-				return move;
-			}
-		}
-		return null;
-	}
 
 	public Pokemon_Move getMove(String move_name) {
 		for (Pokemon_Move pm : Movelist)
