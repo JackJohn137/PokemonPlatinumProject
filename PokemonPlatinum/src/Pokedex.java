@@ -27,11 +27,12 @@ public class Pokedex {
 
 	private Pokemon add_entry(String[] s) throws NumberFormatException, IOException
 	{	
+		System.out.println(s[0]);
 		return new Pokemon (
 				s[0], 
 				Integer.parseInt(s[1]), 
-				ImageIO.read(getClass().getResource("pokemon_front/" + s[2])), 
-				ImageIO.read(getClass().getResource("pokemon_back/" + s[3])), 
+				//ImageIO.read(getClass().getResource("pokemon_front/" + s[2])), 
+				//ImageIO.read(getClass().getResource("pokemon_back/" + s[3])), 
 				s[4], 
 				s[5], 
 				Boolean.valueOf(s[6]), 
