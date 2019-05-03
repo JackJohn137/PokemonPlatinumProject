@@ -137,3 +137,4 @@ Croagunk   / 129 / croagunk.front.png         / croagunk.back.png         / Toxi
 Toxicroak  / 130 / toxicroak.front.png        / toxicroak.back.png        / Toxic_Mouth_Pokemon   / Dawn / false / MEDIUM_FAST / 1 / POISON   / FIGHTING / JOLLY / 83  / 106 / 65  / 86  / 65  / 85  / 181 / 2 / ATK   / 0 / NONE  / 0 / NONE
 Carnivine  / 131 / carnivine.front.png        / carnivine.back.png        / Bug_Catcher_Pokemon   / Dawn / false / SLOW        / 1 / GRASS    / GRASS    / JOLLY / 74  / 100 / 72  / 90  / 72  / 46  / 164 / 2 / ATK   / 0 / NONE  / 0 / NONE
 Remoraid   / 132 / remoraid.front.png         / remoraid.back.png         / Jet_Pokemon           / Dawn / false / MEDIUM_FAST / 1 / WATER    / WATER    / JOLLY / 35  / 65  / 35  / 65  / 35  / 65  / 78  / 1 / SPATK / 0 / NONE  / 0 / NONE
+kmmomkomkl
