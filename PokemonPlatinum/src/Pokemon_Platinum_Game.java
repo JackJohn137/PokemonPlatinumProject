@@ -16,8 +16,8 @@ public class Pokemon_Platinum_Game {
 		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
 		this.map_storage = new Map_Storage();
 		this.player = new Player("Cynthia", "Cynthia", Direction.DOWN);
-		this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
-		//this.current_map = map_storage.getPokemon_map("Sinnoh_Route_212");
+		//this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
+		this.current_map = map_storage.getPokemon_map("Floaroma_Town");
 		this.player.setGrid_x(8);
 		this.player.setGrid_y(12);
 	}
