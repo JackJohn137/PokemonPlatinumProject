@@ -182,7 +182,7 @@ public class Pokemon_Platinum_Runner {
 		panel.repaint();//Repaints after each update
 
 		ticks++;//Adds to the timer
-		System.out.println(ticks);
+		System.out.println("Timer: " + ticks);
 
 		if(ticks / REFRESH_RATE % 10 == 0) 
 		{

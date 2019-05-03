@@ -25,7 +25,14 @@ public class Pokemon_Storage {
 	
 	public Pokemon getPokemon(int index)
 	{
-		return pokemon_storage[index];
+		for (Pokemon p : pokemon_storage)
+		{
+			if (index == p.getPokedex_number())
+			{
+				return pokemon_storage[index];
+			}
+		}
+		return null;
 	}
 	
 	public void addPokemon (Pokemon pokemon)

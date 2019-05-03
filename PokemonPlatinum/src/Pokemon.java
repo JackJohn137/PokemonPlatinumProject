@@ -11,8 +11,8 @@ public class Pokemon{
 	private boolean fainted;
 	private final String name;
 	private final int pokedex_number;
-	private final Image front_image;
-	private final Image back_image;
+	private Image front_image;
+	private Image back_image;
 	private String nickname;
 	private final String original_trainer;
 	private boolean wild;
@@ -58,8 +58,8 @@ public class Pokemon{
 	 */
 	public Pokemon (String name, 
 			int pokedex_number, 
-			Image front_image, 
-			Image back_image, 
+			//Image front_image, 
+			//Image back_image, 
 			String nickname, 
 			String original_trainer, 
 			boolean wild, 
@@ -78,8 +78,8 @@ public class Pokemon{
 		this.fainted = false;
 		this.name = name;
 		this.pokedex_number = pokedex_number;
-		this.front_image = front_image;
-		this.back_image = back_image;
+		//this.front_image = front_image;
+		//this.back_image = back_image;
 		this.nickname = nickname;
 		this.original_trainer = original_trainer;
 		this.wild = wild;
@@ -117,8 +117,8 @@ public class Pokemon{
 		this.fainted = false;
 		this.name = p.getName();
 		this.pokedex_number = p.getPokedex_number()	;
-		this.front_image = p.getFront_image();
-		this.back_image = p.getBack_image();
+		//this.front_image = p.getFront_image();
+		//this.back_image = p.getBack_image();
 		this.nickname = p.getNickname();
 		this.original_trainer = p.getOriginal_trainer();
 		this.wild = p.isWild();
