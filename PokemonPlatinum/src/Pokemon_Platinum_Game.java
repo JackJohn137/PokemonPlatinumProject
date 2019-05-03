@@ -17,7 +17,7 @@ public class Pokemon_Platinum_Game {
 		this.map_storage = new Map_Storage();
 		this.player = new Player("Cynthia", "Cynthia", Direction.DOWN);
 		//this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
-		this.current_map = map_storage.getPokemon_map("Floaroma_Town");
+		this.current_map = map_storage.getPokemon_map("Galactic_Warehouse_B1F");
 		this.player.setGrid_x(8);
 		this.player.setGrid_y(12);
 	}
