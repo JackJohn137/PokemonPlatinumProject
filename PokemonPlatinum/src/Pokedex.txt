@@ -137,3 +137,24 @@ Croagunk   / 129 / croagunk.front.png         / croagunk.back.png         / Toxi
 Toxicroak  / 130 / toxicroak.front.png        / toxicroak.back.png        / Toxic_Mouth_Pokemon   / Dawn / false / MEDIUM_FAST / 1 / POISON   / FIGHTING / JOLLY / 83  / 106 / 65  / 86  / 65  / 85  / 181 / 2 / ATK   / 0 / NONE  / 0 / NONE
 Carnivine  / 131 / carnivine.front.png        / carnivine.back.png        / Bug_Catcher_Pokemon   / Dawn / false / SLOW        / 1 / GRASS    / GRASS    / JOLLY / 74  / 100 / 72  / 90  / 72  / 46  / 164 / 2 / ATK   / 0 / NONE  / 0 / NONE
 Remoraid   / 132 / remoraid.front.png         / remoraid.back.png         / Jet_Pokemon           / Dawn / false / MEDIUM_FAST / 1 / WATER    / WATER    / JOLLY / 35  / 65  / 35  / 65  / 35  / 65  / 78  / 1 / SPATK / 0 / NONE  / 0 / NONE
+Octillery / 133 / octillery.front.png / octillery.back.png / Jet_Pokemon / Dawn / false / MEDIUM_FAST / 1 / WATER / WATER / JOLLY / 75 / 105 / 75 / 105 / 75 / 45 / 1 / ATK / 1 / SPATK / 0 / NONE
+Finneon / 134 / finneon.front.png / finneon.back.png / Wing_Fish_Pokemon / Dawn / false / ERRATIC / 1 / WATER / WATER / JOLLY / 49 / 49 / 56 / 49 / 61 / 66 / 66 / 1 / SPD / 0 / NONE / 0 / NONE
+Lumineon / 135 / lumineon.front.png / lumineon.back.png / Neon_Pokemon / Dawn / false / ERRATIC / 1 / WATER / WATER / JOLLY / 69 / 69 / 76 / 69 / 86 / 91 / 161 / 2 / SPD / 0 / NONE / 0 / NONE
+Tentacool / 136 / tentacool.front.png / tentacool.back.png / Jellyfish_Pokemon / Dawn / false / SLOW / 1 / WATER / POISON / JOLLY / 40 / 40 / 35 / 50 / 100 / 70 / 67 / 1 / SPDEF / 0 / NONE / 0 / NONE
+Tentacruel / 137 / tentacruel.front.png / tentacruel.back.png / Jellyfish_Pokemon / Dawn / false / SLOW / 1 / WATER / POISON / JOLLY / 80 / 70 / 65 / 80 / 120 / 100 / 180 / 2 / SPDEF / 0 / NONE / 0 / NONE
+Feebas / 138 / feebas.front.png / feebas.back.png / Fish_Pokemon / Dawn / false / ERRATIC / 1 / WATER / WATER / JOLLY / 20 / 15 / 20 / 10 / 55 / 80 / 40 / 1 / SPD / 0 / NONE / 0 / NONE
+Milotic / 139 / milotic.front.png / milotic.back.png / Tender_Pokemon / Dawn / false / ERRATIC / 1 / WATER / WATER / JOLLY / 90 / 60 / 79 / 100 / 125 / 81 / 189 / 2 / SPDEF / 0 / NONE / 0 / NONE
+Mantyke / 140 / mantyke.front.png / mantyke.back.png / Kite_Pokemon / Dawn / false / SLOW / 1 / WATER / FLYING / JOLLY / 45 / 20 / 50 / 60 / 120 / 50 / 69 / 1 / SPDEF / 0 / NONE / 0 / NONE
+Mantine / 141 / mantine.front.png / mantine.back.png / Kite_Pokemon / Dawn / false / SLOW / 1 / WATER / FLYING / JOLLY / 85 / 40 / 70 / 80 / 140 / 70 / 170 / 2 / SPDEF / 0 / NONE / 0 / NONE
+Snover / 142 / snover.front.png / snover.back.png / Frost_Tree_Pokemon / Dawn / false / SLOW / 1 / GRASS / ICE / JOLLY / 60 / 62 / 50 / 62 / 60 / 40 / 67 / 1 / ATK / 0 / NONE / 0 / NONE
+Abomasnow / 143 / abomasnow.front.png / abomasnow.back.png / Frost_Tree_Pokemon / Dawn / false / SLOW / 1 / GRASS / ICE / JOLLY / 90 / 92 / 75 / 92 / 85 / 60 / 173 / 1 / ATK / 1 / SPATK / 0 / NONE
+Sneasel / 144 / sneasel.front.png / sneasel.back.png / Sharp_Claw_Pokemon / Dawn / false / MEDIUM_SLOW / 1 / DARK / ICE / JOLLY / 55 / 95 / 55 / 35 / 75 / 115 / 86 / 1 / SPD / 0 / NONE / 0 / NONE
+Weavile / 145 / weavile.front.png / weavile.back.png / Sharp_Claw_Pokemon / Dawn / false / MEDIUM_SLOW / 1 / DARK / ICE / JOLLY / 70 / 120 / 65 / 45 / 85 / 125 / 179 / 1 / ATK / 1 / SPD / 0 / NONE
+Uxie / 146 / uxie.front.png / uxie.back.png / Knowledge_Pokemon / Dawn / false / SLOW / 1 / PSYCHIC / PSYCHIC / JOLLY / 75 / 75 / 130 / 75 / 130 / 95 / 261 / 1 / SPDEF / 2 / DEF / 0 / NONE
+Mesprit / 147 / mesprit.front.png / mesprit.back.png / Emotion_Pokemon / Dawn / false / SLOW / 1 / PSYCHIC / PSYCHIC / JOLLY / 80 / 105 / 105 / 105 / 105 / 80 / 261 / 1 / ATK / 1 / SPATK / 1 / SPDEF
+Azelf / 148 / azelf.front.png / azelf.back.png / Willpower_Pokemon / Dawn / false / SLOW / 1 / PSYCHIC / PSYCHIC / JOLLY / 75 / 125 / 70 / 125 / 70 / 115 / 261 / 2 / ATK / 1 / SPATK / 0 / NONE
+Dialga / 149 / dialga.front.png / dialga.back.png / Temporal_Pokemon / Dawn / false / SLOW / 1 / STEEL / DRAGON / JOLLY / 100 / 120 / 120 / 150 / 100 / 90 / 306 / 3 / SPATK / 0 / NONE / 0 / NONE
+Palkia / 150 / palkia.front.png / palkia.back.png / Spatial_Pokemon / Dawn / false / SLOW / 1 / WATER / DRAGON / JOLLY / 90 / 120 / 100 / 150 / 120 / 100 / 306 / 3 / SPATK / 0 / NONE / 0 / NONE
+Manaphy / 151 / manaphy.front.png / manaphy.back.png / Seafaring_Pokemon / Dawn / false / SLOW / 1 / WATER / WATER / JOLLY / 100 / 100 / 100 / 100 / 100 / 100 / 270 / 3 / HP / 0 / NONE / 0 / NONE
+Giratina / 152 / giratina_altered.front.png / giratina_altered.back.png / Renegade_Pokemon / Dawn / false / SLOW / 1 / DRAGON / GHOST / JOLLY / 150 / 100 / 120 / 100 / 120 / 90 / 306 / 3 / HP / 0 / NONE / 0 / NONE
+Giratina / 152 / giratina_origin.front.png / giratina_origin.back.png / Renegade_Pokemon / Dawn / false / SLOW / 1 / DRAGON / GHOST / JOLLY / 150 / 100 / 120 / 100 / 120 / 90 / 306 / 3 / HP / 0 / NONE / 0 / NONE
