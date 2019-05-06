@@ -36,14 +36,14 @@ public class Trainer_Map_Storage {
 	private void add_maps() throws IOException {
 		for (String map_name : trainer_map_names)
 		{
-			//try
-			//{
+			try
+			{
 				trainer_map_storage.add(new Trainer_Map(map_name, pokedex, movelist));
-			//}
-			//catch (IllegalArgumentException e)
-			//{
-			//	System.out.println(map_name + " HAS NO TRAINERS");
-			//}
+			}
+			catch (IllegalArgumentException e)
+			{
+				System.out.println(map_name + " HAS NO TRAINERS");
+			}
 			
 		}
 		

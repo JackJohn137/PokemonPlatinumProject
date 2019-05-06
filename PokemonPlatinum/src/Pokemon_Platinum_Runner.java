@@ -210,7 +210,12 @@ public class Pokemon_Platinum_Runner {
 		map.put("up", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hit("up");
+				try {
+					hit("up");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}	
 		});
 		inMap.put(KeyStroke.getKeyStroke("pressed DOWN"), "down");
@@ -218,7 +223,12 @@ public class Pokemon_Platinum_Runner {
 		map.put("down", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hit("down");
+				try {
+					hit("down");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}	
 		});
 		inMap.put(KeyStroke.getKeyStroke("pressed LEFT"), "left");
@@ -226,7 +236,12 @@ public class Pokemon_Platinum_Runner {
 		panel.getActionMap().put("left",new AbstractAction(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hit("left");
+				try {
+					hit("left");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		inMap.put(KeyStroke.getKeyStroke("pressed RIGHT"), "right");
@@ -234,14 +249,24 @@ public class Pokemon_Platinum_Runner {
 		map.put("right", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hit("right");
+				try {
+					hit("right");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		inMap.put(KeyStroke.getKeyStroke("pressed SPACE"), "stop");
 		map.put("stop", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hit("stop");
+				try {
+					hit("stop");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -252,7 +277,7 @@ public class Pokemon_Platinum_Runner {
 
 	}
 
-	public void hit(String s) {
+	public void hit(String s) throws IOException {
 		ticks = 0;
 
 		if (s.equals("up"))

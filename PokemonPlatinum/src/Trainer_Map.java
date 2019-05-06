@@ -51,4 +51,9 @@ public class Trainer_Map {
 	public void setMap_name(String map_name) {
 		this.map_name = map_name;
 	}
+	
+	public ArrayList<Pokemon_Trainer> getTrainer_list()
+	{
+		return this.trainer_list;
+	}
 }
