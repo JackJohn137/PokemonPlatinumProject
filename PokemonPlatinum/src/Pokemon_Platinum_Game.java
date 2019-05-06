@@ -15,15 +15,27 @@ public class Pokemon_Platinum_Game {
 		this.movelist = new Movelist();
 		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
 		this.map_storage = new Map_Storage();
+		addTrainers();
+		
 		this.player = new Player("Cynthia", "Cynthia", Direction.DOWN);
-		//this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
-		this.current_map = map_storage.getPokemon_map("Galactic_Warehouse_B1F");
+		this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
+		//this.current_map = map_storage.getPokemon_map("Sandgem_Town");
 		this.player.setGrid_x(8);
 		this.player.setGrid_y(12);
 	}
 	
+	private void addTrainers() {
+		for (Trainer_Map tm : this.trainer_map_storage.getTrainer_map_storage())
+		{
+			for (Pokemon_Trainer pt : tm.getTrainer_list())
+			{
+				this.map_storage.getPokemon_map(tm.getMap_name()).getTile(pt.getGrid_y(), pt.getGrid_x()).setPokemon_trainer(pt);;   
+			}
+		}
+	}
+
 	// What do you want to do when a key is hit?
-	public void keyHit(String s) 
+	public void keyHit(String s) throws IOException 
 	{
 		Tile[][] temp = current_map.getGrid();
 		int r = player.getGrid_y();
@@ -35,7 +47,11 @@ public class Pokemon_Platinum_Game {
 			{
 				if (player.getDirection() == Direction.UP)
 				{
-					if (r > 0)
+					if (temp[r - 1][c].getPokemon_trainer() != null)
+					{
+						new Pokemon_Battle_Runner(player, temp[r - 1][c].getPokemon_trainer());
+					}
+					else if (r > 0)
 					{
 						switch (temp[r - 1][c].getType())
 						{
@@ -109,7 +125,11 @@ public class Pokemon_Platinum_Game {
 			{
 				if (player.getDirection() == Direction.DOWN)
 				{
-					if (r < temp.length - 1)
+					if (temp[r + 1][c].getPokemon_trainer() != null)
+					{
+						new Pokemon_Battle_Runner(player, temp[r + 1][c].getPokemon_trainer());
+					}
+					else if (r < temp.length - 1)
 					{
 						switch (temp[r + 1][c].getType())
 						{
@@ -183,7 +203,11 @@ public class Pokemon_Platinum_Game {
 			{
 				if (player.getDirection() == Direction.LEFT)
 				{
-					if (c > 0)
+					if (temp[r][c - 1].getPokemon_trainer() != null)
+					{
+						new Pokemon_Battle_Runner(player, temp[r][c - 1].getPokemon_trainer());
+					}
+					else if (c > 0)
 					{
 						switch (temp[r][c - 1].getType())
 						{
@@ -257,7 +281,11 @@ public class Pokemon_Platinum_Game {
 			{
 				if (player.getDirection() == Direction.RIGHT)
 				{
-					if (c < temp[r].length - 1)
+					if (temp[r][c + 1].getPokemon_trainer() != null)
+					{
+						new Pokemon_Battle_Runner(player, temp[r][c + 1].getPokemon_trainer());
+					}
+					else if (c < temp[r].length - 1)
 					{
 						switch (temp[r][c + 1].getType())
 						{

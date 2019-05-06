@@ -37,7 +37,7 @@ public class Pokemon_Battle_Runner {
 	private final int BAG_MENU = 2;
 	private final int TEAM_MENU = 3;
 	
-	public Pokemon_Battle_Runner(Player you, Pokemon_Trainer opponent, Pokemon_Move you_move, Pokemon_Move opponent_move) throws IOException
+	public Pokemon_Battle_Runner(Player you, Pokemon_Trainer opponent) throws IOException
 	{
 		this.you = you;
 		this.opponent = opponent;
@@ -74,7 +74,7 @@ public class Pokemon_Battle_Runner {
 	}
 
 	public static void main(String[] args) throws IOException {
-		new Pokemon_Battle_Runner(you, opponent, opponent_move, opponent_move);
+		new Pokemon_Battle_Runner(you, opponent);
 	}
 
 	private void start() {

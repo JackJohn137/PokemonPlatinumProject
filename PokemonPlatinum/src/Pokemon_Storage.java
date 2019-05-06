@@ -27,9 +27,21 @@ public class Pokemon_Storage {
 	{
 		for (Pokemon p : pokemon_storage)
 		{
-			if (index == p.getPokedex_number())
+			if (004 == p.getPokedex_number())
 			{
 				return pokemon_storage[index];
+			}
+		}
+		return null;
+	}
+	
+	public Pokemon getPokemon(String name)
+	{
+		for (Pokemon p : pokemon_storage)
+		{
+			if (name.equals(p.getName()))
+			{
+				return p;
 			}
 		}
 		return null;

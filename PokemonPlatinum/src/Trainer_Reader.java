@@ -10,10 +10,10 @@ public class Trainer_Reader {
 		while (index < trainer_raw_data.length - 1)
 		{
 			trainer.getPokemon_storage().addPokemon(pokedex.getPokemon(trainer_raw_data[index + 1]));
-			trainer.getPokemon_storage().getPokemon((index - 4) / 6).addMove(movelist.getMove(trainer_raw_data[index + 2]));
-			trainer.getPokemon_storage().getPokemon((index - 4) / 6).addMove(movelist.getMove(trainer_raw_data[index + 3]));
-			trainer.getPokemon_storage().getPokemon((index - 4) / 6).addMove(movelist.getMove(trainer_raw_data[index + 4]));
-			trainer.getPokemon_storage().getPokemon((index - 4) / 6).addMove(movelist.getMove(trainer_raw_data[index + 5]));
+			trainer.getPokemon_storage().getPokemon((int) ((index - 4) / 6)).addMove(movelist.getMove(trainer_raw_data[index + 2]));
+			trainer.getPokemon_storage().getPokemon((int) ((index - 4) / 6)).addMove(movelist.getMove(trainer_raw_data[index + 3]));
+			trainer.getPokemon_storage().getPokemon((int) ((index - 4) / 6)).addMove(movelist.getMove(trainer_raw_data[index + 4]));
+			trainer.getPokemon_storage().getPokemon((int) ((index - 4) / 6)).addMove(movelist.getMove(trainer_raw_data[index + 5]));
 			
 			//trainer pokemons don't need to level up so they dont have exp total. also, this doesnt like exp total either 
 			trainer.getPokemon_storage().getPokemon((index - 4) / 6).setPokemon_Level(new Pokemon_Level(Integer.parseInt(trainer_raw_data[index + 6])));
