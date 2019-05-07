@@ -24,7 +24,9 @@ public class Pokemon_Battle_Runner {
 	private static Pokemon_Move you_move;
 	private static Pokemon_Move opponent_move;
 	private static JFrame frame;
+	private static JLabel textbox;
 	private static JPanel[] menu;
+	private static JPanel fight_screen;
 	private static int CURRENT_MENU;
 	private Timer timer;
 	private int ticks;
@@ -36,6 +38,7 @@ public class Pokemon_Battle_Runner {
 	private final int FIGHT_MENU = 1;
 	private final int BAG_MENU = 2;
 	private final int TEAM_MENU = 3;
+	private int current_pokemon_index = 0;
 	
 	public Pokemon_Battle_Runner(Player you, Pokemon_Trainer opponent) throws IOException
 	{
@@ -61,16 +64,23 @@ public class Pokemon_Battle_Runner {
 	}
 
 	private void set_up_menus() {
+		set_up_fight_screen();
 		set_up_main_menu();
 		set_up_fight_menu();
 		set_up_bag_menu();
 		set_up_team_menu();
+		
 		for (JPanel jp : menu)
 		{
-			jp.setBounds(0, 0, 600, 800);
+			jp.setBounds(0, 400, 600, 400);
 			jp.setPreferredSize(new Dimension(600, 800));
 			jp.setLayout(null);
 		}
+		
+		fight_screen.setBounds(0, 0, 600, 400);
+		fight_screen.setPreferredSize(new Dimension(600, 800));
+		fight_screen.setLayout(null);
+		
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -79,15 +89,18 @@ public class Pokemon_Battle_Runner {
 
 	private void start() {
 		frame = new JFrame("Pokemon_Battle");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//this frame will close when the battle ends, not when you click close window. you can always run if necessary
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		CURRENT_MENU = 0;
 		frame.add(menu[MAIN_MENU]);
 		frame.add(menu[FIGHT_MENU]);
 		frame.add(menu[BAG_MENU]);
 		frame.add(menu[TEAM_MENU]);
+		frame.add(fight_screen);
 		//frame.add(menu[4]);
-		frame.pack();
 		
+		frame.pack();
 		frame.setVisible(true);
 		frame.setLayout(null);
 		frame.setPreferredSize(new Dimension(600, 800));
@@ -124,8 +137,34 @@ public class Pokemon_Battle_Runner {
 		}
 		System.out.println("");
 		frame.repaint();
-		menu[this.CURRENT_MENU].repaint();
+		//fight_screen.repaint();
+		//menu[this.CURRENT_MENU].repaint();
+		
+		
 		ticks++;
+	}
+	
+	/**
+	 * This method creates the top JPanel that will be displaying the actual fight
+	 * This is the top screen of the device
+	 */
+	private void set_up_fight_screen() {
+		fight_screen = new JPanel() {
+			@Override
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+			}
+		};
+				
+		textbox = new JLabel("What will you do?");
+		
+		textbox.setVisible(true);
+		textbox.setBounds(20, 310, 560, 80);
+		textbox.setOpaque(true);
+		fight_screen.add(textbox);
+		fight_screen.setVisible(true);
+		
+		
 	}
 	
 	/**
@@ -144,7 +183,7 @@ public class Pokemon_Battle_Runner {
 		};
 		
 		JButton FIGHT = new JButton("FIGHT");
-		FIGHT.setBounds(20, 420, 560, 260);
+		FIGHT.setBounds(20, 20, 560, 260);
 		FIGHT.setOpaque(true);
 		FIGHT.setForeground(Color.BLACK);
 		FIGHT.addActionListener(
@@ -161,7 +200,7 @@ public class Pokemon_Battle_Runner {
 		menu[MAIN_MENU].add(FIGHT);
 		
 		JButton BAG = new JButton("BAG");
-		BAG.setBounds(20, 700, 180, 60);
+		BAG.setBounds(20, 300, 180, 60);
 		BAG.setOpaque(true);
 		BAG.setForeground(Color.BLACK);
 		BAG.addActionListener(
@@ -177,7 +216,7 @@ public class Pokemon_Battle_Runner {
 		menu[MAIN_MENU].add(BAG);
 		
 		JButton RUN = new JButton("RUN");
-		RUN.setBounds(210, 700, 180, 60);
+		RUN.setBounds(210, 300, 180, 60);
 		RUN.setOpaque(true);
 		RUN.setForeground(Color.BLACK);
 		RUN.addActionListener(
@@ -194,7 +233,7 @@ public class Pokemon_Battle_Runner {
 		menu[MAIN_MENU].add(RUN);
 		
 		JButton TEAM = new JButton("TEAM");
-		TEAM.setBounds(400, 700, 180, 60);
+		TEAM.setBounds(400, 300, 180, 60);
 		TEAM.setOpaque(true);
 		TEAM.setForeground(Color.BLACK);
 		TEAM.addActionListener(
@@ -218,8 +257,17 @@ public class Pokemon_Battle_Runner {
 			}
 		};
 		
-		JButton MOVE_ONE = new JButton("MOVE_ONE");
-		MOVE_ONE.setBounds(10, 420, 280, 120);
+		
+		JButton MOVE_ONE = new JButton("Move_One");
+		try
+		{
+			MOVE_ONE.setText(you.getPokemon_storage().getPokemon_by_index(current_pokemon_index).getMoveset().get(0).getMove_name());
+		}
+		catch (Exception e)
+		{
+			System.out.println("MOVE ONE NOT AVALIABLE");
+		}
+		MOVE_ONE.setBounds(10, 20, 280, 120);
 		MOVE_ONE.setOpaque(true);
 		MOVE_ONE.setForeground(Color.BLACK);
 		MOVE_ONE.addActionListener(
@@ -233,8 +281,16 @@ public class Pokemon_Battle_Runner {
 		MOVE_ONE.setVisible(true);
 		menu[FIGHT_MENU].add(MOVE_ONE);
 		
-		JButton MOVE_TWO = new JButton("MOVE_TWO");
-		MOVE_TWO.setBounds(310, 420, 280, 120);
+		JButton MOVE_TWO = new JButton("Move_Two");
+		try
+		{
+			MOVE_TWO.setText(you.getPokemon_storage().getPokemon_by_index(current_pokemon_index).getMoveset().get(1).getMove_name());
+		}
+		catch (Exception e)
+		{
+			System.out.println("MOVE TWO NOT AVALIABLE");
+		}
+		MOVE_TWO.setBounds(310, 20, 280, 120);
 		MOVE_TWO.setOpaque(true);
 		MOVE_TWO.setForeground(Color.BLACK);
 		MOVE_TWO.addActionListener(
@@ -248,8 +304,16 @@ public class Pokemon_Battle_Runner {
 		MOVE_TWO.setVisible(true);
 		menu[FIGHT_MENU].add(MOVE_TWO);
 		
-		JButton MOVE_THREE = new JButton("MOVE_THREE");
-		MOVE_THREE.setBounds(10, 550, 280, 120);
+		JButton MOVE_THREE = new JButton("Move_Three");
+		try
+		{
+			MOVE_THREE.setText(you.getPokemon_storage().getPokemon_by_index(current_pokemon_index).getMoveset().get(2).getMove_name());
+		}
+		catch (Exception e)
+		{
+			System.out.println("MOVE THREE NOT AVALIABLE");
+		}
+		MOVE_THREE.setBounds(10, 150, 280, 120);
 		MOVE_THREE.setOpaque(true);
 		MOVE_THREE.setForeground(Color.BLACK);
 		MOVE_THREE.addActionListener(
@@ -263,8 +327,16 @@ public class Pokemon_Battle_Runner {
 		MOVE_THREE.setVisible(true);
 		menu[FIGHT_MENU].add(MOVE_THREE);
 		
-		JButton MOVE_FOUR = new JButton("MOVE_FOUR");
-		MOVE_FOUR.setBounds(310, 550, 280, 120);
+		JButton MOVE_FOUR = new JButton("Move_Four");
+		try
+		{
+			MOVE_FOUR.setText(you.getPokemon_storage().getPokemon_by_index(current_pokemon_index).getMoveset().get(3).getMove_name());
+		}
+		catch (Exception e)
+		{
+			System.out.println("MOVE FOUR NOT AVALIABLE");
+		}
+		MOVE_FOUR.setBounds(310, 150, 280, 120);
 		MOVE_FOUR.setOpaque(true);
 		MOVE_FOUR.setForeground(Color.BLACK);
 		MOVE_FOUR.addActionListener(
@@ -279,7 +351,7 @@ public class Pokemon_Battle_Runner {
 		menu[FIGHT_MENU].add(MOVE_FOUR);
 		
 		JButton CANCEL = new JButton("CANCEL");
-		CANCEL.setBounds(10, 680, 580, 90);
+		CANCEL.setBounds(10, 280, 580, 90);
 		CANCEL.setOpaque(true);
 		CANCEL.setForeground(Color.BLACK);
 		CANCEL.addActionListener(
@@ -312,6 +384,158 @@ public class Pokemon_Battle_Runner {
 			}
 		};
 		
+		JButton POKEMON_ONE = new JButton("POKEMON_ONE");
+		try 
+		{
+			POKEMON_ONE.setText(you.getPokemon_storage().getPokemon_by_index(0).getName());
+		}
+		catch (Exception e)
+		{
+			System.out.println("POKEMON_ONE NOT AVALIABLE");
+		}
+		POKEMON_ONE.setBounds(10, 20, 280, 80);
+		POKEMON_ONE.setOpaque(true);
+		POKEMON_ONE.setForeground(Color.BLACK);
+		POKEMON_ONE.addActionListener(
+			new ActionListener() 
+			{
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Switched to Pokemon ONE");
+			}
+		});
+		POKEMON_ONE.setVisible(true);
+		menu[TEAM_MENU].add(POKEMON_ONE);
 		
+		JButton POKEMON_TWO = new JButton("POKEMON_TWO");
+		try 
+		{
+			POKEMON_TWO.setText(you.getPokemon_storage().getPokemon_by_index(1).getName());
+		}
+		catch (Exception e)
+		{
+			System.out.println("POKEMON_TWO NOT AVALIABLE");
+		}
+		POKEMON_TWO.setBounds(310, 20, 280, 80);
+		POKEMON_TWO.setOpaque(true);
+		POKEMON_TWO.setForeground(Color.BLACK);
+		POKEMON_TWO.addActionListener(
+			new ActionListener() 
+			{
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Switched to Pokemon TWO");
+			}
+		});
+		POKEMON_TWO.setVisible(true);
+		menu[TEAM_MENU].add(POKEMON_TWO);
+		
+		JButton POKEMON_THREE = new JButton("POKEMON_THREE");
+		try 
+		{
+			POKEMON_THREE.setText(you.getPokemon_storage().getPokemon_by_index(2).getName());
+		}
+		catch (Exception e)
+		{
+			System.out.println("POKEMON_THREE NOT AVALIABLE");
+		}
+		POKEMON_THREE.setBounds(10, 110, 280, 80);
+		POKEMON_THREE.setOpaque(true);
+		POKEMON_THREE.setForeground(Color.BLACK);
+		POKEMON_THREE.addActionListener(
+			new ActionListener() 
+			{
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Switched to Pokemon THREE");
+			}
+		});
+		POKEMON_THREE.setVisible(true);
+		menu[TEAM_MENU].add(POKEMON_THREE);
+		
+		JButton POKEMON_FOUR = new JButton("POKEMON_FOUR");
+		try 
+		{
+			POKEMON_FOUR.setText(you.getPokemon_storage().getPokemon_by_index(3).getName());
+		}
+		catch (Exception e)
+		{
+			System.out.println("POKEMON_ONE NOT AVALIABLE");
+		}
+		POKEMON_FOUR.setBounds(310, 110, 280, 80);
+		POKEMON_FOUR.setOpaque(true);
+		POKEMON_FOUR.setForeground(Color.BLACK);
+		POKEMON_FOUR.addActionListener(
+			new ActionListener() 
+			{
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Switched to Pokemon FOUR");
+			}
+		});
+		POKEMON_FOUR.setVisible(true);
+		menu[TEAM_MENU].add(POKEMON_FOUR);
+		
+		JButton POKEMON_FIVE = new JButton("POKEMON_FIVE");
+		try 
+		{
+			POKEMON_FIVE.setText(you.getPokemon_storage().getPokemon_by_index(4).getName());
+		}
+		catch (Exception e)
+		{
+			System.out.println("POKEMON_FIVE NOT AVALIABLE");
+		}
+		POKEMON_FIVE.setBounds(10, 200, 280, 80);
+		POKEMON_FIVE.setOpaque(true);
+		POKEMON_FIVE.setForeground(Color.BLACK);
+		POKEMON_FIVE.addActionListener(
+			new ActionListener() 
+			{
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Switched to Pokemon FIVE");
+			}
+		});
+		POKEMON_FIVE.setVisible(true);
+		menu[TEAM_MENU].add(POKEMON_FIVE);
+		
+		JButton POKEMON_SIX = new JButton("POKEMON_SIX");
+		try 
+		{
+			POKEMON_SIX.setText(you.getPokemon_storage().getPokemon_by_index(5).getName());
+		}
+		catch (Exception e)
+		{
+			System.out.println("POKEMON_SIX NOT AVALIABLE");
+		}
+		POKEMON_SIX.setBounds(310, 200, 280, 80);
+		POKEMON_SIX.setOpaque(true);
+		POKEMON_SIX.setForeground(Color.BLACK);
+		POKEMON_SIX.addActionListener(
+			new ActionListener() 
+			{
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Switched to Pokemon SIX");
+			}
+		});
+		POKEMON_SIX.setVisible(true);
+		menu[TEAM_MENU].add(POKEMON_SIX);
+		
+		JButton CANCEL = new JButton("CANCEL");
+		CANCEL.setBounds(10, 280, 580, 90);
+		CANCEL.setOpaque(true);
+		CANCEL.setForeground(Color.BLACK);
+		CANCEL.addActionListener(
+			new ActionListener() 
+			{
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				CURRENT_MENU = MAIN_MENU;
+				System.out.println("Return to MAIN_MENU");
+			}
+		});
+		CANCEL.setVisible(true);
+		menu[TEAM_MENU].add(CANCEL);///WORKING ON POSITIONS 
 	}	
 }

@@ -24,6 +24,8 @@ public class Pokemon_Trainer {
 		this.back = ImageIO.read(getClass().getResource("trainer_back/Pt_Dawn_Back.png"));
 		this.movements = new Pokemon_Trainer_Movements(type);
 		this.direction = direction;
+		this.grid_x = x;
+		this.grid_y = y;
 	}
 	
 	public void draw(Graphics g)

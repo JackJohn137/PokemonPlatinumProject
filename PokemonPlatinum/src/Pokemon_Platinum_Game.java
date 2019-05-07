@@ -13,12 +13,25 @@ public class Pokemon_Platinum_Game {
 	public Pokemon_Platinum_Game() throws IOException {
 		this.pokedex = new Pokedex();
 		this.movelist = new Movelist();
-		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
-		this.map_storage = new Map_Storage();
-		addTrainers();
 		
 		this.player = new Player("Cynthia", "Cynthia", Direction.DOWN);
+		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Turtwig"));
+		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+
+		System.out.println("Turtwig???");
+		System.out.println(pokedex.getPokemon("Turtwig").getGrowth_rate());
+		this.player.getPokemon_storage().getPokemon_by_index(0).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
+		
+		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
+		this.map_storage = new Map_Storage();
 		this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
+		addTrainers();
+		
+		
+		
 		//this.current_map = map_storage.getPokemon_map("Sandgem_Town");
 		this.player.setGrid_x(8);
 		this.player.setGrid_y(12);
@@ -29,7 +42,8 @@ public class Pokemon_Platinum_Game {
 		{
 			for (Pokemon_Trainer pt : tm.getTrainer_list())
 			{
-				this.map_storage.getPokemon_map(tm.getMap_name()).getTile(pt.getGrid_y(), pt.getGrid_x()).setPokemon_trainer(pt);;   
+				System.out.println(pt.getGrid_y() + " " + pt.getGrid_x());
+				this.map_storage.getPokemon_map(tm.getMap_name()).getTile(pt.getGrid_y(), pt.getGrid_x()).setPokemon_trainer(pt);   
 			}
 		}
 	}

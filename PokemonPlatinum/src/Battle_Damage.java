@@ -12,7 +12,7 @@ public class Battle_Damage {
 		this.pokemon_move = pokemon_move;
 		this.damage_dealt = getDamage_dealt();
 	}
-	
+
 	public Pokemon getAttacker()
 	{
 		return this.attacker;
