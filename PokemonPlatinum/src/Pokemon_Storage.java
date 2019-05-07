@@ -23,11 +23,11 @@ public class Pokemon_Storage {
 		return this.pokemon_storage;
 	}
 	
-	public Pokemon getPokemon(int index)
+	public Pokemon getPokemon_by_number(int index)
 	{
 		for (Pokemon p : pokemon_storage)
 		{
-			if (004 == p.getPokedex_number())
+			if (index == p.getPokedex_number())
 			{
 				return pokemon_storage[index];
 			}
@@ -35,16 +35,10 @@ public class Pokemon_Storage {
 		return null;
 	}
 	
-	public Pokemon getPokemon(String name)
+	public Pokemon getPokemon_by_index(int index)
 	{
-		for (Pokemon p : pokemon_storage)
-		{
-			if (name.equals(p.getName()))
-			{
-				return p;
-			}
-		}
-		return null;
+
+		return pokemon_storage[index];
 	}
 	
 	public void addPokemon (Pokemon pokemon)

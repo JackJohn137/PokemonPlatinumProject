@@ -14,7 +14,7 @@ public class Audio {
 	private String sound;
 	private Clip c;
 	private AudioInputStream a;
-	//input the name of the .wav file
+	//input the name of the .wav file 
 	public Audio(String s)
 			throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		sound=s;

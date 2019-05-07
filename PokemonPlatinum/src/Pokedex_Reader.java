@@ -11,7 +11,7 @@ public class Pokedex_Reader {
 	/**
 	 * Takes Pokedex.txt and uses it to create pokedex
 	 * @throws FileNotFoundException
-	 */
+	 */ 
 	public Pokedex_Reader () throws FileNotFoundException
 	{
 		pokedex = new ArrayList<String[]>();
@@ -27,7 +27,7 @@ public class Pokedex_Reader {
 			String pokedex_entry = pokedex_scanner.nextLine();
 			for (int i = 0; i < pokedex_entry.length(); i++)
 			{
-				
+			
 				if (pokedex_entry.substring(i, i + 1).equals(" "))
 				{
 					pokedex_entry = pokedex_entry.substring(0, i) + pokedex_entry.substring(i + 1);

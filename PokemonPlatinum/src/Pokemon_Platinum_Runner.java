@@ -30,7 +30,7 @@ public class Pokemon_Platinum_Runner {
 	private boolean step=true;
 	
 	public Pokemon_Platinum_Runner() throws IOException {
-		this.direction = Direction.NONE;
+		this.direction = Direction.NONE; 
 		this.game = new Pokemon_Platinum_Game();
 		EventQueue.invokeLater(new Runnable() {
 			@Override
