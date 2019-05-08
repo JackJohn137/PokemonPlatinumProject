@@ -65,7 +65,8 @@ public class Battle_Damage {
 		}
 		
 		Z = 217 + (int) (Math.random() * 39);
-		
+		System.out.println(A + " " + B + " " + C + " " + D + " " + X + " " + Y + " " + Z);
+		System.out.println("" + (int) ((((((((((2 * A / 5 + 2) * B * C) / D) / 50) + 2) * X) * Y / 10) * Z) / 255)));
 		return (int) ((((((((((2 * A / 5 + 2) * B * C) / D) / 50) + 2) * X) * Y / 10) * Z) / 255));
 	}
 }

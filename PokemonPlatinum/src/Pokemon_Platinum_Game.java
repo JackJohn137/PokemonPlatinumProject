@@ -20,10 +20,13 @@ public class Pokemon_Platinum_Game {
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
-
-		System.out.println("Turtwig???");
-		System.out.println(pokedex.getPokemon("Turtwig").getGrowth_rate());
 		this.player.getPokemon_storage().getPokemon_by_index(0).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
+		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Chimchar"));
+		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(1).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
 		
 		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
 		this.map_storage = new Map_Storage();
@@ -64,6 +67,7 @@ public class Pokemon_Platinum_Game {
 					if (temp[r - 1][c].getPokemon_trainer() != null)
 					{
 						new Pokemon_Battle_Runner(player, temp[r - 1][c].getPokemon_trainer());
+						player.setCan_move(false);
 					}
 					else if (r > 0)
 					{
@@ -142,6 +146,7 @@ public class Pokemon_Platinum_Game {
 					if (temp[r + 1][c].getPokemon_trainer() != null)
 					{
 						new Pokemon_Battle_Runner(player, temp[r + 1][c].getPokemon_trainer());
+						player.setCan_move(false);
 					}
 					else if (r < temp.length - 1)
 					{
@@ -220,6 +225,7 @@ public class Pokemon_Platinum_Game {
 					if (temp[r][c - 1].getPokemon_trainer() != null)
 					{
 						new Pokemon_Battle_Runner(player, temp[r][c - 1].getPokemon_trainer());
+						player.setCan_move(false);
 					}
 					else if (c > 0)
 					{
@@ -298,6 +304,7 @@ public class Pokemon_Platinum_Game {
 					if (temp[r][c + 1].getPokemon_trainer() != null)
 					{
 						new Pokemon_Battle_Runner(player, temp[r][c + 1].getPokemon_trainer());
+						player.setCan_move(false);
 					}
 					else if (c < temp[r].length - 1)
 					{
