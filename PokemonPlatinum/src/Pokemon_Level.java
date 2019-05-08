@@ -17,8 +17,6 @@ public class Pokemon_Level {
 	{
 		this.level = level;
 		this.growth_rate = growth_rate;
-		System.out.println("REEEEEEEEEEEEEEE");
-		System.out.println(growth_rate);
 		
 		this.exp_total = new Exp_calc(this.growth_rate, this.level).getExp();
 	}
