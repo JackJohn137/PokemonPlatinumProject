@@ -38,10 +38,11 @@ public class Pokemon_Battle_Runner {
 	private final int FIGHT_MENU = 1;
 	private final int BAG_MENU = 2;
 	private final int TEAM_MENU = 3;
-	private int current_pokemon_index = 0;
+	private static int selected;
 	
 	public Pokemon_Battle_Runner(Player you, Pokemon_Trainer opponent) throws IOException
 	{
+		textbox = new JLabel();
 		this.you = you;
 		this.opponent = opponent;
 		//this.you_field = you.getPokemon_storage().getPokemon(0);
@@ -64,11 +65,11 @@ public class Pokemon_Battle_Runner {
 	}
 
 	private void set_up_menus() {
-		set_up_fight_screen();
 		set_up_main_menu();
 		set_up_fight_menu();
 		set_up_bag_menu();
 		set_up_team_menu();
+		set_up_fight_screen();
 		
 		for (JPanel jp : menu)
 		{
@@ -88,6 +89,7 @@ public class Pokemon_Battle_Runner {
 	}
 
 	private void start() {
+		selected = -1;
 		frame = new JFrame("Pokemon_Battle");
 		
 		//this frame will close when the battle ends, not when you click close window. you can always run if necessary
@@ -135,7 +137,6 @@ public class Pokemon_Battle_Runner {
 				menu[i].setVisible(false);
 			}
 		}
-		System.out.println("");
 		frame.repaint();
 		//fight_screen.repaint();
 		//menu[this.CURRENT_MENU].repaint();
@@ -161,6 +162,8 @@ public class Pokemon_Battle_Runner {
 		textbox.setVisible(true);
 		textbox.setBounds(20, 310, 560, 80);
 		textbox.setOpaque(true);
+		textbox.setBackground(Color.WHITE);
+		textbox.setFont(new Font("Serif", Font.PLAIN, 16));
 		fight_screen.add(textbox);
 		fight_screen.setVisible(true);
 		
@@ -192,7 +195,7 @@ public class Pokemon_Battle_Runner {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				CURRENT_MENU = FIGHT_MENU;
-				System.out.println("Switched to FIGHT_MENU");
+				textbox.setText("Which move will you use?");
 			}
 		});
 		
@@ -209,7 +212,7 @@ public class Pokemon_Battle_Runner {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				CURRENT_MENU = BAG_MENU;
-				System.out.println("Switched to BAG_MENU");
+				textbox.setText("Which Item will you use?");
 			}
 		});
 		BAG.setVisible(true);
@@ -242,7 +245,7 @@ public class Pokemon_Battle_Runner {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				CURRENT_MENU = TEAM_MENU;
-				System.out.println("Switched to TEAM_MENU");
+				textbox.setText("Which pokemon will you swap?");
 			}
 		});
 		TEAM.setVisible(true);
@@ -261,11 +264,11 @@ public class Pokemon_Battle_Runner {
 		JButton MOVE_ONE = new JButton("Move_One");
 		try
 		{
-			MOVE_ONE.setText(you.getPokemon_storage().getPokemon_by_index(current_pokemon_index).getMoveset().get(0).getMove_name());
+			MOVE_ONE.setText(you.getPokemon_storage().getPokemon_by_index(0).getMoveset().get(0).getMove_name());
 		}
 		catch (Exception e)
 		{
-			System.out.println("MOVE ONE NOT AVALIABLE");
+			textbox.setText("Can't use this move!");
 		}
 		MOVE_ONE.setBounds(10, 20, 280, 120);
 		MOVE_ONE.setOpaque(true);
@@ -275,7 +278,14 @@ public class Pokemon_Battle_Runner {
 			{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("You used MOVE_ONE");
+				try
+				{
+					textbox.setText(you.getPokemon_storage().getPokemon_by_index(0).getMoveset().get(0).getMove_name());
+				}
+				catch (Exception e)
+				{
+					textbox.setText("You used MOVE_ONE");
+				}
 			}
 		});
 		MOVE_ONE.setVisible(true);
@@ -284,11 +294,11 @@ public class Pokemon_Battle_Runner {
 		JButton MOVE_TWO = new JButton("Move_Two");
 		try
 		{
-			MOVE_TWO.setText(you.getPokemon_storage().getPokemon_by_index(current_pokemon_index).getMoveset().get(1).getMove_name());
+			MOVE_TWO.setText(you.getPokemon_storage().getPokemon_by_index(1).getMoveset().get(1).getMove_name());
 		}
 		catch (Exception e)
 		{
-			System.out.println("MOVE TWO NOT AVALIABLE");
+			textbox.setText("MOVE TWO NOT AVALIABLE");
 		}
 		MOVE_TWO.setBounds(310, 20, 280, 120);
 		MOVE_TWO.setOpaque(true);
@@ -298,7 +308,7 @@ public class Pokemon_Battle_Runner {
 			{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("You used MOVE_TWO");
+				textbox.setText("You used MOVE_TWO");
 			}
 		});
 		MOVE_TWO.setVisible(true);
@@ -307,11 +317,11 @@ public class Pokemon_Battle_Runner {
 		JButton MOVE_THREE = new JButton("Move_Three");
 		try
 		{
-			MOVE_THREE.setText(you.getPokemon_storage().getPokemon_by_index(current_pokemon_index).getMoveset().get(2).getMove_name());
+			MOVE_THREE.setText(you.getPokemon_storage().getPokemon_by_index(2).getMoveset().get(2).getMove_name());
 		}
 		catch (Exception e)
 		{
-			System.out.println("MOVE THREE NOT AVALIABLE");
+			textbox.setText("MOVE THREE NOT AVALIABLE");
 		}
 		MOVE_THREE.setBounds(10, 150, 280, 120);
 		MOVE_THREE.setOpaque(true);
@@ -321,7 +331,7 @@ public class Pokemon_Battle_Runner {
 			{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("You used MOVE_THREE");
+				textbox.setText("You used MOVE_THREE");
 			}
 		});
 		MOVE_THREE.setVisible(true);
@@ -330,11 +340,11 @@ public class Pokemon_Battle_Runner {
 		JButton MOVE_FOUR = new JButton("Move_Four");
 		try
 		{
-			MOVE_FOUR.setText(you.getPokemon_storage().getPokemon_by_index(current_pokemon_index).getMoveset().get(3).getMove_name());
+			MOVE_FOUR.setText(you.getPokemon_storage().getPokemon_by_index(3).getMoveset().get(3).getMove_name());
 		}
 		catch (Exception e)
 		{
-			System.out.println("MOVE FOUR NOT AVALIABLE");
+			textbox.setText("MOVE FOUR NOT AVALIABLE");
 		}
 		MOVE_FOUR.setBounds(310, 150, 280, 120);
 		MOVE_FOUR.setOpaque(true);
@@ -344,7 +354,7 @@ public class Pokemon_Battle_Runner {
 			{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("You used MOVE_FOUR");
+				textbox.setText("You used MOVE_FOUR");
 			}
 		});
 		MOVE_FOUR.setVisible(true);
@@ -360,7 +370,7 @@ public class Pokemon_Battle_Runner {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				CURRENT_MENU = MAIN_MENU;
-				System.out.println("Return to MAIN_MENU");
+				textbox.setText("Return to MAIN_MENU");
 			}
 		});
 		CANCEL.setVisible(true);
@@ -391,7 +401,7 @@ public class Pokemon_Battle_Runner {
 		}
 		catch (Exception e)
 		{
-			System.out.println("POKEMON_ONE NOT AVALIABLE");
+			textbox.setText("POKEMON_ONE NOT AVALIABLE");
 		}
 		POKEMON_ONE.setBounds(10, 20, 280, 80);
 		POKEMON_ONE.setOpaque(true);
@@ -401,7 +411,21 @@ public class Pokemon_Battle_Runner {
 			{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Switched to Pokemon ONE");
+				if (selected != 1)
+				{
+					selected = 1;
+				}
+				else
+				{
+					try
+					{
+						textbox.setText(you.getPokemon_storage().getPokemon_by_index(0).getName() + "is already out in the field!");
+					}
+					catch (Exception e)
+					{
+						textbox.setText("Pokemon 1 is already out!");
+					}
+				}
 			}
 		});
 		POKEMON_ONE.setVisible(true);
@@ -414,7 +438,7 @@ public class Pokemon_Battle_Runner {
 		}
 		catch (Exception e)
 		{
-			System.out.println("POKEMON_TWO NOT AVALIABLE");
+			textbox.setText("POKEMON_TWO NOT AVALIABLE");
 		}
 		POKEMON_TWO.setBounds(310, 20, 280, 80);
 		POKEMON_TWO.setOpaque(true);
@@ -424,7 +448,29 @@ public class Pokemon_Battle_Runner {
 			{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Switched to Pokemon TWO");
+				if (selected != 2)
+				{
+					selected = 2;
+					try
+					{
+						textbox.setText("Switch to " + you.getPokemon_storage().getPokemon_by_index(selected).getName() + "?");
+					}
+					catch (Exception e)
+					{
+						textbox.setText("Switch to Pokemon 2?");
+					}
+				}
+				else
+				{
+					try
+					{
+						textbox.setText("Send out " + you.getPokemon_storage().getPokemon_by_index(selected).getName());
+					}
+					catch (Exception e)
+					{
+						textbox.setText("Switched to Pokemon 2");
+					}
+				}
 			}
 		});
 		POKEMON_TWO.setVisible(true);
@@ -437,7 +483,7 @@ public class Pokemon_Battle_Runner {
 		}
 		catch (Exception e)
 		{
-			System.out.println("POKEMON_THREE NOT AVALIABLE");
+			textbox.setText("POKEMON_THREE NOT AVALIABLE");
 		}
 		POKEMON_THREE.setBounds(10, 110, 280, 80);
 		POKEMON_THREE.setOpaque(true);
@@ -447,7 +493,29 @@ public class Pokemon_Battle_Runner {
 			{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Switched to Pokemon THREE");
+				if (selected != 3)
+				{
+					selected = 3;
+					try
+					{
+						textbox.setText("Switch to " + you.getPokemon_storage().getPokemon_by_index(selected).getName() + "?");
+					}
+					catch (Exception e)
+					{
+						textbox.setText("Switch to Pokemon 3?");
+					}
+				}
+				else
+				{
+					try
+					{
+						textbox.setText("Send out " + you.getPokemon_storage().getPokemon_by_index(selected).getName());
+					}
+					catch (Exception e)
+					{
+						textbox.setText("Switched to Pokemon 3");
+					}
+				}
 			}
 		});
 		POKEMON_THREE.setVisible(true);
@@ -460,7 +528,7 @@ public class Pokemon_Battle_Runner {
 		}
 		catch (Exception e)
 		{
-			System.out.println("POKEMON_ONE NOT AVALIABLE");
+			textbox.setText("POKEMON_ONE NOT AVALIABLE");
 		}
 		POKEMON_FOUR.setBounds(310, 110, 280, 80);
 		POKEMON_FOUR.setOpaque(true);
@@ -470,7 +538,29 @@ public class Pokemon_Battle_Runner {
 			{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Switched to Pokemon FOUR");
+				if (selected != 4)
+				{
+					selected = 4;
+					try
+					{
+						textbox.setText("Switch to " + you.getPokemon_storage().getPokemon_by_index(selected).getName() + "?");
+					}
+					catch (Exception e)
+					{
+						textbox.setText("Switch to Pokemon 4?");
+					}
+				}
+				else
+				{
+					try
+					{
+						textbox.setText("Send out " + you.getPokemon_storage().getPokemon_by_index(selected).getName());
+					}
+					catch (Exception e)
+					{
+						textbox.setText("Switched to Pokemon 4");
+					}
+				}
 			}
 		});
 		POKEMON_FOUR.setVisible(true);
@@ -483,7 +573,7 @@ public class Pokemon_Battle_Runner {
 		}
 		catch (Exception e)
 		{
-			System.out.println("POKEMON_FIVE NOT AVALIABLE");
+			textbox.setText("POKEMON_FIVE NOT AVALIABLE");
 		}
 		POKEMON_FIVE.setBounds(10, 200, 280, 80);
 		POKEMON_FIVE.setOpaque(true);
@@ -493,7 +583,29 @@ public class Pokemon_Battle_Runner {
 			{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Switched to Pokemon FIVE");
+				if (selected != 5)
+				{
+					selected = 5;
+					try
+					{
+						textbox.setText("Switch to " + you.getPokemon_storage().getPokemon_by_index(selected).getName() + "?");
+					}
+					catch (Exception e)
+					{
+						textbox.setText("Switch to Pokemon 5?");
+					}
+				}
+				else
+				{
+					try
+					{
+						textbox.setText("Send out " + you.getPokemon_storage().getPokemon_by_index(selected).getName());
+					}
+					catch (Exception e)
+					{
+						textbox.setText("Switched to Pokemon 5");
+					}
+				};
 			}
 		});
 		POKEMON_FIVE.setVisible(true);
@@ -506,7 +618,7 @@ public class Pokemon_Battle_Runner {
 		}
 		catch (Exception e)
 		{
-			System.out.println("POKEMON_SIX NOT AVALIABLE");
+			textbox.setText("POKEMON_SIX NOT AVALIABLE");
 		}
 		POKEMON_SIX.setBounds(310, 200, 280, 80);
 		POKEMON_SIX.setOpaque(true);
@@ -516,7 +628,29 @@ public class Pokemon_Battle_Runner {
 			{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Switched to Pokemon SIX");
+				if (selected != 6)
+				{
+					selected = 6;
+					try
+					{
+						textbox.setText("Switch to " + you.getPokemon_storage().getPokemon_by_index(selected).getName() + "?");
+					}
+					catch (Exception e)
+					{
+						textbox.setText("Switch to Pokemon 6?");
+					}
+				}
+				else
+				{
+					try
+					{
+						textbox.setText("Send out " + you.getPokemon_storage().getPokemon_by_index(selected).getName());
+					}
+					catch (Exception e)
+					{
+						textbox.setText("Switched to Pokemon 6");
+					}
+				};
 			}
 		});
 		POKEMON_SIX.setVisible(true);
@@ -532,7 +666,7 @@ public class Pokemon_Battle_Runner {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				CURRENT_MENU = MAIN_MENU;
-				System.out.println("Return to MAIN_MENU");
+				textbox.setText("Return to MAIN_MENU");
 			}
 		});
 		CANCEL.setVisible(true);
