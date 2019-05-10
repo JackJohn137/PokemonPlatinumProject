@@ -10,28 +10,29 @@ public class Pokemon_Platinum_Game {
 	private Trainer_Map_Storage trainer_map_storage;
 	private Player player;
 	private Pokemon_Map current_map;
+	private int store;
 	public Pokemon_Platinum_Game() throws IOException {
-		this.pokedex = new Pokedex();
+//		this.pokedex = new Pokedex();
 		this.movelist = new Movelist();
 		
 		this.player = new Player("Cynthia", "Cynthia", Direction.DOWN);
-		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Turtwig"));
-		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(0).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
-		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Chimchar"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
-		
-		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
+//		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Turtwig"));
+//		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(0).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
+//		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Chimchar"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
+//		
+//		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
 		this.map_storage = new Map_Storage();
 		this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
-		addTrainers();
+		//addTrainers();
 		
 		
 		
@@ -40,16 +41,16 @@ public class Pokemon_Platinum_Game {
 		this.player.setGrid_y(12);
 	}
 	
-	private void addTrainers() {
-		for (Trainer_Map tm : this.trainer_map_storage.getTrainer_map_storage())
-		{
-			for (Pokemon_Trainer pt : tm.getTrainer_list())
-			{
-				System.out.println(pt.getGrid_y() + " " + pt.getGrid_x());
-				this.map_storage.getPokemon_map(tm.getMap_name()).getTile(pt.getGrid_y(), pt.getGrid_x()).setPokemon_trainer(pt);   
-			}
-		}
-	}
+//	private void addTrainers() {
+//		for (Trainer_Map tm : this.trainer_map_storage.getTrainer_map_storage())
+//		{
+//			for (Pokemon_Trainer pt : tm.getTrainer_list())
+//			{
+//				System.out.println(pt.getGrid_y() + " " + pt.getGrid_x());
+//				this.map_storage.getPokemon_map(tm.getMap_name()).getTile(pt.getGrid_y(), pt.getGrid_x()).setPokemon_trainer(pt);   
+//			}
+//		}
+//	}
 
 	// What do you want to do when a key is hit?
 	public void keyHit(String s) throws IOException 
@@ -75,10 +76,25 @@ public class Pokemon_Platinum_Game {
 						{
 							case 0:
 								player.setGrid_y(r - 1);
+								store=player.getY_coord();
+								player.setGrid_y(r);
+								System.out.println(store);
+								System.out.println(player.getY_coord());
+//								while(player.getY_coord()>store) {
+//									player.setY_coord(player.getSlide_y()-1);
+//								}
 								break;
 								
 							case 1:
 								player.setGrid_y(r - 1);
+								store=player.getY_coord();
+								player.setGrid_y(r);
+								System.out.println(store);
+								System.out.println(player.getY_coord());
+//								
+//								while(player.getY_coord()>store) {
+//									player.setY_coord(player.getSlide_y()-1);
+//								}
 								break;
 							
 							case 2:
@@ -154,16 +170,32 @@ public class Pokemon_Platinum_Game {
 						{
 							case 0:
 								player.setGrid_y(r + 1);
+								store=player.getY_coord();
+								player.setGrid_y(r);
+								System.out.println(store+"down");
+								
+//								while(player.getY_coord()<store) {
+//									player.setY_coord(player.getSlide_y()+1);
+//								}
 								break;
 								
 							case 1:
 								player.setGrid_y(r + 1);
+								store=player.getY_coord();
+								player.setGrid_y(r);
+								System.out.println(store+"down");
 								break;
 							
 							case 2:
+								player.setGrid_y(r + 1);
+								store=player.getY_coord();
+								player.setGrid_y(r);
+								System.out.println(store);
+								System.out.println(player.getY_coord());
 								break;
 								
 							case 3: 
+								
 								break;
 								
 							case 4:
@@ -214,6 +246,12 @@ public class Pokemon_Platinum_Game {
 					}
 				}
 			}
+			player.setGrid_y(r + 1);
+			store=player.getY_coord();
+			player.setGrid_y(r);
+			System.out.println(store+"down");
+			
+			System.out.println("down pressed");
 			player.setDirection(Direction.DOWN);
 		}
 		else if (s.equals("left"))
@@ -233,10 +271,20 @@ public class Pokemon_Platinum_Game {
 						{
 							case 0:
 								player.setGrid_x(c - 1);
+								store=player.getX_coord();
+								player.setGrid_x(c);
+//								while(player.getX_coord()>store) {
+//									player.setX_coord(player.getSlide_x()-1);
+//								}
 								break;
 								
 							case 1:
 								player.setGrid_x(c - 1);
+								store=player.getX_coord();
+								player.setGrid_x(c);
+								while(player.getX_coord()>store) {
+									player.setX_coord(player.getX_coord()-1);
+								}
 								break;
 							
 							case 2:
@@ -312,10 +360,21 @@ public class Pokemon_Platinum_Game {
 						{
 							case 0:
 								player.setGrid_x(c + 1);
+								store=player.getX_coord();
+								player.setGrid_x(c);
+//								while(player.getX_coord()<store) {
+//									player.setX_coord(player.getSlide_x()+1);
+							//	System.out.println(store+" right");
+								//}
 								break;
 								
 							case 1:
 								player.setGrid_x(c + 1);
+								store=player.getX_coord();
+								player.setGrid_x(c);
+								while(player.getX_coord()<store) {
+									player.setX_coord(player.getSlide_x()+1);
+								}
 								break;
 							
 							case 2:
@@ -374,7 +433,56 @@ public class Pokemon_Platinum_Game {
 			}
 			player.setDirection(Direction.RIGHT);
 		}
-		System.out.println("Player moved "+s);	
+		//System.out.println("Player moved "+s);	
+	}
+	public void draw(Graphics g) {
+		if(player.getDirection().equals(Direction.UP)) {
+		if(player.getY_coord()>store) {
+			if(player.getY_coord()-player.getSlide_y()<6) {
+			player.setY_coord(player.getSlide_y()-3);
+			g.drawImage(player.getMovements().getUp().getMove_1(),player.getX_coord(),player.getSlide_y(),null);
+			}
+			else {
+				player.setY_coord(player.getSlide_y()-3);
+				g.drawImage(player.getMovements().getUp().getMove_2(),player.getX_coord(),player.getSlide_y(),null);
+			}
+		}
+		}
+		if(player.getDirection().equals(Direction.DOWN)) {
+			
+			if(player.getY_coord()<store) {
+				if(Math.abs(player.getY_coord()-player.getSlide_y())<6) {
+				player.setY_coord(player.getSlide_y()+3);
+				g.drawImage(player.getMovements().getDown().getMove_1(),player.getX_coord(),player.getSlide_y(),null);
+				}
+				else {
+					player.setY_coord(player.getSlide_y()+3);
+					g.drawImage(player.getMovements().getDown().getMove_2(),player.getX_coord(),player.getSlide_y(),null);
+				}
+			}}
+if(player.getDirection().equals(Direction.LEFT)) {
+			if(player.getX_coord()>store) {
+				if(Math.abs(player.getX_coord()-player.getSlide_x())<6) {
+				player.setX_coord(player.getSlide_x()-3);
+				g.drawImage(player.getMovements().getLeft().getMove_1(),player.getSlide_x(),player.getY_coord(),null);
+				}
+				else {
+					player.setX_coord(player.getSlide_x()-3);
+					g.drawImage(player.getMovements().getLeft().getMove_2(),player.getSlide_x(),player.getY_coord(),null);
+				}
+			}}
+if(player.getDirection().equals(Direction.RIGHT)) {
+	if(player.getX_coord()<store) {
+		if(Math.abs(player.getX_coord()-player.getSlide_x())<6) {
+		player.setX_coord(player.getSlide_x()+3);
+		g.drawImage(player.getMovements().getRight().getMove_1(),player.getSlide_x(),player.getY_coord(),null);
+		}
+		else {
+			player.setX_coord(player.getSlide_x()+3);
+			g.drawImage(player.getMovements().getRight().getMove_2(),player.getSlide_x(),player.getY_coord(),null);
+		}
+	}}
+		
 	}
 	
 	public Player getPlayer()

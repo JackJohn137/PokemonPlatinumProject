@@ -26,7 +26,7 @@ public class Pokemon_Platinum_Runner {
 	private Direction direction;
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static final int X = (int) (screenSize.getWidth()), Y = (int) (screenSize.getHeight());
-	private static final int REFRESH_RATE = 1000;
+	private static final int REFRESH_RATE = 100;
 	private boolean step=true;
 	
 	public Pokemon_Platinum_Runner() throws IOException {
@@ -55,99 +55,99 @@ public class Pokemon_Platinum_Runner {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				int r = 10;
 
 				game.getCurrent_map().draw(g);//Draws whatever map is currently showing
-
+				game.draw(g);
 				switch (direction)
 				{
-				case UP:
-					game.getPlayer().setY_coord(game.getPlayer().getY_coord() - 2);
-					if (step)
-					{
-						g.drawImage(game.getPlayer().getMovements().getUp().getMove_1(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-					step=!step;
-					}
-					else
-					{
-						g.drawImage(game.getPlayer().getMovements().getUp().getMove_2(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-						step=!step;
-					}
-					break;
-
-				case DOWN:
-					game.getPlayer().setY_coord(game.getPlayer().getY_coord() + 2);
-					if (step)
-					{
-						g.drawImage(game.getPlayer().getMovements().getDown().getMove_1(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-						step=!step;
-					}
-					else
-					{
-						g.drawImage(game.getPlayer().getMovements().getDown().getMove_2(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-						step=!step;
-					}
-					break;
-
-				case LEFT:
-					game.getPlayer().setX_coord(game.getPlayer().getX_coord() - 2);
-					if (step)
-					{
-						g.drawImage(game.getPlayer().getMovements().getLeft().getMove_1(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-						step=!step;
-					}
-					else
-					{
-						g.drawImage(game.getPlayer().getMovements().getLeft().getMove_2(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-						step=!step;
-					}
-					break;
-
-				case RIGHT:
-					game.getPlayer().setX_coord(game.getPlayer().getX_coord() + 2);
-					if (step)
-					{
-						while(r>0) {
-						g.drawImage(game.getPlayer().getMovements().getRight().getMove_1(),
-								game.getPlayer().getX_coord()-r,
-								game.getPlayer().getY_coord(),
-								null);
-						r--;
-						}
-					step=!step;
-					}
-					else
-					{
-						while(r>0) {
-						g.drawImage(game.getPlayer().getMovements().getRight().getMove_2(),
-								game.getPlayer().getX_coord()-r,
-								game.getPlayer().getY_coord(),
-								null);
-						r--;
-						}
-						step=!step;
-					}
-					break;
+//				case UP:
+//					game.getPlayer().setY_coord(game.getPlayer().getY_coord() - 2);
+//					if (step)
+//					{
+//						g.drawImage(game.getPlayer().getMovements().getUp().getMove_1(),
+//								game.getPlayer().getX_coord(),
+//								game.getPlayer().getY_coord(),
+//								null);
+//					step=!step;
+//					}
+//					else
+//					{
+//						g.drawImage(game.getPlayer().getMovements().getUp().getMove_2(),
+//								game.getPlayer().getX_coord(),
+//								game.getPlayer().getY_coord(),
+//								null);
+//						step=!step;
+//					}
+//					break;
+//
+//				case DOWN:
+//					game.getPlayer().setY_coord(game.getPlayer().getY_coord() + 2);
+//					if (step)
+//					{
+//						g.drawImage(game.getPlayer().getMovements().getDown().getMove_1(),
+//								game.getPlayer().getX_coord(),
+//								game.getPlayer().getY_coord(),
+//								null);
+//						step=!step;
+//					}
+//					else
+//					{
+//						g.drawImage(game.getPlayer().getMovements().getDown().getMove_2(),
+//								game.getPlayer().getX_coord(),
+//								game.getPlayer().getY_coord(),
+//								null);
+//						step=!step;
+//					}
+//					break;
+//
+//				case LEFT:
+//					game.getPlayer().setX_coord(game.getPlayer().getX_coord() - 2);
+//					if (step)
+//					{
+//						g.drawImage(game.getPlayer().getMovements().getLeft().getMove_1(),
+//								game.getPlayer().getX_coord(),
+//								game.getPlayer().getY_coord(),
+//								null);
+//						step=!step;
+//					}
+//					else
+//					{
+//						g.drawImage(game.getPlayer().getMovements().getLeft().getMove_2(),
+//								game.getPlayer().getX_coord(),
+//								game.getPlayer().getY_coord(),
+//								null);
+//						step=!step;
+//					}
+//					break;
+//
+//				case RIGHT:
+//					game.getPlayer().setX_coord(game.getPlayer().getX_coord() + 2);
+//					if (step)
+//					{
+//						while(r>0) {
+//						g.drawImage(game.getPlayer().getMovements().getRight().getMove_1(),
+//								game.getPlayer().getX_coord()-r,
+//								game.getPlayer().getY_coord(),
+//								null);
+//						r--;
+//						}
+//					step=!step;
+//					}
+//					else
+//					{
+//						while(r>0) {
+//						g.drawImage(game.getPlayer().getMovements().getRight().getMove_2(),
+//								game.getPlayer().getX_coord()-r,
+//								game.getPlayer().getY_coord(),
+//								null);
+//						r--;
+//						}
+//						step=!step;
+//					}
+//					break;
 
 				default:
+					if(ticks>2)
 					game.getPlayer().draw(g);
 					break;
 				}
@@ -278,6 +278,7 @@ public class Pokemon_Platinum_Runner {
 	}
 
 	public void hit(String s) throws IOException {
+		if (ticks>2) {
 		ticks = 0;
 
 		if (s.equals("up"))
@@ -299,5 +300,6 @@ public class Pokemon_Platinum_Runner {
 
 		game.keyHit(s);
 		panel.repaint();
+	}
 	}
 }
