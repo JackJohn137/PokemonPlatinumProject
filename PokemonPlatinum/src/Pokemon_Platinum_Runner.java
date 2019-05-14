@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javax.swing.Action;
 import javax.swing.ActionMap;
@@ -29,7 +31,7 @@ public class Pokemon_Platinum_Runner {
 	private static final int REFRESH_RATE = 100;
 	private boolean step=true;
 	
-	public Pokemon_Platinum_Runner() throws IOException {
+	public Pokemon_Platinum_Runner() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		this.direction = Direction.NONE; 
 		this.game = new Pokemon_Platinum_Game();
 		EventQueue.invokeLater(new Runnable() {
@@ -44,17 +46,19 @@ public class Pokemon_Platinum_Runner {
 		});
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		new Pokemon_Platinum_Runner();
 	}
 
 	private void start() {
+		game.getCurrent_map().audio().playSoundtrack();
 		JFrame frame = new JFrame("Pokemon_Platinum");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
+				System.out.println(game.getCurrent_map());
 
 				game.getCurrent_map().draw(g);//Draws whatever map is currently showing
 				game.draw(g);
@@ -147,11 +151,12 @@ public class Pokemon_Platinum_Runner {
 //					break;
 
 				default:
-					if(ticks>2)
-					game.getPlayer().draw(g);
-					break;
+//					if(ticks>2)
+//					game.getPlayer().draw(g);
+//					break;
+//				}
 				}
-			}
+				}
 		};
 		// random color to the background
 		panel.setBackground(Color.BLUE);

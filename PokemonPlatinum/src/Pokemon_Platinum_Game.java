@@ -3,6 +3,9 @@ import java.awt.Image;
 import java.io.IOException;
 import java.util.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 public class Pokemon_Platinum_Game {
 	private Map_Storage map_storage;
 	private Pokedex pokedex;
@@ -11,7 +14,7 @@ public class Pokemon_Platinum_Game {
 	private Player player;
 	private Pokemon_Map current_map;
 	private int store;
-	public Pokemon_Platinum_Game() throws IOException {
+	public Pokemon_Platinum_Game() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 //		this.pokedex = new Pokedex();
 		this.movelist = new Movelist();
 		
@@ -447,6 +450,9 @@ public class Pokemon_Platinum_Game {
 				g.drawImage(player.getMovements().getUp().getMove_2(),player.getX_coord(),player.getSlide_y(),null);
 			}
 		}
+		else {
+			g.drawImage(player.getMovements().getUp().getStop(),player.getX_coord(),player.getSlide_y(),null);
+		}
 		}
 		if(player.getDirection().equals(Direction.DOWN)) {
 			
@@ -459,6 +465,9 @@ public class Pokemon_Platinum_Game {
 					player.setY_coord(player.getSlide_y()+3);
 					g.drawImage(player.getMovements().getDown().getMove_2(),player.getX_coord(),player.getSlide_y(),null);
 				}
+			}
+			else {
+				g.drawImage(player.getMovements().getDown().getStop(),player.getX_coord(),player.getSlide_y(),null);
 			}}
 if(player.getDirection().equals(Direction.LEFT)) {
 			if(player.getX_coord()>store) {
@@ -470,6 +479,9 @@ if(player.getDirection().equals(Direction.LEFT)) {
 					player.setX_coord(player.getSlide_x()-3);
 					g.drawImage(player.getMovements().getLeft().getMove_2(),player.getSlide_x(),player.getY_coord(),null);
 				}
+			}
+			else {
+				g.drawImage(player.getMovements().getLeft().getStop(),player.getX_coord(),player.getSlide_y(),null);
 			}}
 if(player.getDirection().equals(Direction.RIGHT)) {
 	if(player.getX_coord()<store) {
@@ -481,6 +493,9 @@ if(player.getDirection().equals(Direction.RIGHT)) {
 			player.setX_coord(player.getSlide_x()+3);
 			g.drawImage(player.getMovements().getRight().getMove_2(),player.getSlide_x(),player.getY_coord(),null);
 		}
+	}
+	else {
+		g.drawImage(player.getMovements().getRight().getStop(),player.getX_coord(),player.getSlide_y(),null);
 	}}
 		
 	}

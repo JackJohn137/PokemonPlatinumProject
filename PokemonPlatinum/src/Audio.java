@@ -18,9 +18,15 @@ public class Audio {
 	public Audio(String s)
 			throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		sound=s;
+		try {
 		 a=AudioSystem.getAudioInputStream(this.getClass().getResource("/sounds/"+sound+".wav"));
 		c=AudioSystem.getClip();
-		c.open(a);	} 
+		c.open(a);
+		}
+		catch(Exception NullPointerExeption){
+			
+		}
+	}
 /*	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		Audio a = new Audio("Wilhelm-Scream");
 		a.playSoundtrack();
