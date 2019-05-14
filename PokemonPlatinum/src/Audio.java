@@ -37,13 +37,19 @@ public class Audio {
 
    }*/  
 	public void playSoundtrack() {
-	//	c.loop(Clip.LOOP_CONTINUOUSLY);
-	//	c.start();
+		c.loop(Clip.LOOP_CONTINUOUSLY);
+		c.start();
 	}
 	public void playEffect() {
-	//	c.start();
+		c.start();
 	}
 	public void stop() {
-	//	c.stop();
+		c.stop();
+	}
+	public void swapTrack(Audio a) {
+		c.stop();
+		a.playSoundtrack();
 	}
 }
+
+

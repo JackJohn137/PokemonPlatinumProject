@@ -14,6 +14,7 @@ public class Pokemon_Platinum_Game {
 	private Player player;
 	private Pokemon_Map current_map;
 	private int store;
+	private Audio transition;
 	public Pokemon_Platinum_Game() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		this.pokedex = new Pokedex();
 		this.movelist = new Movelist();
@@ -36,7 +37,7 @@ public class Pokemon_Platinum_Game {
 		this.map_storage = new Map_Storage();
 		this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
 		addTrainers();
-		
+		this.transition=new Audio("Wilhelm-scream");
 		
 		this.player.setGrid_x(8);
 		this.player.setGrid_y(12);
@@ -119,7 +120,10 @@ public class Pokemon_Platinum_Game {
 								{
 									if (m.getMap_name().equals(this.current_map.getTile(r - 1, c).getWarp().getWarp_map_name()))
 									{
+										this.transition.playEffect();
+										this.current_map.audio().swapTrack(m.audio());
 										this.current_map = m;
+										System.out.println(this.current_map);
 										break;
 									}
 								}
@@ -138,6 +142,8 @@ public class Pokemon_Platinum_Game {
 						{
 							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
 							{
+								this.transition.playEffect();
+								this.current_map.audio().swapTrack(m.audio());
 								this.current_map = m;
 								break;
 							}
@@ -166,14 +172,12 @@ public class Pokemon_Platinum_Game {
 								player.setGrid_y(r + 1);
 								store=player.getY_coord();
 								player.setGrid_y(r);
-								System.out.println(store+"down");
 								break;
 								
 							case 1:
 								player.setGrid_y(r + 1);
 								store=player.getY_coord();
 								player.setGrid_y(r);
-								System.out.println(store+"down");
 								break;
 							
 							case 2:
@@ -210,6 +214,9 @@ public class Pokemon_Platinum_Game {
 								{
 									if (m.getMap_name().equals(this.current_map.getTile(r + 1, c).getWarp().getWarp_map_name()))
 									{
+										this.transition.playEffect();
+
+										this.current_map.audio().swapTrack(m.audio());
 										this.current_map = m;
 										break;
 									}
@@ -229,6 +236,9 @@ public class Pokemon_Platinum_Game {
 						{
 							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
 							{
+								this.transition.playEffect();
+
+								this.current_map.audio().swapTrack(m.audio());
 								this.current_map = m;
 								break;
 							}
@@ -301,7 +311,10 @@ public class Pokemon_Platinum_Game {
 								for (Pokemon_Map m : map_storage.getMap_storage())
 								{
 									if (m.getMap_name().equals(this.current_map.getTile(r, c - 1).getWarp().getWarp_map_name()))
-									{
+									{										
+										this.transition.playEffect();
+
+										this.current_map.audio().swapTrack(m.audio());
 										this.current_map = m;
 										break;
 									}
@@ -321,6 +334,9 @@ public class Pokemon_Platinum_Game {
 						{
 							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
 							{
+								this.transition.playEffect();
+
+								this.current_map.audio().swapTrack(m.audio());
 								this.current_map = m;
 								break;
 							}
@@ -387,7 +403,11 @@ public class Pokemon_Platinum_Game {
 								for (Pokemon_Map m : map_storage.getMap_storage())
 								{
 									if (m.getMap_name().equals(this.current_map.getTile(r, c + 1).getWarp().getWarp_map_name()))
+										
 									{
+										this.transition.playEffect();
+//;asldflda
+										this.current_map.audio().swapTrack(m.audio());
 										this.current_map = m;
 										break;
 									}
@@ -407,6 +427,9 @@ public class Pokemon_Platinum_Game {
 						{
 							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
 							{
+								this.transition.playEffect();
+
+								this.current_map.audio().swapTrack(m.audio());
 								this.current_map = m;
 								break;
 							}
