@@ -21,14 +21,14 @@ public class Movelist {
 	private void create_Movelist(ArrayList<String[]> Movelist_data) throws NumberFormatException, IOException {
 		for (String [] Movelist_entry : Movelist_data)
 		{
-			Movelist.add(add_entry(Movelist_entry));
+		//	Movelist.add(add_entry(Movelist_entry));
 		}
 	}
 
-	private Pokemon_Move add_entry(String[] s) throws NumberFormatException, IOException
-	{	
-		return new Pokemon_Move (s[0], new Pokemon_Type(Pokemon_Type.Type.valueOf(s[1])), Integer.parseInt(s[2]), Boolean.parseBoolean(s[3]), Integer.parseInt(s[4]), Integer.parseInt(s[5]));     
-	}
+//	private Pokemon_Move add_entry(String[] s) throws NumberFormatException, IOException
+//	{	
+//		return new Pokemon_Move (s[0], new Pokemon_Type(Pokemon_Type.Type.valueOf(s[1])), Integer.parseInt(s[2]), Boolean.parseBoolean(s[3]), Integer.parseInt(s[4]), Integer.parseInt(s[5]));     
+//	}
 	
 	public ArrayList<Pokemon_Move> getMovelist()
 	{

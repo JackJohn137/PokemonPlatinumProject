@@ -1,6 +1,8 @@
 import java.awt.Image;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 /**
  * @version 1.0
  * TODO: Moves and Abilities
@@ -29,7 +31,7 @@ public class Pokemon{
 	private final int exp_yield;
 	private Pokemon_Item held_item;
 	private final Effort_Value_Drop ev_drop;
-
+	private Pokemon_Move[] levelUpMove;
 	private ArrayList<Pokemon_Move> moveSet;
 	private ArrayList<Pokemon_Move> forgottenMoves;
 
@@ -147,6 +149,7 @@ public class Pokemon{
 		this.exp_yield = p.getExp_yield();
 		this.held_item = p.getHeld_item();
 		this.ev_drop = p.getEv_Drop();
+		this.levelUpMove=new Pokemon_Move[100];
 		this.moveSet = new ArrayList<>();
 	}
 	
@@ -275,6 +278,31 @@ public class Pokemon{
 	public void addMove(Pokemon_Move move)
 	{
 		this.moveSet.add(move);
+		if(this.moveSet.size()>4) {
+			this.deleteMovePrompt(move);
+
+		}
+	}
+
+	private void deleteMovePrompt(Pokemon_Move move) {
+		Pokemon_Move[] moves= new Pokemon_Move[5];
+		for(int i=0;i<5;i++) {
+			moves[i]=this.moveSet.get(i);
+		}
+		if(JOptionPane.showConfirmDialog(null,this.name+" has learned the maximum number of moves, forget a move to learn"+ move.getMove_name()+"?")==JOptionPane.YES_OPTION) {
+			Pokemon_Move deleted =(Pokemon_Move) JOptionPane.showInputDialog(null,"which move will be forgotten", "delete move?", JOptionPane.PLAIN_MESSAGE,null, moves,moves[0]);
+			if(deleted.equals(move)) {
+				this.deleteMovePrompt(move);
+			}
+		}
+		else {
+			if(JOptionPane.showConfirmDialog(null,"then give up on learning " +move.getMove_name()+"?")==JOptionPane.YES_OPTION) {
+				moveSet.remove(move);
+			}
+			else {
+				this.deleteMovePrompt(move);
+			}
+		}
 	}
 
 	public ArrayList<Pokemon_Move> getMoveset()
