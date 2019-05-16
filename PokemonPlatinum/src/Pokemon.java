@@ -291,8 +291,13 @@ public class Pokemon{
 		}
 		if(JOptionPane.showConfirmDialog(null,this.name+" has learned the maximum number of moves, forget a move to learn"+ move.getMove_name()+"?")==JOptionPane.YES_OPTION) {
 			Pokemon_Move deleted =(Pokemon_Move) JOptionPane.showInputDialog(null,"which move will be forgotten", "delete move?", JOptionPane.PLAIN_MESSAGE,null, moves,moves[0]);
-			if(deleted.equals(move)) {
-				this.deleteMovePrompt(move);
+			if(JOptionPane.showConfirmDialog(null, "are you sure?"+deleted.getMove_name()+"will be deleted")==JOptionPane.YES_OPTION) {
+				if(deleted.equals(move)) {
+					this.deleteMovePrompt(move);
+				}
+				else {
+					this.moveSet.remove(move);
+				}
 			}
 		}
 		else {
