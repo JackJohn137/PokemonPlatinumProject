@@ -6,6 +6,8 @@ import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javax.swing.Action;
 import javax.swing.ActionMap;
@@ -49,6 +51,7 @@ public class Pokemon_Battle_Runner {
 	private static int CURRENT_MENU;
 	private Timer timer;
 	private int ticks;
+	private Audio a;
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static final int INITIAL_X = (int) (screenSize.getWidth() / 2 - 300);
 	public static final int X = (int) (600), Y = (int) (800);
@@ -60,7 +63,7 @@ public class Pokemon_Battle_Runner {
 	private static int selected;
 	private final Border border;
 
-	public Pokemon_Battle_Runner(Player you, Pokemon_Trainer opponent) throws IOException
+	public Pokemon_Battle_Runner(Player you, Pokemon_Trainer opponent) throws IOException, UnsupportedAudioFileException, LineUnavailableException
 	{
 
 		border = BorderFactory.createLineBorder(Color.getHSBColor(100, 200, 100));
@@ -173,6 +176,7 @@ public class Pokemon_Battle_Runner {
 	    their_sprite = opponent_field.getFront_image();
 		menu = new JPanel[4];
 		set_up_menus();
+		a=new Audio("Battle_Trainer");
 
 		EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -206,7 +210,7 @@ public class Pokemon_Battle_Runner {
 
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		new Pokemon_Battle_Runner(you, opponent);
 	}
 
@@ -232,7 +236,7 @@ public class Pokemon_Battle_Runner {
 		frame.pack();
 		frame.setVisible(true);
 		menu[0].setVisible(true);
-
+		a.playSoundtrack();
 		// this timer controls the actions in the game and then repaints after each update to data
 		timer = new Timer(REFRESH_RATE, new ActionListener() {
 			@Override
@@ -387,6 +391,7 @@ public class Pokemon_Battle_Runner {
 						try
 						{
 							you.setCan_move(true);
+							a.stop();
 						}
 						catch (Exception e)
 						{
