@@ -10,14 +10,16 @@
 public class Pokemon_Move {
 	private String move_name;
 	private Pokemon_Type move_type;
+	private int pp;
 	private int power;
 	private boolean physical;
 	private int num_hit;
 	private int priority;
 	
-	public Pokemon_Move (String move_name, Pokemon_Type move_type, int power, boolean physical, int num_hit, int priority){
+	public Pokemon_Move (String move_name, Pokemon_Type move_type, int pp, int power, boolean physical, int num_hit, int priority){
 		this.move_name = move_name;
 		this.move_type = move_type;
+		this.pp = pp;
 		this.power = power;
 		this.physical = physical;
 		this.num_hit = num_hit;

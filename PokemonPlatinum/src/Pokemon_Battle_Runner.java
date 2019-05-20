@@ -30,8 +30,24 @@ public class Pokemon_Battle_Runner {
 	private static JLabel textbox;
 	private static JLabel your_hp;
 	private static JLabel their_hp;
+	private static int your_hp_max;
+	private int your_hp1;
+	private int your_hp2;
+	private int your_hp3;
+	private int your_hp4;
+	private int your_hp5;
+	private int your_hp6;
+	private static int their_hp_max;
+	private int their_hp1;
+	private int their_hp2;
+	private int their_hp3;
+	private int their_hp4;
+	private int their_hp5;
+	private int their_hp6;
 	private static JPanel[] menu;
 	private static JPanel fight_screen;
+	private static Image your_sprite;
+	private static Image their_sprite;
 	private static int CURRENT_MENU;
 	private Timer timer;
 	private int ticks;
@@ -54,11 +70,111 @@ public class Pokemon_Battle_Runner {
 		textbox = new JLabel();
 		this.you = you;
 		this.opponent = opponent;
-		//this.you_field = you.getPokemon_storage().getPokemon(0);
-		//this.opponent_field = opponent.getPokemon_storage().getPokemon(0);
-		this.you_move = null;//Will be decided by button
-		this.opponent_move = null;//Will be decided by button
-		this.menu = new JPanel[4];
+		this.you_field = you.getPokemon_storage().getPokemon_by_index(0);
+		this.opponent_field = opponent.getPokemon_storage().getPokemon_by_index(0);
+		try
+		{
+			this.your_hp1 = this.you_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		try
+		{
+			this.your_hp2 = this.you_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		try
+		{
+			this.your_hp3 = this.you_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		try
+		{
+			this.your_hp4 = this.you_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		try
+		{
+			this.your_hp5 = this.you_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		try
+		{
+			this.your_hp6 = this.you_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		try
+		{
+			this.their_hp1 = this.opponent_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		try
+		{
+			this.their_hp2 = this.opponent_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		try
+		{
+			this.their_hp3 = this.opponent_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		try
+		{
+			this.their_hp4 = this.opponent_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		try
+		{
+			this.their_hp5 = this.opponent_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		try
+		{
+			this.their_hp6 = this.opponent_field.getMax_current_stats().getHp();
+		}
+		catch (Exception e)
+		{
+			
+		}
+		your_hp_max = this.your_hp1;
+		their_hp_max = this.their_hp1;
+		you_move = null;//Will be decided by button
+	    opponent_move = null;//Will be decided by button
+	    your_sprite = you_field.getBack_image();
+	    their_sprite = opponent_field.getFront_image();
+		menu = new JPanel[4];
 		set_up_menus();
 		a=new Audio("Battle_Trainer");
 
@@ -135,7 +251,7 @@ public class Pokemon_Battle_Runner {
 	protected void updateBattle() {
 		for(int i = 0; i < menu.length; i++)
 		{
-			if (i == this.CURRENT_MENU)
+			if (i == CURRENT_MENU)
 			{
 				if (menu[i].isVisible() == false)
 				{
@@ -147,10 +263,10 @@ public class Pokemon_Battle_Runner {
 				menu[i].setVisible(false);
 			}
 		}
+		
+		fight_screen.repaint();
 		frame.repaint();
-		//fight_screen.repaint();
-		//menu[this.CURRENT_MENU].repaint();
-
+		
 
 		ticks++;
 	}
@@ -164,6 +280,8 @@ public class Pokemon_Battle_Runner {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
+				g.drawImage(your_sprite, 20, 200, null);
+				g.drawImage(their_sprite, 400, 20, null);
 			}
 		};
 
@@ -335,9 +453,22 @@ public class Pokemon_Battle_Runner {
 									you.getPokemon_storage().getPokemon_by_index(0).getMoveset().get(0), 
 									opponent.getPokemon_storage().getPokemon_by_index(0).getMoveset().get(0));
 							CURRENT_MENU = MAIN_MENU;
+							their_hp.setText(opponent_field.getCurrent_stats().getHp() + "/" + their_hp_max);
+							your_hp.setText(you_field.getCurrent_stats().getHp() + "/" + your_hp_max);
+							if (you_field.getCurrent_stats().getHp() <= 0)
+							{
+								JOptionPane.showMessageDialog(null, "YOU LOST!", "DEFEAT", 1);
+							}
+							else if (opponent_field.getCurrent_stats().getHp() <= 0)
+							{
+								JOptionPane.showMessageDialog(null, "YOU WON!", "DEFEAT", 1);
+								
+							}
+							you.setCan_move(true);
 						}
 						catch (Exception e)
 						{
+							e.printStackTrace();
 							textbox.setText("You used MOVE_ONE");
 						}
 					}
@@ -370,6 +501,8 @@ public class Pokemon_Battle_Runner {
 									you.getPokemon_storage().getPokemon_by_index(0).getMoveset().get(1), 
 									opponent.getPokemon_storage().getPokemon_by_index(0).getMoveset().get(1));
 							CURRENT_MENU = MAIN_MENU;
+							their_hp.setText(opponent_field.getCurrent_stats().getHp() + "/" + their_hp_max);
+							your_hp.setText(you_field.getCurrent_stats().getHp() + "/" + your_hp_max);
 						}
 						catch (Exception e)
 						{
@@ -405,6 +538,8 @@ public class Pokemon_Battle_Runner {
 									you.getPokemon_storage().getPokemon_by_index(0).getMoveset().get(2), 
 									opponent.getPokemon_storage().getPokemon_by_index(0).getMoveset().get(2));
 							CURRENT_MENU = MAIN_MENU;
+							their_hp.setText(opponent_field.getCurrent_stats().getHp() + "/" + their_hp_max);
+							your_hp.setText(you_field.getCurrent_stats().getHp() + "/" + your_hp_max);
 						}
 						catch (Exception e)
 						{
@@ -440,6 +575,8 @@ public class Pokemon_Battle_Runner {
 									you.getPokemon_storage().getPokemon_by_index(0).getMoveset().get(3), 
 									opponent.getPokemon_storage().getPokemon_by_index(0).getMoveset().get(3));
 							CURRENT_MENU = MAIN_MENU;
+							their_hp.setText(opponent_field.getCurrent_stats().getHp() + "/" + their_hp_max);
+							your_hp.setText(you_field.getCurrent_stats().getHp() + "/" + your_hp_max);
 						}
 						catch (Exception e)
 						{
@@ -540,6 +677,7 @@ public class Pokemon_Battle_Runner {
 								try
 								{
 									textbox.setText("Switch to " + you.getPokemon_storage().getPokemon_by_index(selected).getName() + "?");
+									your_hp_max = your_hp2;
 								}
 								catch (Exception e)
 								{
@@ -555,6 +693,7 @@ public class Pokemon_Battle_Runner {
 									POKEMON_ONE.setText(you.getPokemon_storage().getPokemon_by_index(0).getName());
 									POKEMON_TWO.setText(you.getPokemon_storage().getPokemon_by_index(selected).getName());
 									selected = -1;
+									your_hp_max = your_hp2;
 								}
 								catch (Exception e)
 								{
@@ -614,6 +753,8 @@ public class Pokemon_Battle_Runner {
 									POKEMON_ONE.setText(you.getPokemon_storage().getPokemon_by_index(0).getName());
 									POKEMON_THREE.setText(you.getPokemon_storage().getPokemon_by_index(selected).getName());
 									selected = -1;
+									your_hp_max = your_hp3;
+									your_sprite = you_field.getBack_image();
 								}
 								catch (Exception e)
 								{
@@ -638,7 +779,7 @@ public class Pokemon_Battle_Runner {
 		}
 		catch (Exception e)
 		{
-			System.out.println("POKEMON_ONE NOT AVALIABLE");
+			System.out.println("POKEMON_FOUR NOT AVALIABLE");
 		}
 		POKEMON_FOUR.setBounds(310, 110, 280, 80);
 		POKEMON_FOUR.setOpaque(true);
@@ -672,6 +813,8 @@ public class Pokemon_Battle_Runner {
 									POKEMON_ONE.setText(you.getPokemon_storage().getPokemon_by_index(0).getName());
 									POKEMON_FOUR.setText(you.getPokemon_storage().getPokemon_by_index(selected).getName());
 									selected = -1;
+									your_hp_max = your_hp4;
+									your_sprite = you_field.getBack_image();
 								}
 								catch (Exception e)
 								{
@@ -730,6 +873,8 @@ public class Pokemon_Battle_Runner {
 									POKEMON_ONE.setText(you.getPokemon_storage().getPokemon_by_index(0).getName());
 									POKEMON_FIVE.setText(you.getPokemon_storage().getPokemon_by_index(selected).getName());
 									selected = -1;
+									your_hp_max = your_hp5;
+									your_sprite = you_field.getBack_image();
 								}
 								catch (Exception e)
 								{
@@ -788,6 +933,8 @@ public class Pokemon_Battle_Runner {
 									POKEMON_ONE.setText(you.getPokemon_storage().getPokemon_by_index(0).getName());
 									POKEMON_SIX.setText(you.getPokemon_storage().getPokemon_by_index(selected).getName());
 									selected = -1;
+									your_hp_max = your_hp6;
+									your_sprite = you_field.getBack_image();
 								}
 								catch (Exception e)
 								{
