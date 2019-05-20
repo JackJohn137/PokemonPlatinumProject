@@ -55,7 +55,7 @@ public class Pokemon_Platinum_Game {
 	}
 
 	// What do you want to do when a key is hit?
-	public void keyHit(String s) throws IOException 
+	public void keyHit(String s) throws IOException, UnsupportedAudioFileException, LineUnavailableException 
 	{
 		Tile[][] temp = current_map.getGrid();
 		int r = player.getGrid_y();
@@ -65,10 +65,15 @@ public class Pokemon_Platinum_Game {
 		{
 			if (player.isCan_move() == true) 
 			{
+				if(this.current_map.audio().running()==false){
+					this.current_map.audio().resume();
+				}
 				if (player.getDirection() == Direction.UP)
 				{
 					if (temp[r - 1][c].getPokemon_trainer() != null)
 					{
+						this.getCurrent_map().audio().stop();
+						System.out.println(this.current_map.audio().running());
 						new Pokemon_Battle_Runner(player, temp[r - 1][c].getPokemon_trainer());
 						player.setCan_move(false);
 					}
@@ -161,6 +166,8 @@ public class Pokemon_Platinum_Game {
 				{
 					if (temp[r + 1][c].getPokemon_trainer() != null)
 					{
+						this.getCurrent_map().audio().stop();
+
 						new Pokemon_Battle_Runner(player, temp[r + 1][c].getPokemon_trainer());
 						player.setCan_move(false);
 					}
@@ -262,6 +269,8 @@ public class Pokemon_Platinum_Game {
 				{
 					if (temp[r][c - 1].getPokemon_trainer() != null)
 					{
+						this.getCurrent_map().audio().stop();
+
 						new Pokemon_Battle_Runner(player, temp[r][c - 1].getPokemon_trainer());
 						player.setCan_move(false);
 					}
@@ -354,6 +363,8 @@ public class Pokemon_Platinum_Game {
 				{
 					if (temp[r][c + 1].getPokemon_trainer() != null)
 					{
+						this.getCurrent_map().audio().stop();
+
 						new Pokemon_Battle_Runner(player, temp[r][c + 1].getPokemon_trainer());
 						player.setCan_move(false);
 					}
