@@ -26,6 +26,8 @@ public class Pokemon_Platinum_Game {
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
+		System.out.println(this.player.getPokemon_storage().getPokemon_by_index(0).getFront_image());
+		
 		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Chimchar"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
