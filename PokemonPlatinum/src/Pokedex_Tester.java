@@ -21,6 +21,9 @@ public class Pokedex_Tester {
 		System.out.println(poke.getPokemon_level().toString());
 		System.out.println(poke.getPokemon_nature().toString());
 		System.out.println(poke.getCurrent_stats().toString());
+		System.out.println(poke.getType_1().toString());
+		System.out.println(poke.getType_2().toString());
+		System.out.println(poke.getGrowth_rate().toString());
 	}
 
 }

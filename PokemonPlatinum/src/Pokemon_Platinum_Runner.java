@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javax.swing.Action;
 import javax.swing.ActionMap;
@@ -26,11 +28,11 @@ public class Pokemon_Platinum_Runner {
 	private Direction direction;
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static final int X = (int) (screenSize.getWidth()), Y = (int) (screenSize.getHeight());
-	private static final int REFRESH_RATE = 1000;
+	private static final int REFRESH_RATE = 100;
 	private boolean step=true;
 	
-	public Pokemon_Platinum_Runner() throws IOException {
-		this.direction = Direction.NONE;
+	public Pokemon_Platinum_Runner() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+		this.direction = Direction.NONE; 
 		this.game = new Pokemon_Platinum_Game();
 		EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -44,114 +46,22 @@ public class Pokemon_Platinum_Runner {
 		});
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		new Pokemon_Platinum_Runner();
 	}
 
 	private void start() {
+		game.getCurrent_map().audio().playSoundtrack();
 		JFrame frame = new JFrame("Pokemon_Platinum");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				int r = 10;
-
+				
 				game.getCurrent_map().draw(g);//Draws whatever map is currently showing
-
-				switch (direction)
-				{
-				case UP:
-					game.getPlayer().setY_coord(game.getPlayer().getY_coord() - 2);
-					if (step)
-					{
-						g.drawImage(game.getPlayer().getMovements().getUp().getMove_1(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-					step=!step;
-					}
-					else
-					{
-						g.drawImage(game.getPlayer().getMovements().getUp().getMove_2(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-						step=!step;
-					}
-					break;
-
-				case DOWN:
-					game.getPlayer().setY_coord(game.getPlayer().getY_coord() + 2);
-					if (step)
-					{
-						g.drawImage(game.getPlayer().getMovements().getDown().getMove_1(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-						step=!step;
-					}
-					else
-					{
-						g.drawImage(game.getPlayer().getMovements().getDown().getMove_2(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-						step=!step;
-					}
-					break;
-
-				case LEFT:
-					game.getPlayer().setX_coord(game.getPlayer().getX_coord() - 2);
-					if (step)
-					{
-						g.drawImage(game.getPlayer().getMovements().getLeft().getMove_1(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-						step=!step;
-					}
-					else
-					{
-						g.drawImage(game.getPlayer().getMovements().getLeft().getMove_2(),
-								game.getPlayer().getX_coord(),
-								game.getPlayer().getY_coord(),
-								null);
-						step=!step;
-					}
-					break;
-
-				case RIGHT:
-					game.getPlayer().setX_coord(game.getPlayer().getX_coord() + 2);
-					if (step)
-					{
-						while(r>0) {
-						g.drawImage(game.getPlayer().getMovements().getRight().getMove_1(),
-								game.getPlayer().getX_coord()-r,
-								game.getPlayer().getY_coord(),
-								null);
-						r--;
-						}
-					step=!step;
-					}
-					else
-					{
-						while(r>0) {
-						g.drawImage(game.getPlayer().getMovements().getRight().getMove_2(),
-								game.getPlayer().getX_coord()-r,
-								game.getPlayer().getY_coord(),
-								null);
-						r--;
-						}
-						step=!step;
-					}
-					break;
-
-				default:
-					game.getPlayer().draw(g);
-					break;
+				game.draw(g);
 				}
-			}
 		};
 		// random color to the background
 		panel.setBackground(Color.BLUE);
@@ -182,8 +92,7 @@ public class Pokemon_Platinum_Runner {
 		panel.repaint();//Repaints after each update
 
 		ticks++;//Adds to the timer
-		System.out.println("Timer: " + ticks);
-
+		
 		if(ticks / REFRESH_RATE % 10 == 0) 
 		{
 			
@@ -210,7 +119,18 @@ public class Pokemon_Platinum_Runner {
 		map.put("up", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hit("up");
+				try {
+					hit("up");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}	
 		});
 		inMap.put(KeyStroke.getKeyStroke("pressed DOWN"), "down");
@@ -218,7 +138,18 @@ public class Pokemon_Platinum_Runner {
 		map.put("down", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hit("down");
+				try {
+					hit("down");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}	
 		});
 		inMap.put(KeyStroke.getKeyStroke("pressed LEFT"), "left");
@@ -226,7 +157,18 @@ public class Pokemon_Platinum_Runner {
 		panel.getActionMap().put("left",new AbstractAction(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hit("left");
+				try {
+					hit("left");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		inMap.put(KeyStroke.getKeyStroke("pressed RIGHT"), "right");
@@ -234,14 +176,36 @@ public class Pokemon_Platinum_Runner {
 		map.put("right", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hit("right");
+				try {
+					hit("right");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		inMap.put(KeyStroke.getKeyStroke("pressed SPACE"), "stop");
 		map.put("stop", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hit("stop");
+				try {
+					hit("stop");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -252,7 +216,8 @@ public class Pokemon_Platinum_Runner {
 
 	}
 
-	public void hit(String s) {
+	public void hit(String s) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+		if (ticks>2) {
 		ticks = 0;
 
 		if (s.equals("up"))
@@ -274,5 +239,6 @@ public class Pokemon_Platinum_Runner {
 
 		game.keyHit(s);
 		panel.repaint();
+	}
 	}
 }

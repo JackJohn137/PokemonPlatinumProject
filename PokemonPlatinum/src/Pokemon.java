@@ -27,7 +27,6 @@ public class Pokemon{
 	private final Individual_Values iv;
 	private Effort_Values ev;
 	private final int exp_yield;
-	private Growth_Rate growth_Rate;
 	private Pokemon_Item held_item;
 	private final Effort_Value_Drop ev_drop;
 
@@ -58,8 +57,8 @@ public class Pokemon{
 	 */
 	public Pokemon (String name, 
 			int pokedex_number, 
-			//Image front_image, 
-			//Image back_image, 
+			Image front_image, 
+			Image back_image, 
 			String nickname, 
 			String original_trainer, 
 			boolean wild, 
@@ -78,8 +77,8 @@ public class Pokemon{
 		this.fainted = false;
 		this.name = name;
 		this.pokedex_number = pokedex_number;
-		//this.front_image = front_image;
-		//this.back_image = back_image;
+		this.front_image = front_image;
+		this.back_image = back_image;
 		this.nickname = nickname;
 		this.original_trainer = original_trainer;
 		this.wild = wild;
@@ -117,12 +116,12 @@ public class Pokemon{
 		this.fainted = false;
 		this.name = p.getName();
 		this.pokedex_number = p.getPokedex_number()	;
-		//this.front_image = p.getFront_image();
-		//this.back_image = p.getBack_image();
+		this.front_image = p.getFront_image();
+		this.back_image = p.getBack_image();
 		this.nickname = p.getNickname();
 		this.original_trainer = p.getOriginal_trainer();
 		this.wild = p.isWild();
-		this.growth_rate = p.getGrowth_Rate();
+		this.growth_rate = p.getGrowth_rate();
 		this.pokemon_level = p.getPokemon_level();
 		this.type_1 = p.getType_1();
 		this.type_2 = p.getType_2();
@@ -245,12 +244,12 @@ public class Pokemon{
 		return exp_yield;
 	}
 
-	public Growth_Rate getGrowth_Rate() {
-		return growth_Rate;
+	public Growth_Rate getGrowth_rate() {
+		return growth_rate;
 	}
 
-	public void setGrowth_Rate(Growth_Rate growth_Rate) {
-		this.growth_Rate = growth_Rate;
+	public void setGrowth_rate(Growth_Rate growth_Rate) {
+		this.growth_rate = growth_Rate;
 	}
 
 	public Pokemon_Item getHeld_item() {
@@ -276,6 +275,55 @@ public class Pokemon{
 	public void addMove(Pokemon_Move move)
 	{
 		this.moveSet.add(move);
+
 	}
 
+		if(this.moveSet.size()==5) {
+			this.deleteMovePrompt(move);
+
+		}
+	}
+
+	private void deleteMovePrompt(Pokemon_Move move) {
+		Pokemon_Move[] moves= new Pokemon_Move[5];
+		for(int i=0;i<5;i++) {
+			moves[i]=this.moveSet.get(i);
+		}
+		if(JOptionPane.showConfirmDialog(null,this.name+" has learned the maximum number of moves, forget a move to learn"+ move.getMove_name()+"?")==JOptionPane.YES_OPTION) {
+			Pokemon_Move deleted =(Pokemon_Move) JOptionPane.showInputDialog(null,"which move will be forgotten", "delete move?", JOptionPane.PLAIN_MESSAGE,null, moves,moves[0]);
+			if(deleted.equals(move)) {
+				this.giveUP(move);
+			}
+			else{
+				
+			if(JOptionPane.showConfirmDialog(null, "are you sure?"+deleted.getMove_name()+"will be deleted")==JOptionPane.YES_OPTION) {
+				if(deleted.equals(move)) {
+					this.deleteMovePrompt(move);
+				}
+				else {
+					this.moveSet.remove(move);
+				}
+			}
+			}
+			}
+		else {
+			this.giveUP(move);
+  		}
+   	}
+
+   	private void giveUP(Pokemon_Move move) {
+		if(JOptionPane.showConfirmDialog(null,"then give up on learning " +move.getMove_name()+"?")==JOptionPane.YES_OPTION) {
+			moveSet.remove(move);
+		}
+		else {
+			this.deleteMovePrompt(move);
+      }
+		
+	}
+
+
+	public ArrayList<Pokemon_Move> getMoveset()
+	{
+		return this.moveSet;
+	}
 }

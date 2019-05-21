@@ -27,7 +27,7 @@ public class Movelist {
 
 	private Pokemon_Move add_entry(String[] s) throws NumberFormatException, IOException
 	{	
-		return new Pokemon_Move (s[0], new Pokemon_Type(Pokemon_Type.Type.valueOf(s[1])), Integer.parseInt(s[2]), Boolean.parseBoolean(s[3]), Integer.parseInt(s[4]), Integer.parseInt(s[5]));     
+		return new Pokemon_Move (s[0], new Pokemon_Type(Pokemon_Type.Type.valueOf(s[1])), Integer.parseInt(s[2]), Integer.parseInt(s[3]), Boolean.parseBoolean(s[4]), Integer.parseInt(s[5]), Integer.parseInt(s[6]));     
 	}
 	
 	public ArrayList<Pokemon_Move> getMovelist()

@@ -11,8 +11,9 @@ public class Battle_Damage {
 		this.defender = defender;
 		this.pokemon_move = pokemon_move;
 		this.damage_dealt = getDamage_dealt();
+		System.out.println("stuff");
 	}
-	
+
 	public Pokemon getAttacker()
 	{
 		return this.attacker;
@@ -65,7 +66,15 @@ public class Battle_Damage {
 		}
 		
 		Z = 217 + (int) (Math.random() * 39);
-		
-		return (int) ((((((((((2 * A / 5 + 2) * B * C) / D) / 50) + 2) * X) * Y / 10) * Z) / 255));
+		int damage = (int) ((((((2.0 * A / 5 + 2) * B * C) / D) / 50) + 2) * X * Y * Z / 255);
+		System.out.println("Level:" + A 
+				+ " Attacking_Stat:" + B 
+				+ " Move_Power:" + C 
+				+ " Defending_Stat:" + D 
+				+ " STAB:" + X 
+				+ " Type_Effectiveness" + Y 
+				+ " RNG DAMAGE:" + Z);
+		System.out.println("" + damage);
+		return damage;
 	}
 }

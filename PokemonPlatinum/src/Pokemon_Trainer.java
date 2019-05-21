@@ -24,6 +24,9 @@ public class Pokemon_Trainer {
 		this.back = ImageIO.read(getClass().getResource("trainer_back/Pt_Dawn_Back.png"));
 		this.movements = new Pokemon_Trainer_Movements(type);
 		this.direction = direction;
+		this.grid_x = x;
+		this.grid_y = y;
+		this.name = name;
 	}
 	
 	public void draw(Graphics g)
@@ -94,6 +97,7 @@ public class Pokemon_Trainer {
 
 	public void setGrid_x(int grid_x) {
 		this.grid_x = grid_x;
+		x_coord=this.getX_coord();
 	}
 
 	public int getGrid_y() {
@@ -102,14 +106,29 @@ public class Pokemon_Trainer {
 
 	public void setGrid_y(int grid_y) {
 		this.grid_y = grid_y;
+		y_coord=this.getY_coord();
 	}
 
 	public void setX_coord(int x_coord) {
 		this.x_coord = x_coord;
+		while(getX_coord()<=x_coord-8) { 
+			grid_x++;
+		}
+		while(getX_coord()>=x_coord+8) {
+			grid_x--;
+		}
 	}
 	
 	public void setY_coord(int y_coord) {
 		this.y_coord = y_coord;
+		while(getY_coord()<=y_coord-12) {
+			grid_y++;
+			System.out.println("adjusting grid");
+		}
+		while(getY_coord()>=y_coord+12) {
+			grid_y--;
+			System.out.println("adjusting grid1");
+		}
 	}
 	
 	public void setDirection(Direction s)

@@ -17,7 +17,8 @@ public class Pokemon_Level {
 	{
 		this.level = level;
 		this.growth_rate = growth_rate;
-		this.exp_total = this.growth_rate.getExp(this.level);
+		
+		this.exp_total = new Exp_calc(this.growth_rate, this.level).getExp();
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class Pokemon_Level {
 		if (this.level < 100)
 		{
 			exp = (int) (exp * multiplier);
-			while (this.exp_total + exp >= pokemon.getGrowth_Rate().getExp(pokemon.getPokemon_level().getLevel() + 1))
+			while (this.exp_total + exp >= new Exp_calc(this.growth_rate, this.level + 1).getExp())
 			{
 				if (this.level < 100)
 				{
@@ -51,7 +52,8 @@ public class Pokemon_Level {
 				}
 				else
 				{
-					this.exp_total = pokemon.getGrowth_Rate().getExp(100);
+					this.exp_total = new Exp_calc(this.growth_rate, 100).getExp();
+					exp = 0;
 					break;
 				}
 			}

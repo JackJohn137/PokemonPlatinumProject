@@ -31,12 +31,12 @@ public class Pokedex {
 		return new Pokemon (
 				s[0], 
 				Integer.parseInt(s[1]), 
-				//ImageIO.read(getClass().getResource("pokemon_front/" + s[2])), 
-				//ImageIO.read(getClass().getResource("pokemon_back/" + s[3])), 
+				ImageIO.read(getClass().getResource("pokemon_front/" + s[2])), 
+				ImageIO.read(getClass().getResource("pokemon_back/" + s[3])), 
 				s[4], 
 				s[5], 
 				Boolean.valueOf(s[6]), 
-				new Growth_Rate(Rate.valueOf(s[7])),
+				Growth_Rate.valueOf(s[7]),
 				Integer.parseInt(s[8]), 
 				new Pokemon_Type(Pokemon_Type.Type.valueOf(s[9])), 
 				new Pokemon_Type(Pokemon_Type.Type.valueOf(s[10])), 
@@ -57,6 +57,7 @@ public class Pokedex {
 						Stat.valueOf(s[20]), 
 						Integer.parseInt(s[21]), 
 						Stat.valueOf(s[22])));
+		
 	}
 	
 	public ArrayList<Pokemon> getPokedex()

@@ -6,7 +6,7 @@ public class Tile {
 	public final int OBSTACLE = 2;
 	public final int SPECIAL = 3;
 	public final int WARP = 9;
-	
+	public Pokemon_Trainer trainer;
 	
 	private int type;
 	private int row;
@@ -44,8 +44,19 @@ public class Tile {
 	{
 		this.warp = new Warp(map_name, row, col);
 	}
+	
 	public Warp getWarp() {
 		return warp;
+	}
+	
+	public Pokemon_Trainer getPokemon_trainer()
+	{
+		return this.trainer;
+	}
+	
+	public void setPokemon_trainer(Pokemon_Trainer pt)
+	{
+		this.trainer = pt;
 	}
 
 }
