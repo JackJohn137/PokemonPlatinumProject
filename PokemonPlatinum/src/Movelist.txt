@@ -76,6 +76,34 @@ PSYCHIC           / PSYCHIC     / 10  / 90  / false    / 100 / 1 / 0
 QUICK_ATTACK      / NORMAL      / 30  / 40  / true     / 100 / 1 / 1
 RAGE              / NORMAL      / 20  / 20  / true     / 100 / 1 / 0
 NIGHT_SHADE       / GHOST       / 15  / 0   / false    / 100 / 1 / 0
+BIDE              / NORMAL      / 10  / 50  / true     / 100 / 1 / 0
+SELF_DESTRUCT     / NORMAL      / 5   / 200 / true     / 100 / 1 / 0
+EGG_BOMB          / NORMAL      / 10  / 100 / true     / 75  / 1 / 0
+LICK              / GHOST       / 30  / 20  / true     / 100 / 1 / 0
+SMOG              / POISON      / 20  / 20  / false    / 70  / 1 / 0
+SLUDGE            / POISON      / 20  / 65  / false    / 100 / 1 / 0
+BONE_CLUB         / GROUND      / 20  / 65  / true     / 85  / 1 / 0
+FIRE_BLAST        / FIRE        / 5   / 120 / false    / 100 / 1 / 0
+WATERFALL         / WATER       / 15  / 80  / true     / 100 / 1 / 0
+CLAMP             / WATER       / 10  / 35  / true     / 75  / 1 / 0
+SWIFT             / NORMAL      / 20  / 60  / false    / 100 / 1 / 0
+SKULL_BASH        / NORMAL      / 15  / 100 / true     / 100 / 1 / 0
+SPIKE_CANNON      / NORMAL      / 15  / 20  / true     / 100 / 1 / 0
+CONSTRICT         / NORMAL      / 35  / 10  / true     / 100 / 1 / 0
+HIGH_JUMP_KICK    / FIGHTING    / 20  / 100 / true     / 90  / 1 / 0
+DREAM_EATER       / PSYCHIC     / 15  / 100 / false    / 100 / 1 / 0
+BARRAGE           / NORMAL      / 20  / 15  / true     / 85  / 1 / 0
+LEECH_LIFE        / BUG         / 15  / 20  / true     / 100 / 1 / 0
+SKY_ATTACK        / FLYING      / 5   / 140 / true     / 90  / 1 / 0
+BUBBLE            / WATER       / 30  / 20  / false    / 100 / 1 / 0
+DIZZY_PUNCH       / NORMAL      / 10  / 70  / true     / 100 / 1 / 0
+PSYWAVE           / PSYCHIC     / 15  / 50  / false    / 85  / 1 / 0
+CRABHAMMER        / WATER       / 10  / 90  / true     / 85  / 1 / 0
+EXPLOSION         / NORMAL      / 5   / 250 / true     / 100 / 1 / 0
+FURY_SWIPES       / NORMAL      / 15  / 18  / true     / 80  / 5 / 0
+BONEMERANG        / GROUND      / 10  / 50  / true     / 90  / 1 / 0
+ROCK_SLIDE        / ROCK        / 10  / 75  / true     / 90  / 1 / 0
+HYPER_FANG        / NORMAL      / 15  / 80  / true     / 90  / 1 / 0
 
 
 
