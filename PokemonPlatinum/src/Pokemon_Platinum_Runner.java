@@ -88,7 +88,8 @@ public class Pokemon_Platinum_Runner {
 
 	// this method is called every time the timer goes off (which right now is every 10 milliseconds = 100 times per second
 	protected void updateGame() {
-
+		if(game.getPlayer().isCan_move()==true) 
+			game.getCurrent_map().audio().playSoundtrack();
 		panel.repaint();//Repaints after each update
 
 		ticks++;//Adds to the timer

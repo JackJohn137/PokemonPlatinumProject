@@ -29,10 +29,10 @@ public class Pokemon_Platinum_Game {
 		System.out.println(this.player.getPokemon_storage().getPokemon_by_index(0).getFront_image());
 		
 		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Chimchar"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
 		
 		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
@@ -59,6 +59,8 @@ public class Pokemon_Platinum_Game {
 	// What do you want to do when a key is hit?
 	public void keyHit(String s) throws IOException, UnsupportedAudioFileException, LineUnavailableException 
 	{
+		System.out.println();
+
 		Tile[][] temp = current_map.getGrid();
 		int r = player.getGrid_y();
 		int c = player.getGrid_x();
@@ -67,9 +69,8 @@ public class Pokemon_Platinum_Game {
 		{
 			if (player.isCan_move() == true) 
 			{
-				if(this.current_map.audio().running()==false){
-					this.current_map.audio().resume();
-				}
+			
+
 				if (player.getDirection() == Direction.UP)
 				{
 					if (temp[r - 1][c].getPokemon_trainer() != null)
@@ -81,6 +82,7 @@ public class Pokemon_Platinum_Game {
 					}
 					else if (r > 0)
 					{
+						System.out.println(temp[r - 1][c].getType());
 						switch (temp[r - 1][c].getType())
 						{
 							case 0:
@@ -162,6 +164,8 @@ public class Pokemon_Platinum_Game {
 		}
 		else if (s.equals("down"))
 		{
+			System.out.println(temp[r + 1][c].getType());
+
 			if (player.isCan_move() == true) 
 			{
 				if (player.getDirection() == Direction.DOWN)
@@ -175,6 +179,7 @@ public class Pokemon_Platinum_Game {
 					}
 					else if (r < temp.length - 1)
 					{
+						System.out.println(temp[r + 1][c].getType());
 						switch (temp[r + 1][c].getType())
 						{
 							case 0:
@@ -255,10 +260,7 @@ public class Pokemon_Platinum_Game {
 					}
 				}
 			}
-			player.setGrid_y(r + 1);
-			store=player.getY_coord();
-			player.setGrid_y(r);
-			System.out.println(store+"down");
+			
 			
 			System.out.println("down pressed");
 			player.setDirection(Direction.DOWN);
@@ -278,6 +280,7 @@ public class Pokemon_Platinum_Game {
 					}
 					else if (c > 0)
 					{
+						System.out.println(temp[r][c - 1].getType());
 						switch (temp[r][c - 1].getType())
 						{
 							case 0:
@@ -359,6 +362,7 @@ public class Pokemon_Platinum_Game {
 		}
 		else if (s.equals("right"))
 		{
+			System.out.println(temp[r][c + 1].getType());
 			if (player.isCan_move() == true) 
 			{
 				if (player.getDirection() == Direction.RIGHT)
@@ -372,6 +376,7 @@ public class Pokemon_Platinum_Game {
 					}
 					else if (c < temp[r].length - 1)
 					{
+						
 						switch (temp[r][c + 1].getType())
 						{
 							case 0:

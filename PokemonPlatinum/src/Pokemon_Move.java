@@ -78,4 +78,8 @@ public class Pokemon_Move {
 	{
 		return this.physical;
 	}
+	public String toString() {
+		return move_name;
+		
+	}
 }

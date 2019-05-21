@@ -1,6 +1,8 @@
 import java.awt.Image;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 /**
  * @version 1.0
  * TODO: Moves and Abilities
@@ -276,7 +278,6 @@ public class Pokemon{
 	{
 		this.moveSet.add(move);
 
-	}
 
 		if(this.moveSet.size()==5) {
 			this.deleteMovePrompt(move);

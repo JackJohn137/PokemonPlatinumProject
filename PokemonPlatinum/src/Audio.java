@@ -28,26 +28,29 @@ public class Audio {
 		}
 	}
 	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-	/*	Audio a = new Audio("Wilhelm-Scream");
+		Audio a = new Audio("Wilhelm-Scream");
 		a.playSoundtrack();
 		Scanner sc = new Scanner(System.in); 
-        if(sc.nextLine().equals("stop")) {
-        	a.stop();
+        while(!sc.next().equals("stop")) {
+        	
         }
-        if(sc.nextLine().equals("resume")) {
-        	a.resume();
+        a.stop();
+        while(!sc.next().equals("resume")) {
         }
-*/
-   } 
+        a.playSoundtrack();
+        while(1==1) {
+        		
+        }
+        
+	} 
    
 	public void resume() throws LineUnavailableException {
-		c.open();
+		c.start();
 		System.out.println("resuming");
 	}
 	public void playSoundtrack() {
 		c.loop(Clip.LOOP_CONTINUOUSLY);
 		c.start();
-		System.out.println("playing");
 	}
 	public void playEffect() {
 		c.start();
