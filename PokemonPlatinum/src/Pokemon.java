@@ -23,8 +23,7 @@ public class Pokemon{
 	private final Pokemon_Type type_1;
 	private final Pokemon_Type type_2;
 	private final Pokemon_Nature pokemon_nature;
-	private Current_Stats current_stats;
-	private Current_Stats max_current_stats;
+	private Stats stats;
 	private final Base_Stats base_stats;
 	private final Individual_Values iv;
 	private Effort_Values ev;
@@ -92,7 +91,7 @@ public class Pokemon{
 		this.base_stats = base_stats;
 		this.iv = iv;
 		this.ev = ev;
-		this.current_stats = new Current_Stats (pokemon_level.getLevel(), 
+		this.stats = new Stats (pokemon_level.getLevel(), 
 				pokemon_nature, 
 				base_stats.getBase_hp(), 
 				base_stats.getBase_atk(), 
@@ -106,7 +105,6 @@ public class Pokemon{
 				iv.getIv_spAtk(),
 				iv.getIv_spDef(),
 				iv.getIv_spd());
-		this.max_current_stats = current_stats;
 		this.exp_yield = exp_yield;
 		this.held_item = held_item;
 		this.ev_drop = ev_drop;
@@ -129,7 +127,7 @@ public class Pokemon{
 		this.type_2 = p.getType_2();
 		this.pokemon_nature = p.getPokemon_nature();
 		this.base_stats = p.getBase_stats();
-		this.current_stats = new Current_Stats (pokemon_level.getLevel(), 
+		this.stats = new Stats (pokemon_level.getLevel(), 
 				pokemon_nature, 
 				base_stats.getBase_hp(), 
 				base_stats.getBase_atk(), 
@@ -143,7 +141,6 @@ public class Pokemon{
 				iv.getIv_spAtk(),
 				iv.getIv_spDef(),
 				iv.getIv_spd());
-		this.max_current_stats = current_stats;
 		this.iv = iv;
 		this.ev = ev;
 		this.exp_yield = p.getExp_yield();
@@ -190,20 +187,12 @@ public class Pokemon{
 		return type_2;
 	}
 
-	public Current_Stats getCurrent_stats() {
-		return current_stats;
+	public Stats getStats() {
+		return stats;
 	}
 
-	public void setCurrent_stats(Current_Stats current_stats) {
-		this.current_stats = current_stats;
-	}
-
-	public Current_Stats getMax_current_stats() {
-		return max_current_stats;
-	}
-
-	public void setMax_current_stats(Current_Stats max_current_stats) {
-		this.max_current_stats = max_current_stats;
+	public void setStats(Stats stats) {
+		this.stats = stats;
 	}
 
 	public Base_Stats getBase_stats() {
