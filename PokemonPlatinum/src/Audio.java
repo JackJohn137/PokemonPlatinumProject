@@ -27,15 +27,27 @@ public class Audio {
 			
 		}
 	}
-/*	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		Audio a = new Audio("Wilhelm-Scream");
 		a.playSoundtrack();
 		Scanner sc = new Scanner(System.in); 
-        if(sc.nextInt()==3) {
-        	a.stop();
+        while(!sc.next().equals("stop")) {
+        	
         }
-
-   }*/  
+        a.stop();
+        while(!sc.next().equals("resume")) {
+        }
+        a.playSoundtrack();
+        while(1==1) {
+        		
+        }
+        
+	} 
+   
+	public void resume() throws LineUnavailableException {
+		c.start();
+		System.out.println("resuming");
+	}
 	public void playSoundtrack() {
 		c.loop(Clip.LOOP_CONTINUOUSLY);
 		c.start();
@@ -45,6 +57,9 @@ public class Audio {
 	}
 	public void stop() {
 		c.stop();
+	}
+	public boolean running() {
+		return c.isRunning();
 	}
 	public void swapTrack(Audio a) {
 		c.stop();
