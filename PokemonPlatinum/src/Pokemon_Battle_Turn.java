@@ -4,6 +4,7 @@ public class Pokemon_Battle_Turn{
 	private Pokemon opponent;
 	private Pokemon_Move you_move;
 	private Pokemon_Move opponent_move;
+	
 	public Pokemon_Battle_Turn(Pokemon you, Pokemon opponent, Pokemon_Move you_move, Pokemon_Move opponent_move)
 	{
 		this.you = you;

@@ -1,0 +1,16 @@
+Pokemon_Platinum_Game Object has all the subclasses
+Pokemon_Platinum_Runner runs the game
+
+Supporting classes:
+	1. Pokedex: Stores a basic version of all pokemon to reference
+	2. Movelist: Stores all the pokemon battles moves
+	3. Map_Storage: Stores all the Pokemon_Maps
+	4. Trainer_Map_Storage: Stores all the Pokemon_Trainers
+	5. Pokemon_Battle_Runner: Creates a pop-up window for a pokemon battles
+	6. Pokemon_Battle_Turn: Creates one turn of combat within a pokemon battle
+	7. Audio: Plays the corresponding background music for the situation
+
+Notable objects:
+	1. Pokemon: used for the pokemon battles
+	2. Pokemon_Trainer: battle against them
+	3. Player: Extends Pokemon_Trainer with a movement system

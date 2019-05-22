@@ -20,20 +20,28 @@ public class Pokemon_Platinum_Game {
 		this.movelist = new Movelist();
 		
 		this.player = new Player("Cynthia", "Cynthia", Direction.DOWN);
-		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Turtwig"));
+		this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Turtwig"), pokedex.getPokemon("Turtwig").getIv(), pokedex.getPokemon("Turtwig").getEv()));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
-		System.out.println(this.player.getPokemon_storage().getPokemon_by_index(0).getFront_image());
 		
-		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Chimchar"));
+		
+		this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Piplup"), pokedex.getPokemon("Piplup").getIv(), pokedex.getPokemon("Piplup").getEv()));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
+		this.player.getPokemon_storage().getPokemon_by_index(1).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Piplup").getGrowth_rate(), 5));
+		
+		this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Chimchar"), pokedex.getPokemon("Chimchar").getIv(), pokedex.getPokemon("Chimchar").getEv()));
+		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(2).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Chimchar").getGrowth_rate(), 10));
+		
 		
 		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
 		this.map_storage = new Map_Storage();
