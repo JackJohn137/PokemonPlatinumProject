@@ -416,7 +416,6 @@ public class Pokemon_Platinum_Game {
 										
 									{
 										this.transition.playEffect();
-//;asldflda
 										this.current_map.audio().swapTrack(m.audio());
 										this.current_map = m;
 										break;

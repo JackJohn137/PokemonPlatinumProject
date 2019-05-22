@@ -16,23 +16,23 @@ public class Pokemon_Battle_Turn{
 
 	private void battle() {
 		
-		if(this.you.getCurrent_stats().getSpd() > this.opponent.getCurrent_stats().getSpd())
+		if(this.you.getStats().getSpd() > this.opponent.getStats().getSpd())
 		{
-			this.opponent.getCurrent_stats().setHp(this.opponent.getCurrent_stats().getHp() - new Battle_Damage(this.you, this.opponent, this.you_move).getDamage_dealt());
+			this.opponent.getStats().setHp(this.opponent.getStats().getHp() - new Battle_Damage(this.you, this.opponent, this.you_move).getDamage_dealt());
 			System.out.println("You dealt damage:" + new Battle_Damage(this.you, this.opponent, this.you_move).getDamage_dealt());
-			if (this.opponent.getCurrent_stats().getHp() > 0)
+			if (this.opponent.getStats().getHp() > 0)
 			{
-				this.you.getCurrent_stats().setHp(this.you.getCurrent_stats().getHp() - new Battle_Damage(this.opponent, this.you, this.opponent_move).getDamage_dealt());
+				this.you.getStats().setHp(this.you.getStats().getHp() - new Battle_Damage(this.opponent, this.you, this.opponent_move).getDamage_dealt());
 				System.out.println("They dealt damage:" + new Battle_Damage(this.opponent, this.you, this.opponent_move).getDamage_dealt());
 			}
 		} 
 		else
 		{
-			this.you.getCurrent_stats().setHp(this.you.getCurrent_stats().getHp() - new Battle_Damage(this.opponent, this.you, this.opponent_move).getDamage_dealt());
+			this.you.getStats().setHp(this.you.getStats().getHp() - new Battle_Damage(this.opponent, this.you, this.opponent_move).getDamage_dealt());
 			System.out.println("They dealt damage:" + new Battle_Damage(this.opponent, this.you, this.opponent_move).getDamage_dealt());
-			if (this.you.getCurrent_stats().getHp() > 0)
+			if (this.you.getStats().getHp() > 0)
 			{
-				this.opponent.getCurrent_stats().setHp(this.opponent.getCurrent_stats().getHp() - new Battle_Damage(this.you, this.opponent, this.you_move).getDamage_dealt());
+				this.opponent.getStats().setHp(this.opponent.getStats().getHp() - new Battle_Damage(this.you, this.opponent, this.you_move).getDamage_dealt());
 				System.out.println("You dealt damage:" + new Battle_Damage(this.you, this.opponent, this.you_move).getDamage_dealt());
 			}
 		}

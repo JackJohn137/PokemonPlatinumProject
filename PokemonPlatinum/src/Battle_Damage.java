@@ -37,13 +37,13 @@ public class Battle_Damage {
 		
 		if (this.pokemon_move.getIsPhysical())
 		{
-			B = this.getAttacker().getCurrent_stats().getAtk();
-			D = this.getDefender().getCurrent_stats().getDef();
+			B = this.getAttacker().getStats().getAtk();
+			D = this.getDefender().getStats().getDef();
 		}
 		else
 		{
-			B = this.getAttacker().getCurrent_stats().getSpAtk();
-			D = this.getDefender().getCurrent_stats().getspDef();
+			B = this.getAttacker().getStats().getSpAtk();
+			D = this.getDefender().getStats().getspDef();
 		}
 		
 		if (this.getAttacker().getType_1().equals(getPokemon_move().getMove_type()) || this.getAttacker().getType_2().equals(getPokemon_move().getMove_type()))
