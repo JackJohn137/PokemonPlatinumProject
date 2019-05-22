@@ -219,6 +219,20 @@ public class Pokemon{
 
 	public void setPokemon_Level(Pokemon_Level pokemon_level) {
 		this.pokemon_level = pokemon_level;
+		this.stats = new Stats (pokemon_level.getLevel(), 
+				pokemon_nature, 
+				base_stats.getBase_hp(), 
+				base_stats.getBase_atk(), 
+				base_stats.getBase_def(), 
+				base_stats.getBase_spAtk(), 
+				base_stats.getBase_spDef(), 
+				base_stats.getBase_spd(),
+				iv.getIv_hp(),
+				iv.getIv_atk(),
+				iv.getIv_def(),
+				iv.getIv_spAtk(),
+				iv.getIv_spDef(),
+				iv.getIv_spd());
 	}
 
 	public boolean isWild() {
