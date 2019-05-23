@@ -1,4 +1,5 @@
+import java.io.Serializable;
 
-public enum Direction {
+public enum Direction implements Serializable{
 	UP, DOWN, LEFT, RIGHT, NONE;
 }

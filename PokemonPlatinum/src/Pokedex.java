@@ -1,11 +1,12 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 
-public class Pokedex {
+public class Pokedex implements Serializable{
 	private ArrayList<Pokemon> pokedex;
 
 	/**

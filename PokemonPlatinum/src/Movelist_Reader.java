@@ -1,10 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Movelist_Reader {
+public class Movelist_Reader implements Serializable{
 	private  ArrayList<String[]> Movelist;
 	private  File Movelist_raw_data;
 	

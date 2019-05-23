@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 /**
  * @version 1.0
  * @author ningwang
  *
  */
-public class Stats {
+public class Stats implements Serializable{
 	private int hp;
 	private int max_hp;
 	private int atk;

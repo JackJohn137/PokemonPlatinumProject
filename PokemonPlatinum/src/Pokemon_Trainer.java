@@ -1,10 +1,11 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 
-public class Pokemon_Trainer {
+public class Pokemon_Trainer implements Serializable{
 	private String name;
 	private final String type;
 	private Pokemon_Storage pokemon_storage;

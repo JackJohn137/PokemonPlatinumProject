@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
  * @version This only has direct attacks
  * no special effects included; 
@@ -7,7 +9,7 @@
  * @author ningwang
  *
  */
-public class Pokemon_Move {
+public class Pokemon_Move implements Serializable{
 	private String move_name;
 	private Pokemon_Type move_type;
 	private int pp;

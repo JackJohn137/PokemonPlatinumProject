@@ -1,10 +1,12 @@
+import java.io.Serializable;
+
 /**
  * @version 1.0 
  * TODO Needs to make all the actual items, currently don't have many
  * @author ningwang
  *
  */
-public class Pokemon_Item {
+public class Pokemon_Item implements Serializable{
 	private final Item_Name item_name;
 	private final Item_Pocket item_pocket;
 	private final Item_Type item_type;

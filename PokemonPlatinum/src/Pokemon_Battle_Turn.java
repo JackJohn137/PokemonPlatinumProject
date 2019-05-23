@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Pokemon_Battle_Turn{
+public class Pokemon_Battle_Turn implements Serializable{
 	private Pokemon you;
 	private Pokemon opponent;
 	private Pokemon_Move you_move;

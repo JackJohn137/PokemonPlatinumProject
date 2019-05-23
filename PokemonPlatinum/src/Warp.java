@@ -1,11 +1,9 @@
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Warp {
-	//private Pokemon_Map map_origin;
+public class Warp implements Serializable{
 	private String warp_map_name;
 	private int warp_index;
-	//private int initial_row;
-	//private int initial_col;
 	private int final_row;
 	private int final_col;
 	

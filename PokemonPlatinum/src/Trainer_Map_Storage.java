@@ -2,10 +2,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Trainer_Map_Storage {
+public class Trainer_Map_Storage implements Serializable{
 	private ArrayList<Trainer_Map> trainer_map_storage;
 	private ArrayList<String> trainer_map_names;
 	private Pokedex pokedex;

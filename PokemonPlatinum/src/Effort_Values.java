@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 /**
  * @version 1.0
  * @author ningwang
  *
  */
-public class Effort_Values {
+public class Effort_Values implements Serializable{
 	private int ev_hp;
 	private int ev_atk;
 	private int ev_spAtk;

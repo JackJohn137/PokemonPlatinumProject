@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 /**
  * @version 1.0
  * @author ningwang
  *
  */
-public class Effort_Value_Drop {
+public class Effort_Value_Drop implements Serializable{
 	
 	private final int quantity1;
 	private final int quantity2;

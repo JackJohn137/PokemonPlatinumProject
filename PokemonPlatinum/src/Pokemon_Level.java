@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 /**
  * @version 1.0
  * @author ningwang
  *
  */
-public class Pokemon_Level {
+public class Pokemon_Level implements Serializable{
 	private int level;
 	private int exp_total;
 	private Growth_Rate growth_rate;

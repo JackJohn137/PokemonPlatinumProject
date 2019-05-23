@@ -42,7 +42,7 @@ public class Pokemon_Platinum_Runner{
 			public void run() {
 				try 
 				{
-					FileInputStream saveFile = new FileInputStream("/SaveState");
+					FileInputStream saveFile = new FileInputStream("SaveState");
 					ObjectInputStream saveState = new ObjectInputStream(saveFile);
 					game = (Pokemon_Platinum_Game) saveState.readObject();
 					saveState.close();
@@ -195,15 +195,15 @@ public class Pokemon_Platinum_Runner{
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					FileOutputStream saveFile = new FileOutputStream("/SaveState");
+					FileOutputStream saveFile = new FileOutputStream("SaveState");
 					ObjectOutputStream saveState = new ObjectOutputStream(saveFile);
 					saveState.writeObject(game);
 					saveState.close();
-					System.out.printf("Serialized data is saved in /SaveState");
+					System.out.printf("Serialized data is saved in SaveState");
 				}  
-				catch (IOException i) 
+				catch (Exception e1)
 				{
-					i.printStackTrace();
+					e1.printStackTrace();
 				}
 			}
 		});

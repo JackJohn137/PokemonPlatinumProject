@@ -1,8 +1,10 @@
+import java.io.Serializable;
+
 /**
  * @version 1.0
  * @author ningwang
  */
-public class Pokemon_Nature {
+public class Pokemon_Nature implements Serializable{
 	private final Nature nature;
 	//private final int hp, atk, spAtk, def, spDef, spd;
 	

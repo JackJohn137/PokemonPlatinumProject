@@ -2,11 +2,12 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Timer;
 
 import javax.imageio.ImageIO;
 
-public class Pokemon_Trainer_Movements {
+public class Pokemon_Trainer_Movements implements Serializable{
 	private String trainer_type;
 	private final Image sprite_sheet;
 	private Movement up;
