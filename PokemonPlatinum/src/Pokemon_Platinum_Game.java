@@ -1,13 +1,12 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.*;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Pokemon_Platinum_Game  implements Serializable{
+public class Pokemon_Platinum_Game {
 	private Map_Storage map_storage;
 	private Pokedex pokedex;
 	private Movelist movelist;
@@ -15,34 +14,26 @@ public class Pokemon_Platinum_Game  implements Serializable{
 	private Player player;
 	private Pokemon_Map current_map;
 	private int store;
-	private transient Audio transition;
+	private Audio transition;
 	public Pokemon_Platinum_Game() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		this.pokedex = new Pokedex();
 		this.movelist = new Movelist();
 		
 		this.player = new Player("Cynthia", "Cynthia", Direction.DOWN);
+		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Turtwig"));
+		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(0).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
+		System.out.println(this.player.getPokemon_storage().getPokemon_by_index(0).getFront_image());
 		
-		this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Turtwig"), new Individual_Values(), new Effort_Values(0, 0, 0, 0, 0, 0)));
-		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(0).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));	
-		
-    this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Piplup"), new Individual_Values(), new Effort_Values(0, 0, 0, 0, 0, 0)));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(1).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Piplup").getGrowth_rate(), 5));
-		
-		this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Chimchar"), new Individual_Values(), new Effort_Values(0, 0, 0, 0, 0, 0)));
-		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(2).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Chimchar").getGrowth_rate(), 5));
-
+		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Chimchar"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(1).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
 		
 		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
 		this.map_storage = new Map_Storage();
@@ -52,6 +43,7 @@ public class Pokemon_Platinum_Game  implements Serializable{
 		
 		this.player.setGrid_x(8);
 		this.player.setGrid_y(12);
+		this.transition.playEffect();
 	}
 	
 	private void addTrainers() {
@@ -76,6 +68,8 @@ public class Pokemon_Platinum_Game  implements Serializable{
 		
 		if (s.equals("up"))
 		{
+			player.setDirection(Direction.UP);
+
 			if (player.isCan_move() == true) 
 			{
 			
@@ -141,6 +135,7 @@ public class Pokemon_Platinum_Game  implements Serializable{
 										this.transition.playEffect();
 										this.current_map.audio().swapTrack(m.audio());
 										this.current_map = m;
+										store=player.getY_coord()-6;
 										System.out.println(this.current_map);
 										break;
 									}
@@ -163,6 +158,7 @@ public class Pokemon_Platinum_Game  implements Serializable{
 								this.transition.playEffect();
 								this.current_map.audio().swapTrack(m.audio());
 								this.current_map = m;
+								
 								break;
 							}
 						}
@@ -173,12 +169,15 @@ public class Pokemon_Platinum_Game  implements Serializable{
 		}
 		else if (s.equals("down"))
 		{
-			System.out.println(temp[r + 1][c].getType());
+			player.setDirection(Direction.DOWN);
+
 
 			if (player.isCan_move() == true) 
-			{
+			{System.out.println(r);
+			System.out.println(temp.length);
 				if (player.getDirection() == Direction.DOWN)
 				{
+					System.out.println("here?");
 					if (temp[r + 1][c].getPokemon_trainer() != null)
 					{
 						this.getCurrent_map().audio().stop();
@@ -186,9 +185,10 @@ public class Pokemon_Platinum_Game  implements Serializable{
 						new Pokemon_Battle_Runner(player, temp[r + 1][c].getPokemon_trainer());
 						player.setCan_move(false);
 					}
+					
 					else if (r < temp.length - 1)
 					{
-						System.out.println(temp[r + 1][c].getType());
+						System.out.println("prob");
 						switch (temp[r + 1][c].getType())
 						{
 							case 0:
@@ -241,6 +241,8 @@ public class Pokemon_Platinum_Game  implements Serializable{
 
 										this.current_map.audio().swapTrack(m.audio());
 										this.current_map = m;
+										store=player.getY_coord()+6;
+
 										break;
 									}
 								}
@@ -253,6 +255,7 @@ public class Pokemon_Platinum_Game  implements Serializable{
 					}
 					else if (temp[r][c].getType() == 9)
 					{
+						System.out.println("here");
 						player.setGrid_y(this.current_map.getTile(r, c).getWarp().getRow());
 						player.setGrid_x(this.current_map.getTile(r, c).getWarp().getCol());
 						for (Pokemon_Map m : map_storage.getMap_storage())
@@ -263,16 +266,26 @@ public class Pokemon_Platinum_Game  implements Serializable{
 
 								this.current_map.audio().swapTrack(m.audio());
 								this.current_map = m;
+								store=player.getY_coord();
+
 								break;
 							}
 						}
 					}
+					else {
+						System.out.println("not working");
+					}
 				}
 			}
+			
+			
+			System.out.println("down pressed");
 			player.setDirection(Direction.DOWN);
 		}
 		else if (s.equals("left"))
 		{
+			player.setDirection(Direction.LEFT);
+
 			if (player.isCan_move() == true) 
 			{
 				if (player.getDirection() == Direction.LEFT)
@@ -368,7 +381,9 @@ public class Pokemon_Platinum_Game  implements Serializable{
 		}
 		else if (s.equals("right"))
 		{
-			System.out.println(temp[r][c + 1].getType());
+			player.setDirection(Direction.RIGHT);
+
+//			System.out.println(temp[r][c + 1].getType());
 			if (player.isCan_move() == true) 
 			{
 				if (player.getDirection() == Direction.RIGHT)
@@ -430,6 +445,7 @@ public class Pokemon_Platinum_Game  implements Serializable{
 										
 									{
 										this.transition.playEffect();
+//;asldflda
 										this.current_map.audio().swapTrack(m.audio());
 										this.current_map = m;
 										break;
@@ -457,6 +473,9 @@ public class Pokemon_Platinum_Game  implements Serializable{
 								break;
 							}
 						}
+					}
+					else {
+						System.out.println("not working");
 					}
 				}
 			}

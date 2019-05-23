@@ -29,7 +29,7 @@ public class Audio implements Serializable{
 		}
 	}
 
-	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+/*	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		Audio a = new Audio("Wilhelm-Scream");
 		a.playSoundtrack();
 		Scanner sc = new Scanner(System.in); 
@@ -45,7 +45,7 @@ public class Audio implements Serializable{
         }
         
 	} 
-   
+  */ 
 	public void resume() throws LineUnavailableException {
 		c.start();
 		System.out.println("resuming");
@@ -56,8 +56,12 @@ public class Audio implements Serializable{
 		c.start();
 	}
   
-	public void playEffect() {
-		c.start();
+	public void playEffect() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+	c.loop(1);
+	c.start();
+	while(running()) {
+		System.out.println("a");
+	}
 	}
   
 	public void stop() {
@@ -68,9 +72,12 @@ public class Audio implements Serializable{
 		return c.isRunning();
 	}
   
-	public void swapTrack(Audio a) {
-		c.stop();
+	public void swapTrack(Audio a) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+		c.close();
 		a.playSoundtrack();
+		this.a = AudioSystem.getAudioInputStream(this.getClass().getResource("/sounds/"+sound+".wav"));
+
+		c.open(this.a);
 	}
 }
 

@@ -184,7 +184,12 @@ public class Pokemon_Battle_Runner{
 			public void run() {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					start();
+					try {
+						start();
+					} catch (LineUnavailableException | IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
 				}
 			}
@@ -215,7 +220,7 @@ public class Pokemon_Battle_Runner{
 		new Pokemon_Battle_Runner(you, opponent);
 	}
 
-	private void start() {
+	private void start() throws LineUnavailableException, IOException {
 		selected = -1;
 		frame = new JFrame("Pokemon_Battle");
 
@@ -457,13 +462,21 @@ public class Pokemon_Battle_Runner{
 							if (you_field.getStats().getHp() <= 0)
 							{
 								JOptionPane.showMessageDialog(null, "YOU LOST!", "DEFEAT", 1);
+								you.setCan_move(true);
+								frame.dispose();
+								timer.stop();
+								a.stop();
+
 							}
 							else if (opponent_field.getStats().getHp() <= 0)
 							{
 								JOptionPane.showMessageDialog(null, "YOU WON!", "VICTORY", 1);
-								
+								you.setCan_move(true);
+								frame.dispose();
+								timer.stop();
+								a.stop();
+
 							}
-							you.setCan_move(true);
 							updateBattle();
 						}
 						catch (Exception e)
@@ -506,13 +519,21 @@ public class Pokemon_Battle_Runner{
 							if (you_field.getStats().getHp() <= 0)
 							{
 								JOptionPane.showMessageDialog(null, "YOU LOST!", "DEFEAT", 1);
+								you.setCan_move(true);
+								frame.dispose();
+								timer.stop();
+								a.stop();
+
 							}
 							else if (opponent_field.getStats().getHp() <= 0)
 							{
 								JOptionPane.showMessageDialog(null, "YOU WON!", "VICTORY", 1);
-								
+								you.setCan_move(true);
+								frame.dispose();
+								timer.stop();
+								a.stop();
+
 							}
-							you.setCan_move(true);
 							updateBattle();
 						}
 						catch (Exception e)
@@ -554,13 +575,22 @@ public class Pokemon_Battle_Runner{
 							if (you_field.getStats().getHp() <= 0)
 							{
 								JOptionPane.showMessageDialog(null, "YOU LOST!", "DEFEAT", 1);
+								you.setCan_move(true);
+								frame.dispose();
+								timer.stop();
+								a.stop();
+
 							}
 							else if (opponent_field.getStats().getHp() <= 0)
 							{
 								JOptionPane.showMessageDialog(null, "YOU WON!", "VICTORY", 1);
-								
+								you.setCan_move(true);
+								frame.dispose();
+								a.stop();
+
+								timer.stop();
 							}
-							you.setCan_move(true);
+							
 							updateBattle();
 						}
 						catch (Exception e)
@@ -602,12 +632,20 @@ public class Pokemon_Battle_Runner{
 							if (you_field.getStats().getHp() <= 0)
 							{
 								JOptionPane.showMessageDialog(null, "YOU LOST!", "DEFEAT", 1);
+								you.setCan_move(true);
+								frame.dispose();
+
+								a.stop();
+								timer.stop();
 							}
 							else if (opponent_field.getStats().getHp() <= 0)
 							{JOptionPane.showMessageDialog(null, "YOU WON!", "VICTORY", 1);
-								
-							}
 							you.setCan_move(true);
+							frame.dispose();
+							
+							a.stop();
+							timer.stop();
+							}
 							updateBattle();
 						}
 						catch (Exception e)
