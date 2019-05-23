@@ -227,9 +227,9 @@ public class Pokemon_Platinum_Runner{
 					System.out.printf("Serialized data is saved in SaveState");
 				}  
 
-				catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) 
+				catch (IOException e1) 
 				{
-					e.printStackTrace();
+					e1.printStackTrace();
 				}
 			}
 		});
