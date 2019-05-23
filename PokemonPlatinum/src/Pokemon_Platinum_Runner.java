@@ -5,7 +5,12 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Map;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -20,7 +25,7 @@ import javax.swing.KeyStroke;
 
 
 
-public class Pokemon_Platinum_Runner {
+public class Pokemon_Platinum_Runner{
 	private JPanel panel;
 	private Pokemon_Platinum_Game game;
 	private Timer timer;
@@ -30,18 +35,36 @@ public class Pokemon_Platinum_Runner {
 	public static final int X = (int) (screenSize.getWidth()), Y = (int) (screenSize.getHeight());
 	private static final int REFRESH_RATE = 100;
 	private boolean step=true;
-	
+
 	public Pokemon_Platinum_Runner() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-		this.direction = Direction.NONE; 
-		this.game = new Pokemon_Platinum_Game();
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					start();
-				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+				try 
+				{
+					FileInputStream saveFile = new FileInputStream("/SaveState");
+					ObjectInputStream saveState = new ObjectInputStream(saveFile);
+					game = (Pokemon_Platinum_Game) saveState.readObject();
+					saveState.close();
+					saveFile.close();
 				}
+				catch (ClassNotFoundException | IOException e) 
+				{
+					System.out.println("No Prior Save Files! Starting New Game!");
+					direction = Direction.NONE; 
+					try {
+						game = new Pokemon_Platinum_Game();
+					} catch (IOException | UnsupportedAudioFileException | LineUnavailableException e1) {
+						e1.printStackTrace();
+					}
+					try {
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+						start();
+					} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e2) {
+						e2.printStackTrace();
+					}
+				} 
+
 			}
 		});
 	}
@@ -58,10 +81,10 @@ public class Pokemon_Platinum_Runner {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				
+
 				game.getCurrent_map().draw(g);//Draws whatever map is currently showing
 				game.draw(g);
-				}
+			}
 		};
 		// random color to the background
 		panel.setBackground(Color.BLUE);
@@ -93,10 +116,10 @@ public class Pokemon_Platinum_Runner {
 		panel.repaint();//Repaints after each update
 
 		ticks++;//Adds to the timer
-		
+
 		if(ticks / REFRESH_RATE % 10 == 0) 
 		{
-			
+
 			direction = Direction.NONE;
 		}
 
@@ -191,55 +214,49 @@ public class Pokemon_Platinum_Runner {
 				}
 			}
 		});
-		inMap.put(KeyStroke.getKeyStroke("pressed SPACE"), "stop");
-		map.put("stop", new AbstractAction() {
+		inMap.put(KeyStroke.getKeyStroke("pressed SPACE"), "SAVE_GAME");
+		map.put("SAVE_GAME", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				try {
-					hit("stop");
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (UnsupportedAudioFileException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (LineUnavailableException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					FileOutputStream saveFile = new FileOutputStream("/SaveState");
+					ObjectOutputStream saveState = new ObjectOutputStream(saveFile);
+					saveState.writeObject(game);
+					saveState.close();
+					System.out.printf("Serialized data is saved in /SaveState");
+				}  
+				catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) 
+				{
+					e.printStackTrace();
 				}
 			}
 		});
-
-		// code below associates the "up" action with anything in the 
-		// actionPerformed method.  Right now, it just prints something
-
-
-
 	}
 
 	public void hit(String s) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		if (ticks>2) {
-		ticks = 0;
+			ticks = 0;
 
-		if (s.equals("up"))
-		{
-			direction = Direction.UP;
-		}
-		else if (s.equals("down"))
-		{
-			direction = Direction.DOWN;
-		}
-		else if (s.equals("left"))
-		{
-			direction = Direction.LEFT;
-		}
-		else if (s.equals("right"))
-		{
-			direction = Direction.RIGHT;
-		}
+			if (s.equals("up"))
+			{
+				direction = Direction.UP;
+			}
+			else if (s.equals("down"))
+			{
+				direction = Direction.DOWN;
+			}
+			else if (s.equals("left"))
+			{
+				direction = Direction.LEFT;
+			}
+			else if (s.equals("right"))
+			{
+				direction = Direction.RIGHT;
+			}
 
-		game.keyHit(s);
-		panel.repaint();
-	}
+			game.keyHit(s);
+			panel.repaint();
+		}
 	}
 }

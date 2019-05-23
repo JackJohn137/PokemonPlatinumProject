@@ -1,12 +1,13 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Pokemon_Platinum_Game {
+public class Pokemon_Platinum_Game  implements Serializable{
 	private Map_Storage map_storage;
 	private Pokedex pokedex;
 	private Movelist movelist;
@@ -20,26 +21,28 @@ public class Pokemon_Platinum_Game {
 		this.movelist = new Movelist();
 		
 		this.player = new Player("Cynthia", "Cynthia", Direction.DOWN);
-		this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Turtwig"), pokedex.getPokemon("Turtwig").getIv(), pokedex.getPokemon("Turtwig").getEv()));
+		
+		this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Turtwig"), new Individual_Values(), new Effort_Values(0, 0, 0, 0, 0, 0)));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(0).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
-    
-		this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Piplup"), pokedex.getPokemon("Piplup").getIv(), pokedex.getPokemon("Piplup").getEv()));
+		this.player.getPokemon_storage().getPokemon_by_index(0).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));	
+		
+    this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Piplup"), new Individual_Values(), new Effort_Values(0, 0, 0, 0, 0, 0)));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Piplup").getGrowth_rate(), 5));
 		
-		this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Chimchar"), pokedex.getPokemon("Chimchar").getIv(), pokedex.getPokemon("Chimchar").getEv()));
+		this.player.getPokemon_storage().addPokemon(new Pokemon (pokedex.getPokemon("Chimchar"), new Individual_Values(), new Effort_Values(0, 0, 0, 0, 0, 0)));
 		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(2).addMove(movelist.getMove("SCRATCH"));
-		this.player.getPokemon_storage().getPokemon_by_index(2).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Chimchar").getGrowth_rate(), 10)); 
+		this.player.getPokemon_storage().getPokemon_by_index(2).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Chimchar").getGrowth_rate(), 5));
+
 		
 		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
 		this.map_storage = new Map_Storage();
@@ -266,9 +269,6 @@ public class Pokemon_Platinum_Game {
 					}
 				}
 			}
-			
-			
-			System.out.println("down pressed");
 			player.setDirection(Direction.DOWN);
 		}
 		else if (s.equals("left"))
