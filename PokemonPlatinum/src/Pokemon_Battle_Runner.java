@@ -215,7 +215,7 @@ public class Pokemon_Battle_Runner {
 		frame = new JFrame("Pokemon_Battle");
 
 		//this frame will close when the battle ends, not when you click close window. you can always run if necessary
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		CURRENT_MENU = 0;
 		frame.add(menu[MAIN_MENU]);
 		frame.add(menu[FIGHT_MENU]);

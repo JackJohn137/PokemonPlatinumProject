@@ -1,12 +1,13 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Pokemon_Platinum_Game {
+public class Pokemon_Platinum_Game  implements Serializable{
 	private Map_Storage map_storage;
 	private Pokedex pokedex;
 	private Movelist movelist;
