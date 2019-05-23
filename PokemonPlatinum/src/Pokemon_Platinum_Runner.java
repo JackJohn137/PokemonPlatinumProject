@@ -203,6 +203,7 @@ public class Pokemon_Platinum_Runner{
 				}  
 				catch (Exception e1)
 				{
+					System.out.println("This does not work because can't serialize");
 					e1.printStackTrace();
 				}
 			}
