@@ -15,7 +15,7 @@ public class Pokemon_Platinum_Game  implements Serializable{
 	private Player player;
 	private Pokemon_Map current_map;
 	private int store;
-	private Audio transition;
+	private transient Audio transition;
 	public Pokemon_Platinum_Game() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		this.pokedex = new Pokedex();
 		this.movelist = new Movelist();
