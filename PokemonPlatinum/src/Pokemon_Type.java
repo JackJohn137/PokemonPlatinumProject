@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
  * @version 1.0
  * @TODO: Type matchups
@@ -7,7 +9,7 @@
  * @enum Type: NORMAL, FIGHTING, FLYING, POISON, GROUND, ROCK, BUG, GHOST, STEEL, FIRE, WATER, GRASS, ELECTRIC, PSYCHIC, ICE, DRAGON, DARK, FAIRY;
  * 
  */
-public class Pokemon_Type{
+public class Pokemon_Type implements Serializable{
 	private Type type;
 	
 	enum Type

@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Exp_calc {
+public class Exp_calc implements Serializable{
 	private int exp;
 	private int n; // n = level
 	private Growth_Rate growth_rate;

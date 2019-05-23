@@ -1,7 +1,8 @@
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Trainer_Reader {
+public class Trainer_Reader implements Serializable{
 	private Pokemon_Trainer trainer;
 	public Trainer_Reader(String[] trainer_raw_data, Pokedex pokedex, Movelist movelist) throws IOException
 	{

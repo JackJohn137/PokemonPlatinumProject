@@ -1,7 +1,8 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Pokedex_Tester {
+public class Pokedex_Tester implements Serializable{
 
 	public Pokedex_Tester() {
 		// TODO Auto-generated constructor stub

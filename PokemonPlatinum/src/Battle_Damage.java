@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Battle_Damage {
+public class Battle_Damage implements Serializable{
 	private final Pokemon attacker;
 	private final Pokemon defender;
 	private final Pokemon_Move pokemon_move;

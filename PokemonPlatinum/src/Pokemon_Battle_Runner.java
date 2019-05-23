@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Map;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -19,7 +20,7 @@ import javax.swing.border.Border;
 
 
 
-public class Pokemon_Battle_Runner {
+public class Pokemon_Battle_Runner implements Serializable{
 	private static Player you;
 	private static Pokemon_Trainer opponent;
 	private static Pokemon you_field;

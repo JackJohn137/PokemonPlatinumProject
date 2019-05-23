@@ -1,10 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Pokedex_Reader {
+public class Pokedex_Reader implements Serializable{
 	private  ArrayList<String[]> pokedex;
 	private  File pokedex_raw_data;
 	

@@ -2,13 +2,14 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Pokemon_Map {
+public class Pokemon_Map implements Serializable{
 	private final Image pokemon_map;
 	private final String map_name;
 	private ArrayList<Pokemon_Trainer> trainers;

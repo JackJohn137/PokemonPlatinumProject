@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 /**
  * @version 1.0
  * @author ningwang
  *
  */
-public class Individual_Values {
+public class Individual_Values implements Serializable{
 	private int iv_hp;
 	private int iv_atk;
 	private int iv_spAtk;

@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -5,7 +6,7 @@ import java.util.ArrayList;
  * @author ningwang
  *
  */
-public class Pokemon_Storage {
+public class Pokemon_Storage implements Serializable{
 	private Pokemon[] pokemon_storage;
 	private int current_size;
 	

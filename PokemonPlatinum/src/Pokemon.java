@@ -1,4 +1,5 @@
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -9,7 +10,7 @@ import javax.swing.JOptionPane;
  * @author ningwang
  *
  */
-public class Pokemon{
+public class Pokemon implements Serializable{
 	private boolean fainted;
 	private final String name;
 	private final int pokedex_number;

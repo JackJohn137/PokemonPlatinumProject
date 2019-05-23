@@ -2,13 +2,14 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Map_Storage {
+public class Map_Storage implements Serializable{
 	private ArrayList<Pokemon_Map> map_storage;
 	private ArrayList<String> map_names;
 	

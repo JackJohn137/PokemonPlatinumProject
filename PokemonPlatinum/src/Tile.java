@@ -1,6 +1,7 @@
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Tile {
+public class Tile implements Serializable{
 	public final int REGULAR = 0;
 	public final int TALL_GRASS = 1;
 	public final int OBSTACLE = 2;
