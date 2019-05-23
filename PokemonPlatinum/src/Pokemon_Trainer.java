@@ -9,8 +9,8 @@ public class Pokemon_Trainer implements Serializable{
 	private String name;
 	private final String type;
 	private Pokemon_Storage pokemon_storage;
-	private final Image front;
-	private final Image back;
+	private transient final Image front;
+	private transient final Image back;
 	private final Pokemon_Trainer_Movements movements;
 	private Direction direction;
 	private int x_coord;

@@ -20,7 +20,7 @@ import javax.swing.border.Border;
 
 
 
-public class Pokemon_Battle_Runner implements Serializable{
+public class Pokemon_Battle_Runner{
 	private static Player you;
 	private static Pokemon_Trainer opponent;
 	private static Pokemon you_field;
@@ -50,7 +50,7 @@ public class Pokemon_Battle_Runner implements Serializable{
 	private static Image your_sprite;
 	private static Image their_sprite;
 	private static int CURRENT_MENU;
-	private Timer timer;
+	private transient Timer timer;
 	private int ticks;
 	private Audio a;
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

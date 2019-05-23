@@ -28,7 +28,7 @@ import javax.swing.KeyStroke;
 public class Pokemon_Platinum_Runner{
 	private JPanel panel;
 	private Pokemon_Platinum_Game game;
-	private Timer timer;
+	private transient Timer timer;
 	private int ticks;
 	private Direction direction;
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -42,11 +42,13 @@ public class Pokemon_Platinum_Runner{
 			public void run() {
 				try 
 				{
+					System.out.println("Loading previous save...");
 					FileInputStream saveFile = new FileInputStream("SaveState");
 					ObjectInputStream saveState = new ObjectInputStream(saveFile);
 					game = (Pokemon_Platinum_Game) saveState.readObject();
 					saveState.close();
 					saveFile.close();
+					
 				}
 				catch (ClassNotFoundException | IOException e) 
 				{
@@ -57,14 +59,14 @@ public class Pokemon_Platinum_Runner{
 					} catch (IOException | UnsupportedAudioFileException | LineUnavailableException e1) {
 						e1.printStackTrace();
 					}
-					try {
-						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-						start();
-					} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e2) {
-						e2.printStackTrace();
-					}
 				} 
-
+				
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					start();
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException | UnsupportedAudioFileException | IOException | LineUnavailableException e2) {
+					e2.printStackTrace();
+				}
 			}
 		});
 	}
@@ -73,7 +75,11 @@ public class Pokemon_Platinum_Runner{
 		new Pokemon_Platinum_Runner();
 	}
 
-	private void start() {
+	private void start() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		if (game.getCurrent_map().audio() == null)
+		{
+			loadSound();
+		}
 		game.getCurrent_map().audio().playSoundtrack();
 		JFrame frame = new JFrame("Pokemon_Platinum");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,6 +113,10 @@ public class Pokemon_Platinum_Runner{
 			}
 		});
 		timer.start();
+	}
+
+	private void loadSound() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		game.getCurrent_map().setAudio(game.getCurrent_map().getMap_name());
 	}
 
 	// this method is called every time the timer goes off (which right now is every 10 milliseconds = 100 times per second

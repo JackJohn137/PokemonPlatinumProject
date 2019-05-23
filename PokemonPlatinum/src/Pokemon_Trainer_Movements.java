@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 public class Pokemon_Trainer_Movements implements Serializable{
 	private String trainer_type;
-	private final Image sprite_sheet;
+	private transient final Image sprite_sheet;
 	private Movement up;
 	private Movement down;
 	private Movement left;
@@ -57,14 +57,14 @@ public class Pokemon_Trainer_Movements implements Serializable{
 		this.right = right;
 	}
 
-	public class Movement
+	public class Movement implements Serializable
 	{
 		private final Direction direction;
 		//private final Image sprite_sheet;
-		private Timer timer;
-		private final Image stop;
-		private final Image move_1;
-		private final Image move_2;
+		private transient Timer timer;
+		private transient final Image stop;
+		private transient final Image move_1;
+		private transient final Image move_2;
 		Movement(Direction direction)
 		{
 			this.direction = direction;

@@ -14,8 +14,8 @@ public class Pokemon implements Serializable{
 	private boolean fainted;
 	private final String name;
 	private final int pokedex_number;
-	private Image front_image;
-	private Image back_image;
+	private transient Image front_image;
+	private transient Image back_image;
 	private String nickname;
 	private final String original_trainer;
 	private boolean wild;
