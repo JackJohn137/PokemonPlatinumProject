@@ -111,7 +111,8 @@ public class Pokemon_Platinum_Runner{
 
 	// this method is called every time the timer goes off (which right now is every 10 milliseconds = 100 times per second
 	protected void updateGame() {
-
+		if(game.getPlayer().isCan_move()==true) 
+			game.getCurrent_map().audio().playSoundtrack();
 		panel.repaint();//Repaints after each update
 
 		ticks++;//Adds to the timer
@@ -147,6 +148,12 @@ public class Pokemon_Platinum_Runner{
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}	
 		});
@@ -158,6 +165,12 @@ public class Pokemon_Platinum_Runner{
 				try {
 					hit("down");
 				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -173,6 +186,12 @@ public class Pokemon_Platinum_Runner{
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -184,6 +203,12 @@ public class Pokemon_Platinum_Runner{
 				try {
 					hit("right");
 				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -201,16 +226,16 @@ public class Pokemon_Platinum_Runner{
 					saveState.close();
 					System.out.printf("Serialized data is saved in SaveState");
 				}  
-				catch (Exception e1)
+
+				catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) 
 				{
-					System.out.println("This does not work because can't serialize");
-					e1.printStackTrace();
+					e.printStackTrace();
 				}
 			}
 		});
 	}
 
-	public void hit(String s) throws IOException {
+	public void hit(String s) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		if (ticks>2) {
 			ticks = 0;
 
