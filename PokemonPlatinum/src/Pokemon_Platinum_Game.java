@@ -19,7 +19,7 @@ public class Pokemon_Platinum_Game implements Serializable{
 	public Pokemon_Platinum_Game() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		this.pokedex = new Pokedex();
 		this.movelist = new Movelist();
-		
+
 		this.player = new Player("Cynthia", "Cynthia", Direction.DOWN);
 		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Turtwig"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
@@ -28,25 +28,25 @@ public class Pokemon_Platinum_Game implements Serializable{
 		this.player.getPokemon_storage().getPokemon_by_index(0).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(0).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
 		System.out.println(this.player.getPokemon_storage().getPokemon_by_index(0).getFront_image());
-		
+
 		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Chimchar"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
-		
+
 		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
 		this.map_storage = new Map_Storage();
 		this.current_map = map_storage.getPokemon_map("Twinleaf_Town");
 		addTrainers();
 		this.transition=new Audio("Wilhelm-scream");
-		
+
 		this.player.setGrid_x(8);
 		this.player.setGrid_y(12);
 		this.transition.playEffect();
 	}
-	
+
 	private void addTrainers() {
 		for (Trainer_Map tm : this.trainer_map_storage.getTrainer_map_storage())
 		{
@@ -66,14 +66,14 @@ public class Pokemon_Platinum_Game implements Serializable{
 		Tile[][] temp = current_map.getGrid();
 		int r = player.getGrid_y();
 		int c = player.getGrid_x();
-		
+
 		if (s.equals("up"))
 		{
 			player.setDirection(Direction.UP);
 
 			if (player.isCan_move() == true) 
 			{
-			
+
 
 				if (player.getDirection() == Direction.UP)
 				{
@@ -89,64 +89,63 @@ public class Pokemon_Platinum_Game implements Serializable{
 						System.out.println(temp[r - 1][c].getType());
 						switch (temp[r - 1][c].getType())
 						{
-							case 0:
-								player.setGrid_y(r - 1);
-								store=player.getY_coord();
-								player.setGrid_y(r);
-								System.out.println(store);
-								System.out.println(player.getY_coord());
-								break;
-								
-							case 1:
-								player.setGrid_y(r - 1);
-								store=player.getY_coord();
-								player.setGrid_y(r);
-								System.out.println(store);
-								System.out.println(player.getY_coord());
-								break;
-							
-							case 2:
-								break;
-								
-							case 3: 
-								break;
-								
-							case 4:
-								break;
-								
-							case 5:
-								break;
-								
-							case 6:
-								break;
-							
-							case 7:
-								break;
-								
-							case 8: 
-								break;
-								
-							case 9:
-								player.setGrid_y(this.current_map.getTile(r - 1, c).getWarp().getRow());
-								player.setGrid_x(this.current_map.getTile(r - 1, c).getWarp().getCol());
-								for (Pokemon_Map m : map_storage.getMap_storage())
+						case 0:
+							player.setGrid_y(r - 1);
+							store=player.getY_coord();
+							player.setGrid_y(r);
+							System.out.println(store);
+							System.out.println(player.getY_coord());
+							break;
+
+						case 1:
+							player.setGrid_y(r - 1);
+							store=player.getY_coord();
+							player.setGrid_y(r);
+							System.out.println(store);
+							System.out.println(player.getY_coord());
+							break;
+
+						case 2:
+							break;
+
+						case 3: 
+							break;
+
+						case 4:
+							break;
+
+						case 5:
+							break;
+
+						case 6:
+							break;
+
+						case 7:
+							break;
+
+						case 8: 
+							break;
+
+						case 9:
+							player.setGrid_y(this.current_map.getTile(r - 1, c).getWarp().getRow());
+							player.setGrid_x(this.current_map.getTile(r - 1, c).getWarp().getCol());
+							for (Pokemon_Map m : map_storage.getMap_storage())
+							{
+								if (m.getMap_name().equals(this.current_map.getTile(r - 1, c).getWarp().getWarp_map_name()))
 								{
-									if (m.getMap_name().equals(this.current_map.getTile(r - 1, c).getWarp().getWarp_map_name()))
-									{
-										this.transition.playEffect();
-										this.current_map.audio().swapTrack(m.audio());
-										this.current_map = m;
-										store=player.getY_coord()-6;
-										m.setPokemon_map(m.getMap_name());
-										System.out.println(this.current_map);
-										break;
-									}
+									this.getCurrent_map().audio().stop();
+									this.current_map = m;
+									this.transition.playEffect();
+									this.current_map.audio().swapTrack(m.audio());
+									store = player.getY_coord()-6;
+									break;
 								}
-								break;
-								
-							default:
-								System.out.println("??? Tile: Terrain Error");
-								break;
+							}
+							break;
+
+						default:
+							System.out.println("??? Tile: Terrain Error");
+							break;
 						}
 					}
 					else if (temp[r][c].getType() == 9)
@@ -157,10 +156,10 @@ public class Pokemon_Platinum_Game implements Serializable{
 						{
 							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
 							{
+								this.getCurrent_map().audio().stop();
+								this.current_map = m;
 								this.transition.playEffect();
 								this.current_map.audio().swapTrack(m.audio());
-								this.current_map = m;
-								
 								break;
 							}
 						}
@@ -177,110 +176,111 @@ public class Pokemon_Platinum_Game implements Serializable{
 			if (player.isCan_move() == true) 
 			{System.out.println(r);
 			System.out.println(temp.length);
-				if (player.getDirection() == Direction.DOWN)
+			if (player.getDirection() == Direction.DOWN)
+			{
+				System.out.println("here?");
+				if (temp[r + 1][c].getPokemon_trainer() != null)
 				{
-					System.out.println("here?");
-					if (temp[r + 1][c].getPokemon_trainer() != null)
-					{
-						this.getCurrent_map().audio().stop();
+					this.getCurrent_map().audio().stop();
 
-						new Pokemon_Battle_Runner(player, temp[r + 1][c].getPokemon_trainer());
-						player.setCan_move(false);
-					}
-					
-					else if (r < temp.length - 1)
-					{
-						System.out.println("prob");
-						switch (temp[r + 1][c].getType())
-						{
-							case 0:
-								player.setGrid_y(r + 1);
-								store=player.getY_coord();
-								player.setGrid_y(r);
-								break;
-								
-							case 1:
-								player.setGrid_y(r + 1);
-								store=player.getY_coord();
-								player.setGrid_y(r);
-								break;
-							
-							case 2:
-								player.setGrid_y(r + 1);
-								store=player.getY_coord();
-								player.setGrid_y(r);
-								System.out.println(store);
-								System.out.println(player.getY_coord());
-								break;
-								
-							case 3: 
-								
-								break;
-								
-							case 4:
-								break;
-								
-							case 5:
-								break;
-								
-							case 6:
-								break;
-							
-							case 7:
-								break;
-								
-							case 8: 
-								break;
-								
-							case 9:
-								player.setGrid_y(this.current_map.getTile(r + 1, c).getWarp().getRow());
-								player.setGrid_x(this.current_map.getTile(r + 1, c).getWarp().getCol());
-								for (Pokemon_Map m : map_storage.getMap_storage())
-								{
-									if (m.getMap_name().equals(this.current_map.getTile(r + 1, c).getWarp().getWarp_map_name()))
-									{
-										this.transition.playEffect();
+					new Pokemon_Battle_Runner(player, temp[r + 1][c].getPokemon_trainer());
+					player.setCan_move(false);
+				}
 
-										this.current_map.audio().swapTrack(m.audio());
-										this.current_map = m;
-										store=player.getY_coord()+6;
-
-										break;
-									}
-								}
-								break;
-								
-							default:
-								System.out.println("??? Tile: Terrain Error");
-								break;
-						}
-					}
-					else if (temp[r][c].getType() == 9)
+				else if (r < temp.length - 1)
+				{
+					System.out.println("prob");
+					switch (temp[r + 1][c].getType())
 					{
-						System.out.println("here");
-						player.setGrid_y(this.current_map.getTile(r, c).getWarp().getRow());
-						player.setGrid_x(this.current_map.getTile(r, c).getWarp().getCol());
+					case 0:
+						player.setGrid_y(r + 1);
+						store=player.getY_coord();
+						player.setGrid_y(r);
+						break;
+
+					case 1:
+						player.setGrid_y(r + 1);
+						store=player.getY_coord();
+						player.setGrid_y(r);
+						break;
+
+					case 2:
+						player.setGrid_y(r + 1);
+						store=player.getY_coord();
+						player.setGrid_y(r);
+						System.out.println(store);
+						System.out.println(player.getY_coord());
+						break;
+
+					case 3: 
+
+						break;
+
+					case 4:
+						break;
+
+					case 5:
+						break;
+
+					case 6:
+						break;
+
+					case 7:
+						break;
+
+					case 8: 
+						break;
+
+					case 9:
+						player.setGrid_y(this.current_map.getTile(r + 1, c).getWarp().getRow());
+						player.setGrid_x(this.current_map.getTile(r + 1, c).getWarp().getCol());
 						for (Pokemon_Map m : map_storage.getMap_storage())
 						{
-							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
+							System.out.println(m.getMap_name());
+							System.out.println(this.current_map.getTile(r + 1, c).getWarp().getWarp_map_name());
+
+							if (m.getMap_name().equals(this.current_map.getTile(r + 1, c).getWarp().getWarp_map_name()))
 							{
-								this.transition.playEffect();
-
-								this.current_map.audio().swapTrack(m.audio());
+								this.getCurrent_map().audio().stop();
 								this.current_map = m;
-								store=player.getY_coord();
-
+								this.transition.playEffect();
+								this.current_map.audio().swapTrack(m.audio());
+								store = player.getY_coord()+6;
 								break;
 							}
 						}
-					}
-					else {
-						System.out.println("not working");
+						break;
+
+					default:
+						System.out.println("??? Tile: Terrain Error");
+						break;
 					}
 				}
+				else if (temp[r][c].getType() == 9)
+				{
+					System.out.println("here");
+					player.setGrid_y(this.current_map.getTile(r, c).getWarp().getRow());
+					player.setGrid_x(this.current_map.getTile(r, c).getWarp().getCol());
+					for (Pokemon_Map m : map_storage.getMap_storage())
+					{
+						if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
+						{
+							this.getCurrent_map().audio().stop();
+							this.current_map = m;
+							this.transition.playEffect();
+							this.current_map.audio().swapTrack(m.audio());
+							store = player.getY_coord();
+							break;
+						}
+					}
+				}
+				else {
+					System.out.println("not working");
+				}
 			}
-			
-			
+			}
+
+
 			System.out.println("down pressed");
 			player.setDirection(Direction.DOWN);
 		}
@@ -295,7 +295,6 @@ public class Pokemon_Platinum_Game implements Serializable{
 					if (temp[r][c - 1].getPokemon_trainer() != null)
 					{
 						this.getCurrent_map().audio().stop();
-
 						new Pokemon_Battle_Runner(player, temp[r][c - 1].getPokemon_trainer());
 						player.setCan_move(false);
 					}
@@ -304,61 +303,61 @@ public class Pokemon_Platinum_Game implements Serializable{
 						System.out.println(temp[r][c - 1].getType());
 						switch (temp[r][c - 1].getType())
 						{
-							case 0:
-								player.setGrid_x(c - 1);
-								store=player.getX_coord();
-								player.setGrid_x(c);
-								break;
-								
-							case 1:
-								player.setGrid_x(c - 1);
-								store=player.getX_coord();
-								player.setGrid_x(c);
-								while(player.getX_coord()>store) {
-									player.setX_coord(player.getX_coord()-1);
-								}
-								break;
-							
-							case 2:
-								break;
-								
-							case 3: 
-								break;
-								
-							case 4:
-								break;
-								
-							case 5:
-								break;
-								
-							case 6:
-								break;
-							
-							case 7:
-								break;
-								
-							case 8: 
-								break;
-								
-							case 9:
-								player.setGrid_y(this.current_map.getTile(r, c - 1).getWarp().getRow());
-								player.setGrid_x(this.current_map.getTile(r, c - 1).getWarp().getCol());
-								for (Pokemon_Map m : map_storage.getMap_storage())
-								{
-									if (m.getMap_name().equals(this.current_map.getTile(r, c - 1).getWarp().getWarp_map_name()))
-									{										
-										this.transition.playEffect();
+						case 0:
+							player.setGrid_x(c - 1);
+							store=player.getX_coord();
+							player.setGrid_x(c);
+							break;
 
-										this.current_map.audio().swapTrack(m.audio());
-										this.current_map = m;
-										break;
-									}
+						case 1:
+							player.setGrid_x(c - 1);
+							store=player.getX_coord();
+							player.setGrid_x(c);
+							while(player.getX_coord()>store) {
+								player.setX_coord(player.getX_coord()-1);
+							}
+							break;
+
+						case 2:
+							break;
+
+						case 3: 
+							break;
+
+						case 4:
+							break;
+
+						case 5:
+							break;
+
+						case 6:
+							break;
+
+						case 7:
+							break;
+
+						case 8: 
+							break;
+
+						case 9:
+							player.setGrid_y(this.current_map.getTile(r, c - 1).getWarp().getRow());
+							player.setGrid_x(this.current_map.getTile(r, c - 1).getWarp().getCol());
+							for (Pokemon_Map m : map_storage.getMap_storage())
+							{
+								if (m.getMap_name().equals(this.current_map.getTile(r, c - 1).getWarp().getWarp_map_name()))
+								{
+									this.getCurrent_map().audio().stop();
+									this.current_map = m;								
+									this.transition.playEffect();
+									this.current_map.audio().swapTrack(m.audio());
+									break;
 								}
-								break;
-								
-							default:
-								System.out.println("??? Tile: Terrain Error");
-								break;
+							}
+							break;
+
+						default:
+							System.out.println("??? Tile: Terrain Error");
+							break;
 						}
 					}
 					else if (temp[r][c].getType() == 9)
@@ -369,10 +368,10 @@ public class Pokemon_Platinum_Game implements Serializable{
 						{
 							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
 							{
-								this.transition.playEffect();
-
-								this.current_map.audio().swapTrack(m.audio());
+								this.getCurrent_map().audio().stop();
 								this.current_map = m;
+								this.transition.playEffect();
+								this.current_map.audio().swapTrack(m.audio());
 								break;
 							}
 						}
@@ -385,7 +384,7 @@ public class Pokemon_Platinum_Game implements Serializable{
 		{
 			player.setDirection(Direction.RIGHT);
 
-//			System.out.println(temp[r][c + 1].getType());
+			//			System.out.println(temp[r][c + 1].getType());
 			if (player.isCan_move() == true) 
 			{
 				if (player.getDirection() == Direction.RIGHT)
@@ -393,71 +392,69 @@ public class Pokemon_Platinum_Game implements Serializable{
 					if (temp[r][c + 1].getPokemon_trainer() != null)
 					{
 						this.getCurrent_map().audio().stop();
-
 						new Pokemon_Battle_Runner(player, temp[r][c + 1].getPokemon_trainer());
 						player.setCan_move(false);
 					}
 					else if (c < temp[r].length - 1)
 					{
-						
+
 						switch (temp[r][c + 1].getType())
 						{
-							case 0:
-								player.setGrid_x(c + 1);
-								store=player.getX_coord();
-								player.setGrid_x(c);
-								break;
-								
-							case 1:
-								player.setGrid_x(c + 1);
-								store=player.getX_coord();
-								player.setGrid_x(c);
-								while(player.getX_coord()<store) {
-									player.setX_coord(player.getSlide_x()+1);
-								}
-								break;
-							
-							case 2:
-								break;
-								
-							case 3: 
-								break;
-								
-							case 4:
-								break;
-								
-							case 5:
-								break;
-								
-							case 6:
-								break;
-							
-							case 7:
-								break;
-								
-							case 8: 
-								break;
-								
-							case 9:
-								player.setGrid_y(this.current_map.getTile(r, c + 1).getWarp().getRow());
-								player.setGrid_x(this.current_map.getTile(r, c + 1).getWarp().getCol());
-								for (Pokemon_Map m : map_storage.getMap_storage())
+						case 0:
+							player.setGrid_x(c + 1);
+							store=player.getX_coord();
+							player.setGrid_x(c);
+							break;
+
+						case 1:
+							player.setGrid_x(c + 1);
+							store=player.getX_coord();
+							player.setGrid_x(c);
+							while(player.getX_coord()<store) {
+								player.setX_coord(player.getSlide_x()+1);
+							}
+							break;
+
+						case 2:
+							break;
+
+						case 3: 
+							break;
+
+						case 4:
+							break;
+
+						case 5:
+							break;
+
+						case 6:
+							break;
+
+						case 7:
+							break;
+
+						case 8: 
+							break;
+
+						case 9:
+							player.setGrid_y(this.current_map.getTile(r, c + 1).getWarp().getRow());
+							player.setGrid_x(this.current_map.getTile(r, c + 1).getWarp().getCol());
+							for (Pokemon_Map m : map_storage.getMap_storage())
+							{
+								if (m.getMap_name().equals(this.current_map.getTile(r, c + 1).getWarp().getWarp_map_name()))
 								{
-									if (m.getMap_name().equals(this.current_map.getTile(r, c + 1).getWarp().getWarp_map_name()))
-										
-									{
-										this.transition.playEffect();
-//;asldflda
-										this.current_map.audio().swapTrack(m.audio());
-										this.current_map = m;
-										break;
-									}
+									this.getCurrent_map().audio().stop();
+									this.current_map = m;
+									this.transition.playEffect();
+									this.current_map.audio().swapTrack(m.audio());
+									break;
 								}
-								break;
-								
-							default:
-								System.out.println("??? Tile: Terrain Error");
-								break;
+							}
+							break;
+
+						default:
+							System.out.println("??? Tile: Terrain Error");
+							break;
 						}
 					}
 					else if (temp[r][c].getType() == 9)
@@ -468,10 +465,10 @@ public class Pokemon_Platinum_Game implements Serializable{
 						{
 							if (m.getMap_name().equals(this.current_map.getTile(r, c).getWarp().getWarp_map_name()))
 							{
-								this.transition.playEffect();
-
-								this.current_map.audio().swapTrack(m.audio());
+								this.getCurrent_map().audio().stop();
 								this.current_map = m;
+								this.transition.playEffect();
+								this.current_map.audio().swapTrack(m.audio());
 								break;
 							}
 						}
@@ -484,29 +481,29 @@ public class Pokemon_Platinum_Game implements Serializable{
 			player.setDirection(Direction.RIGHT);
 		}	
 	}
-	
+
 	public void draw(Graphics g) {
 		if(player.getDirection().equals(Direction.UP)) {
-		if(player.getY_coord()>store) {
-			if(player.getY_coord()-player.getSlide_y()<6) {
-			player.setY_coord(player.getSlide_y()-3);
-			g.drawImage(player.getMovements().getUp().getMove_1(),player.getX_coord(),player.getSlide_y(),null);
+			if(player.getY_coord()>store) {
+				if(player.getY_coord()-player.getSlide_y()<6) {
+					player.setY_coord(player.getSlide_y()-3);
+					g.drawImage(player.getMovements().getUp().getMove_1(),player.getX_coord(),player.getSlide_y(),null);
+				}
+				else {
+					player.setY_coord(player.getSlide_y()-3);
+					g.drawImage(player.getMovements().getUp().getMove_2(),player.getX_coord(),player.getSlide_y(),null);
+				}
 			}
 			else {
-				player.setY_coord(player.getSlide_y()-3);
-				g.drawImage(player.getMovements().getUp().getMove_2(),player.getX_coord(),player.getSlide_y(),null);
+				g.drawImage(player.getMovements().getUp().getStop(),player.getX_coord(),player.getSlide_y(),null);
 			}
 		}
-		else {
-			g.drawImage(player.getMovements().getUp().getStop(),player.getX_coord(),player.getSlide_y(),null);
-		}
-		}
 		if(player.getDirection().equals(Direction.DOWN)) {
-			
+
 			if(player.getY_coord()<store) {
 				if(Math.abs(player.getY_coord()-player.getSlide_y())<6) {
-				player.setY_coord(player.getSlide_y()+3);
-				g.drawImage(player.getMovements().getDown().getMove_1(),player.getX_coord(),player.getSlide_y(),null);
+					player.setY_coord(player.getSlide_y()+3);
+					g.drawImage(player.getMovements().getDown().getMove_1(),player.getX_coord(),player.getSlide_y(),null);
 				}
 				else {
 					player.setY_coord(player.getSlide_y()+3);
@@ -519,8 +516,8 @@ public class Pokemon_Platinum_Game implements Serializable{
 		if(player.getDirection().equals(Direction.LEFT)) {
 			if(player.getX_coord()>store) {
 				if(Math.abs(player.getX_coord()-player.getSlide_x())<6) {
-				player.setX_coord(player.getSlide_x()-3);
-				g.drawImage(player.getMovements().getLeft().getMove_1(),player.getSlide_x(),player.getY_coord(),null);
+					player.setX_coord(player.getSlide_x()-3);
+					g.drawImage(player.getMovements().getLeft().getMove_1(),player.getSlide_x(),player.getY_coord(),null);
 				}
 				else {
 					player.setX_coord(player.getSlide_x()-3);
@@ -546,12 +543,12 @@ public class Pokemon_Platinum_Game implements Serializable{
 			}
 		}
 	}
-	
+
 	public Player getPlayer()
 	{
 		return player;
 	}
-	
+
 	public Pokemon_Map getCurrent_map()
 	{
 		return current_map;
