@@ -44,6 +44,7 @@ public class Pokemon_Platinum_Game implements Serializable{
 
 		this.player.setGrid_x(8);
 		this.player.setGrid_y(12);
+		this.transition=new Audio("Wilhelm-scream");
 		this.transition.playEffect();
 	}
 
