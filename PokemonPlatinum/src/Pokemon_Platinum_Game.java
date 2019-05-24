@@ -1,12 +1,13 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Pokemon_Platinum_Game {
+public class Pokemon_Platinum_Game implements Serializable{
 	private Map_Storage map_storage;
 	private Pokedex pokedex;
 	private Movelist movelist;
@@ -29,10 +30,10 @@ public class Pokemon_Platinum_Game {
 		System.out.println(this.player.getPokemon_storage().getPokemon_by_index(0).getFront_image());
 		
 		this.player.getPokemon_storage().addPokemon(pokedex.getPokemon("Chimchar"));
-//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
-//		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
+		this.player.getPokemon_storage().getPokemon_by_index(1).addMove(movelist.getMove("SCRATCH"));
 		this.player.getPokemon_storage().getPokemon_by_index(1).setPokemon_Level(new Pokemon_Level(pokedex.getPokemon("Turtwig").getGrowth_rate(), 5));
 		
 		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);

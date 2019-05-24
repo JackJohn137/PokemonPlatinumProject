@@ -10,7 +10,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Pokemon_Map implements Serializable{
-	private transient final Image pokemon_map;
+	private transient Image pokemon_map;
 	private final String map_name;
 	private ArrayList<Pokemon_Trainer> trainers;
 	private int r;
@@ -26,7 +26,7 @@ public class Pokemon_Map implements Serializable{
 		this.mr = new Map_Reader(map_name);
 		this.grid = mr.getGrid();
 		this.r = initial_y;
-		this.c = initial_x;
+		this.c = initial_x; 
 		a = new Audio(map_name);
 	}
 	
@@ -72,6 +72,14 @@ public class Pokemon_Map implements Serializable{
 
 	public Image getPokemon_map() {
 		return pokemon_map;
+	}
+	
+	public void setPokemon_map() throws IOException{
+		this.pokemon_map = ImageIO.read(getClass().getResource("pokemon_map/" + map_name + ".png"));
+	}
+	
+	public void setPokemon_map(String map_name) throws IOException{
+		this.pokemon_map = ImageIO.read(getClass().getResource("pokemon_map/" + map_name + ".png"));
 	}
 	
 	public void draw(Graphics g)
