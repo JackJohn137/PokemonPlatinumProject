@@ -66,7 +66,6 @@ public class Pokemon_Battle_Runner{
 
 	public Pokemon_Battle_Runner(Player you, Pokemon_Trainer opponent) throws IOException, UnsupportedAudioFileException, LineUnavailableException
 	{
-
 		border = BorderFactory.createLineBorder(Color.getHSBColor(100, 200, 100));
 		textbox = new JLabel();
 		this.you = you;

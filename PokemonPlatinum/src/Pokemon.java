@@ -326,9 +326,18 @@ public class Pokemon implements Serializable{
 		
 	}
 
-
 	public ArrayList<Pokemon_Move> getMoveset()
 	{
 		return this.moveSet;
+	}
+	
+	public void setFront_image(Image image)
+	{
+		this.front_image = image;
+	}
+	
+	public void setBack_image(Image image)
+	{
+		this.back_image = image;
 	}
 }

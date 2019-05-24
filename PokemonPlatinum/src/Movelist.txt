@@ -127,7 +127,7 @@ OUTRAGE           / DRAGON      / 15  / 120 / true     / 100 / 1 / 0
 GIGA_DRAIN        / GRASS       / 10  / 60  / false    / 100 / 1 / 0
 ROLLOUT           / ROCK        / 20  / 30  / true     / 90  / 1 / 0
 FALSE_SWIPE       / NORMAL      / 40  / 40  / true     / 100 / 1 / 0
-SPARK             / ELECTIC     / 20  / 65  / true     / 100 / 1 / 0
+SPARK             / ELECTRIC     / 20  / 65  / true     / 100 / 1 / 0
 FURY_CUTTER       / BUG         / 20  / 10  / true     / 95  / 1 / 0
 STEEL_WING        / STEEL       / 25  / 70  / true     / 90  / 1 / 0
 RETURN            / NORMAL      / 20  / 30  / true     / 100 / 1 / 0
@@ -204,7 +204,7 @@ BOUNCE            / FLYING      / 5   / 85  / true     / 85  / 1 / 0
 MUD_SHOT          / GROUND      / 15  / 55  / false    / 95  / 1 / 0 
 POISON_TAIL       / POISON      / 25  / 50  / true     / 100 / 1 / 0
 COVET             / NORMAL      / 40  / 40  / true     / 100 / 1 / 0
-VOLT_TACKLE       / ELECTIRC    / 15  / 120 / true     / 100 / 1 / 0
+VOLT_TACKLE       / ELECTRIC    / 15  / 120 / true     / 100 / 1 / 0
 MAGICAL_LEAF      / GRASS       / 20  / 60  / false    / 90  / 1 / 0
 LEAF_BLADE        / GRASS       / 15  / 70  / true     / 100 / 1 / 0
 ROCK_BLAST        / ROCK        / 10  / 25  / true     / 80  / 1 / 0
