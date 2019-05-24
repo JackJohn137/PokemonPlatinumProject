@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class Player extends Pokemon_Trainer implements Serializable{
 	private boolean can_move;
+	private boolean turned;
 	private ArrayList<Badge> badge_case;
 	private String nickname;
 	private int money;
@@ -17,6 +18,7 @@ public class Player extends Pokemon_Trainer implements Serializable{
 		this.badge_case = new ArrayList<Badge>();
 		this.money = 0;
 		this.nickname = "";
+		this.turned = false;
 	}
 	
 	public boolean isCan_move() {
@@ -24,5 +26,13 @@ public class Player extends Pokemon_Trainer implements Serializable{
 	}
 	public void setCan_move(boolean can_move) {
 		this.can_move = can_move;
+	}
+
+	public boolean isTurned() {
+		return turned;
+	}
+
+	public void setTurned(boolean turn_direction) {
+		this.turned = turn_direction;
 	}
 } 

@@ -48,7 +48,6 @@ public class Pokemon_Platinum_Runner{
 					game = (Pokemon_Platinum_Game) saveState.readObject();
 					saveState.close();
 					saveFile.close();
-
 				}
 				catch (ClassNotFoundException | IOException e) 
 				{
