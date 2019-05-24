@@ -41,7 +41,6 @@ public class Pokemon_Platinum_Game implements Serializable{
 		this.trainer_map_storage = new Trainer_Map_Storage(pokedex, movelist);
 
 		addTrainers();
-		this.transition=new Audio("Wilhelm-scream");
 
 		this.player.setGrid_x(8);
 		this.player.setGrid_y(12);
@@ -70,6 +69,7 @@ public class Pokemon_Platinum_Game implements Serializable{
 
 		if (s.equals("up"))
 		{
+			player.setDirection(Direction.UP);
 			if (player.isCan_move() == true) 
 			{
 				if (player.getDirection() == Direction.UP)
@@ -131,7 +131,12 @@ public class Pokemon_Platinum_Game implements Serializable{
 								if (m.getMap_name().equals(this.current_map.getTile(r - 1, c).getWarp().getWarp_map_name()))
 								{
 									this.getCurrent_map().audio().stop();
-									this.current_map = m;
+									this.current_map=m;
+									if(m.audio()==null) {
+										m.setAudio();
+									}
+									this.transition=new Audio("Wilhelm-scream");
+
 									this.transition.playEffect();
 									this.current_map.audio().swapTrack(m.audio());
 									store = player.getY_coord()-6;
@@ -172,6 +177,7 @@ public class Pokemon_Platinum_Game implements Serializable{
 		}
 		else if (s.equals("down"))
 		{
+			player.setDirection(Direction.DOWN);
 			if (player.isCan_move() == true) 
 			{
 				if (player.getDirection() == Direction.DOWN)
@@ -241,6 +247,11 @@ public class Pokemon_Platinum_Game implements Serializable{
 								{
 									this.getCurrent_map().audio().stop();
 									this.current_map = m;
+									if(m.audio()==null) {
+										m.setAudio();
+									}
+									this.transition=new Audio("Wilhelm-scream");
+
 									this.transition.playEffect();
 									this.current_map.audio().swapTrack(m.audio());
 									store = player.getY_coord()+6;
@@ -282,6 +293,7 @@ public class Pokemon_Platinum_Game implements Serializable{
 		}
 		else if (s.equals("left"))
 		{
+			player.setDirection(Direction.LEFT);
 			if (player.isCan_move() == true) 
 			{
 				if (player.getDirection() == Direction.LEFT)
@@ -341,7 +353,12 @@ public class Pokemon_Platinum_Game implements Serializable{
 								if (m.getMap_name().equals(this.current_map.getTile(r, c - 1).getWarp().getWarp_map_name()))
 								{
 									this.getCurrent_map().audio().stop();
-									this.current_map = m;								
+									this.current_map = m;			
+									if(m.audio()==null) {
+										m.setAudio();
+									}
+									this.transition=new Audio("Wilhelm-scream");
+
 									this.transition.playEffect();
 									this.current_map.audio().swapTrack(m.audio());
 									store = player.getX_coord()-8;
@@ -382,19 +399,24 @@ public class Pokemon_Platinum_Game implements Serializable{
 		}
 		else if (s.equals("right"))
 		{
+			player.setDirection(Direction.RIGHT);
 			if (player.isCan_move() == true) 
 			{
+
 				if (player.getDirection() == Direction.RIGHT)
 				{
+					System.out.println(temp[r].length-1);
 					if (temp[r][c + 1].getPokemon_trainer() != null)
 					{
+						System.out.println();
 						this.getCurrent_map().audio().stop();
 						new Pokemon_Battle_Runner(player, temp[r][c + 1].getPokemon_trainer());
 						player.setCan_move(false);
 					}
 					else if (c < temp[r].length - 1)
 					{
-
+						System.out.println("b");
+						System.out.println(temp[r][c+1].getType());
 						switch (temp[r][c + 1].getType())
 						{
 						case 0:
@@ -407,9 +429,6 @@ public class Pokemon_Platinum_Game implements Serializable{
 							player.setGrid_x(c + 1);
 							store=player.getX_coord();
 							player.setGrid_x(c);
-							while(player.getX_coord()<store) {
-								player.setX_coord(player.getSlide_x()+1);
-							}
 							break;
 
 						case 2:
@@ -442,6 +461,11 @@ public class Pokemon_Platinum_Game implements Serializable{
 								{
 									this.getCurrent_map().audio().stop();
 									this.current_map = m;
+									if(m.audio()==null) {
+										m.setAudio();
+									}
+									this.transition=new Audio("Wilhelm-scream");
+
 									this.transition.playEffect();
 									this.current_map.audio().swapTrack(m.audio());
 									store = player.getY_coord()+8;

@@ -44,6 +44,9 @@ public class Pokemon_Map implements Serializable{
 	public Audio audio() {
 		return a;
 	}
+	public void setAudio() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		a=new Audio(this.map_name);
+	}
 	public Tile getTile(int row, int col)
 	{
 		return grid[row][col];

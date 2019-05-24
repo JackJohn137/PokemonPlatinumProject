@@ -284,7 +284,7 @@ public class Pokemon_Platinum_Runner{
 	}
 
 	public void hit(String s) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-		if (ticks>2) {
+		if (ticks>3) {
 			ticks = 0;
 
 			if (s.equals("up"))
