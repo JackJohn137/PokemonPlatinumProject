@@ -1,5 +1,8 @@
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 /**
  * @version 1.0
@@ -7,12 +10,12 @@ import java.util.ArrayList;
  * @author ningwang
  *
  */
-public class Pokemon{
+public class Pokemon implements Serializable{
 	private boolean fainted;
 	private final String name;
 	private final int pokedex_number;
-	private Image front_image;
-	private Image back_image;
+	private transient Image front_image;
+	private transient Image back_image;
 	private String nickname;
 	private final String original_trainer;
 	private boolean wild;
@@ -21,13 +24,11 @@ public class Pokemon{
 	private final Pokemon_Type type_1;
 	private final Pokemon_Type type_2;
 	private final Pokemon_Nature pokemon_nature;
-	private Current_Stats current_stats;
-	private Current_Stats max_current_stats;
+	private Stats stats;
 	private final Base_Stats base_stats;
 	private final Individual_Values iv;
 	private Effort_Values ev;
 	private final int exp_yield;
-	private Growth_Rate growth_Rate;
 	private Pokemon_Item held_item;
 	private final Effort_Value_Drop ev_drop;
 
@@ -58,8 +59,8 @@ public class Pokemon{
 	 */
 	public Pokemon (String name, 
 			int pokedex_number, 
-			//Image front_image, 
-			//Image back_image, 
+			Image front_image, 
+			Image back_image, 
 			String nickname, 
 			String original_trainer, 
 			boolean wild, 
@@ -78,8 +79,8 @@ public class Pokemon{
 		this.fainted = false;
 		this.name = name;
 		this.pokedex_number = pokedex_number;
-		//this.front_image = front_image;
-		//this.back_image = back_image;
+		this.front_image = front_image;
+		this.back_image = back_image;
 		this.nickname = nickname;
 		this.original_trainer = original_trainer;
 		this.wild = wild;
@@ -91,7 +92,7 @@ public class Pokemon{
 		this.base_stats = base_stats;
 		this.iv = iv;
 		this.ev = ev;
-		this.current_stats = new Current_Stats (pokemon_level.getLevel(), 
+		this.stats = new Stats (pokemon_level.getLevel(), 
 				pokemon_nature, 
 				base_stats.getBase_hp(), 
 				base_stats.getBase_atk(), 
@@ -105,7 +106,6 @@ public class Pokemon{
 				iv.getIv_spAtk(),
 				iv.getIv_spDef(),
 				iv.getIv_spd());
-		this.max_current_stats = current_stats;
 		this.exp_yield = exp_yield;
 		this.held_item = held_item;
 		this.ev_drop = ev_drop;
@@ -117,18 +117,18 @@ public class Pokemon{
 		this.fainted = false;
 		this.name = p.getName();
 		this.pokedex_number = p.getPokedex_number()	;
-		//this.front_image = p.getFront_image();
-		//this.back_image = p.getBack_image();
+		this.front_image = p.getFront_image();
+		this.back_image = p.getBack_image();
 		this.nickname = p.getNickname();
 		this.original_trainer = p.getOriginal_trainer();
 		this.wild = p.isWild();
-		this.growth_rate = p.getGrowth_Rate();
+		this.growth_rate = p.getGrowth_rate();
 		this.pokemon_level = p.getPokemon_level();
 		this.type_1 = p.getType_1();
 		this.type_2 = p.getType_2();
 		this.pokemon_nature = p.getPokemon_nature();
 		this.base_stats = p.getBase_stats();
-		this.current_stats = new Current_Stats (pokemon_level.getLevel(), 
+		this.stats = new Stats (pokemon_level.getLevel(), 
 				pokemon_nature, 
 				base_stats.getBase_hp(), 
 				base_stats.getBase_atk(), 
@@ -142,7 +142,6 @@ public class Pokemon{
 				iv.getIv_spAtk(),
 				iv.getIv_spDef(),
 				iv.getIv_spd());
-		this.max_current_stats = current_stats;
 		this.iv = iv;
 		this.ev = ev;
 		this.exp_yield = p.getExp_yield();
@@ -189,20 +188,12 @@ public class Pokemon{
 		return type_2;
 	}
 
-	public Current_Stats getCurrent_stats() {
-		return current_stats;
+	public Stats getStats() {
+		return stats;
 	}
 
-	public void setCurrent_stats(Current_Stats current_stats) {
-		this.current_stats = current_stats;
-	}
-
-	public Current_Stats getMax_current_stats() {
-		return max_current_stats;
-	}
-
-	public void setMax_current_stats(Current_Stats max_current_stats) {
-		this.max_current_stats = max_current_stats;
+	public void setStats(Stats stats) {
+		this.stats = stats;
 	}
 
 	public Base_Stats getBase_stats() {
@@ -231,6 +222,20 @@ public class Pokemon{
 
 	public void setPokemon_Level(Pokemon_Level pokemon_level) {
 		this.pokemon_level = pokemon_level;
+		this.stats = new Stats (pokemon_level.getLevel(), 
+				pokemon_nature, 
+				base_stats.getBase_hp(), 
+				base_stats.getBase_atk(), 
+				base_stats.getBase_def(), 
+				base_stats.getBase_spAtk(), 
+				base_stats.getBase_spDef(), 
+				base_stats.getBase_spd(),
+				iv.getIv_hp(),
+				iv.getIv_atk(),
+				iv.getIv_def(),
+				iv.getIv_spAtk(),
+				iv.getIv_spDef(),
+				iv.getIv_spd());
 	}
 
 	public boolean isWild() {
@@ -245,12 +250,12 @@ public class Pokemon{
 		return exp_yield;
 	}
 
-	public Growth_Rate getGrowth_Rate() {
-		return growth_Rate;
+	public Growth_Rate getGrowth_rate() {
+		return growth_rate;
 	}
 
-	public void setGrowth_Rate(Growth_Rate growth_Rate) {
-		this.growth_Rate = growth_Rate;
+	public void setGrowth_rate(Growth_Rate growth_Rate) {
+		this.growth_rate = growth_Rate;
 	}
 
 	public Pokemon_Item getHeld_item() {
@@ -276,6 +281,54 @@ public class Pokemon{
 	public void addMove(Pokemon_Move move)
 	{
 		this.moveSet.add(move);
+
+
+		if(this.moveSet.size()==5) {
+			this.deleteMovePrompt(move);
+
+		}
 	}
 
+	private void deleteMovePrompt(Pokemon_Move move) {
+		Pokemon_Move[] moves= new Pokemon_Move[5];
+		for(int i=0;i<5;i++) {
+			moves[i]=this.moveSet.get(i);
+		}
+		if(JOptionPane.showConfirmDialog(null,this.name+" has learned the maximum number of moves, forget a move to learn"+ move.getMove_name()+"?")==JOptionPane.YES_OPTION) {
+			Pokemon_Move deleted =(Pokemon_Move) JOptionPane.showInputDialog(null,"which move will be forgotten", "delete move?", JOptionPane.PLAIN_MESSAGE,null, moves,moves[0]);
+			if(deleted.equals(move)) {
+				this.giveUP(move);
+			}
+			else{
+				
+			if(JOptionPane.showConfirmDialog(null, "are you sure?"+deleted.getMove_name()+"will be deleted")==JOptionPane.YES_OPTION) {
+				if(deleted.equals(move)) {
+					this.deleteMovePrompt(move);
+				}
+				else {
+					this.moveSet.remove(move);
+				}
+			}
+			}
+			}
+		else {
+			this.giveUP(move);
+  		}
+   	}
+
+   	private void giveUP(Pokemon_Move move) {
+		if(JOptionPane.showConfirmDialog(null,"then give up on learning " +move.getMove_name()+"?")==JOptionPane.YES_OPTION) {
+			moveSet.remove(move);
+		}
+		else {
+			this.deleteMovePrompt(move);
+      }
+		
+	}
+
+
+	public ArrayList<Pokemon_Move> getMoveset()
+	{
+		return this.moveSet;
+	}
 }

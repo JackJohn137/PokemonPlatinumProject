@@ -2,15 +2,19 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Map_Storage {
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+public class Map_Storage implements Serializable{
 	private ArrayList<Pokemon_Map> map_storage;
 	private ArrayList<String> map_names;
 	
 	
-	public Map_Storage() throws IOException
+	public Map_Storage() throws IOException, UnsupportedAudioFileException, LineUnavailableException
 	{
 		map_storage = new ArrayList<>();
 		add_names();
@@ -29,7 +33,7 @@ public class Map_Storage {
 		read_names.close();
 	}
 
-	private void add_maps() throws IOException {
+	private void add_maps() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		for (String map_name : map_names)
 		{
 			map_storage.add(new Pokemon_Map(map_name));

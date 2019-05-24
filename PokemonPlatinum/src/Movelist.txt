@@ -293,3 +293,4 @@ MAGMA_STORM       / FIRE        / 5   / 120 / false    / 70  / 1 / 0
 SEED_FLARE        / GRASS       / 5   / 120 / false    / 85  / 1 / 0
 OMINOUS_WIND      / GHOST       / 5   / 60  / false    / 100 / 1 / 0
 SHADOW_FORCE      / GHOST       / 5   / 120 / true     / 100 / 1 / 0
+NIGHT_SHADE       / GHOST       / 15  / 0   / false    / 100 / 1 / 0

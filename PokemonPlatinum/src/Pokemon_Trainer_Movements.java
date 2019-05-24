@@ -2,13 +2,14 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Timer;
 
 import javax.imageio.ImageIO;
 
-public class Pokemon_Trainer_Movements {
+public class Pokemon_Trainer_Movements implements Serializable{
 	private String trainer_type;
-	private final Image sprite_sheet;
+	private transient final Image sprite_sheet;
 	private Movement up;
 	private Movement down;
 	private Movement left;
@@ -24,6 +25,13 @@ public class Pokemon_Trainer_Movements {
 		this.right = new Movement(Direction.RIGHT);
 	}
 	
+	public void setMovements(Pokemon_Trainer_Movements images)
+	{
+		this.up = images.up;
+		this.down = images.down;
+		this.right = images.right;
+		this.left = images.left;
+	}
 	public Movement getUp() {
 		return up;
 	}
@@ -56,14 +64,14 @@ public class Pokemon_Trainer_Movements {
 		this.right = right;
 	}
 
-	public class Movement
+	public class Movement implements Serializable
 	{
 		private final Direction direction;
 		//private final Image sprite_sheet;
-		private Timer timer;
-		private final Image stop;
-		private final Image move_1;
-		private final Image move_2;
+		private transient Timer timer;
+		private transient final Image stop;
+		private transient final Image move_1;
+		private transient final Image move_2;
 		Movement(Direction direction)
 		{
 			this.direction = direction;

@@ -1,11 +1,12 @@
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * @Version working on
  * @author ningwang
  *
  */
-public class Player extends Pokemon_Trainer{
+public class Player extends Pokemon_Trainer implements Serializable{
 	private boolean can_move;
 	private ArrayList<Badge> badge_case;
 	private String nickname;

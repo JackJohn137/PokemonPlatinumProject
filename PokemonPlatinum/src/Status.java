@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 /**
  * @version 1.0
  * @author ningwang
  *
  */
-public class Status {
+public class Status implements Serializable{
 	private final Effect effect;
 	private Stat stat;
 	private final double stat_multiplier;

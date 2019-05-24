@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Battle_Damage {
+public class Battle_Damage implements Serializable{
 	private final Pokemon attacker;
 	private final Pokemon defender;
 	private final Pokemon_Move pokemon_move;
@@ -12,7 +13,7 @@ public class Battle_Damage {
 		this.pokemon_move = pokemon_move;
 		this.damage_dealt = getDamage_dealt();
 	}
-	
+
 	public Pokemon getAttacker()
 	{
 		return this.attacker;
@@ -36,13 +37,13 @@ public class Battle_Damage {
 		
 		if (this.pokemon_move.getIsPhysical())
 		{
-			B = this.getAttacker().getCurrent_stats().getAtk();
-			D = this.getDefender().getCurrent_stats().getDef();
+			B = this.getAttacker().getStats().getAtk();
+			D = this.getDefender().getStats().getDef();
 		}
 		else
 		{
-			B = this.getAttacker().getCurrent_stats().getSpAtk();
-			D = this.getDefender().getCurrent_stats().getspDef();
+			B = this.getAttacker().getStats().getSpAtk();
+			D = this.getDefender().getStats().getspDef();
 		}
 		
 		if (this.getAttacker().getType_1().equals(getPokemon_move().getMove_type()) || this.getAttacker().getType_2().equals(getPokemon_move().getMove_type()))
@@ -65,7 +66,7 @@ public class Battle_Damage {
 		}
 		
 		Z = 217 + (int) (Math.random() * 39);
-		
-		return (int) ((((((((((2 * A / 5 + 2) * B * C) / D) / 50) + 2) * X) * Y / 10) * Z) / 255));
+		int damage = (int) ((((((2.0 * A / 5 + 2) * B * C) / D) / 50) + 2) * X * Y * Z / 255);
+		return damage;
 	}
 }

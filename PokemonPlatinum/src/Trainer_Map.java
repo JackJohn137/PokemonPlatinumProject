@@ -1,10 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Trainer_Map {
+public class Trainer_Map implements Serializable{
 	private String map_name;
 	private File trainer_map;
 	private ArrayList<Pokemon_Trainer> trainer_list;
@@ -50,5 +51,10 @@ public class Trainer_Map {
 
 	public void setMap_name(String map_name) {
 		this.map_name = map_name;
+	}
+	
+	public ArrayList<Pokemon_Trainer> getTrainer_list()
+	{
+		return this.trainer_list;
 	}
 }

@@ -1,7 +1,8 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Pokedex_Tester {
+public class Pokedex_Tester implements Serializable{
 
 	public Pokedex_Tester() {
 		// TODO Auto-generated constructor stub
@@ -20,7 +21,10 @@ public class Pokedex_Tester {
 		System.out.println(poke.getType_1().toString());
 		System.out.println(poke.getPokemon_level().toString());
 		System.out.println(poke.getPokemon_nature().toString());
-		System.out.println(poke.getCurrent_stats().toString());
+		System.out.println(poke.getStats().toString());
+		System.out.println(poke.getType_1().toString());
+		System.out.println(poke.getType_2().toString());
+		System.out.println(poke.getGrowth_rate().toString());
 	}
 
 }

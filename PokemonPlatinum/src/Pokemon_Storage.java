@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -5,7 +6,7 @@ import java.util.ArrayList;
  * @author ningwang
  *
  */
-public class Pokemon_Storage {
+public class Pokemon_Storage implements Serializable{
 	private Pokemon[] pokemon_storage;
 	private int current_size;
 	
@@ -23,7 +24,7 @@ public class Pokemon_Storage {
 		return this.pokemon_storage;
 	}
 	
-	public Pokemon getPokemon(int index)
+	public Pokemon getPokemon_by_number(int index)
 	{
 		for (Pokemon p : pokemon_storage)
 		{
@@ -33,6 +34,12 @@ public class Pokemon_Storage {
 			}
 		}
 		return null;
+	}
+	
+	public Pokemon getPokemon_by_index(int index)
+	{
+
+		return pokemon_storage[index];
 	}
 	
 	public void addPokemon (Pokemon pokemon)

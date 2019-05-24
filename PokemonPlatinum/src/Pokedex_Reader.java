@@ -1,17 +1,18 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Pokedex_Reader {
+public class Pokedex_Reader implements Serializable{
 	private  ArrayList<String[]> pokedex;
 	private  File pokedex_raw_data;
 	
 	/**
 	 * Takes Pokedex.txt and uses it to create pokedex
 	 * @throws FileNotFoundException
-	 */
+	 */ 
 	public Pokedex_Reader () throws FileNotFoundException
 	{
 		pokedex = new ArrayList<String[]>();
@@ -27,7 +28,7 @@ public class Pokedex_Reader {
 			String pokedex_entry = pokedex_scanner.nextLine();
 			for (int i = 0; i < pokedex_entry.length(); i++)
 			{
-				
+			
 				if (pokedex_entry.substring(i, i + 1).equals(" "))
 				{
 					pokedex_entry = pokedex_entry.substring(0, i) + pokedex_entry.substring(i + 1);

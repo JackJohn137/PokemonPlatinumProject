@@ -1,12 +1,13 @@
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Tile {
+public class Tile implements Serializable{
 	public final int REGULAR = 0;
 	public final int TALL_GRASS = 1;
 	public final int OBSTACLE = 2;
 	public final int SPECIAL = 3;
 	public final int WARP = 9;
-	
+	public Pokemon_Trainer trainer;
 	
 	private int type;
 	private int row;
@@ -44,8 +45,19 @@ public class Tile {
 	{
 		this.warp = new Warp(map_name, row, col);
 	}
+	
 	public Warp getWarp() {
 		return warp;
+	}
+	
+	public Pokemon_Trainer getPokemon_trainer()
+	{
+		return this.trainer;
+	}
+	
+	public void setPokemon_trainer(Pokemon_Trainer pt)
+	{
+		this.trainer = pt;
 	}
 
 }

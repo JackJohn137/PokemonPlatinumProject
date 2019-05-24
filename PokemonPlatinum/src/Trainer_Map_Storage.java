@@ -2,10 +2,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Trainer_Map_Storage {
+public class Trainer_Map_Storage implements Serializable{
 	private ArrayList<Trainer_Map> trainer_map_storage;
 	private ArrayList<String> trainer_map_names;
 	private Pokedex pokedex;
@@ -36,14 +37,9 @@ public class Trainer_Map_Storage {
 	private void add_maps() throws IOException {
 		for (String map_name : trainer_map_names)
 		{
-			//try
-			//{
-				trainer_map_storage.add(new Trainer_Map(map_name, pokedex, movelist));
-			//}
-			//catch (IllegalArgumentException e)
-			//{
-			//	System.out.println(map_name + " HAS NO TRAINERS");
-			//}
+			
+			trainer_map_storage.add(new Trainer_Map(map_name, pokedex, movelist));
+		
 			
 		}
 		
