@@ -9,7 +9,7 @@ ICE_PUNCH         / ICE         / 15  / 75  / true     / 100 / 1 / 0
 THUNDER_PUNCH     / ELECTRIC    / 15  / 75  / true     / 000 / 1 / 0 
 SCRATCH           / NORMAL      / 35  / 40  / true     / 100 / 1 / 0 
 VICE_GRIP         / NORMAL      / 30  / 55  / true     / 000 / 1 / 0 
-GUILLOTINE        / NORMAL      / 5   / 0   / true     / 30  / 1 / 0 
+GUILLOTINE        / NORMAL      / 5   / 200 / true     / 30  / 1 / 0 
 RAZOR_WIND        / NORMAL      / 10  / 80  / false    / 100 / 1 / 0 
 CUT               / NORMAL      / 30  / 50  / true     / 95  / 1 / 0 
 GUST              / FLYING      / 35  / 40  / false    / 100 / 1 / 0 
@@ -26,12 +26,12 @@ ROLLING_KICK      / FIGHTING    / 15  / 60  / true     / 85  / 1 / 0
 HEADBUTT          / NORMAL      / 15  / 70  / true     / 70  / 1 / 0 
 HORN_ATTACK       / NORMAL      / 25  / 65  / true     / 100 / 1 / 0 
 FURY_ATTACK       / NORMAL      / 20  / 15  / true     / 85  / 5 / 0 
-HORN_DRILL        / NORMAL      / 5   / 0   / true     / 0   / 1 / 0 
+HORN_DRILL        / NORMAL      / 5   / 20  / true     / 70  / 1 / 0 
 TACKLE            / NORMAL      / 35  / 40  / true     / 100 / 1 / 0 
 BODY_SLAM         / NORMAL      / 15  / 85  / true     / 85  / 1 / 0 
 WRAP              / NORMAL      / 20  / 15  / true     / 90  / 1 / 0 
 TAKE_DOWN         / NORMAL      / 20  / 90  / true     / 85  / 1 / 0 
-THRASH            / NORMAL      / 10  / 120 / true     / 000 / 1 / 0 
+THRASH            / NORMAL      / 10  / 120 / true     / 70  / 1 / 0 
 DOUBLE-EDGE       / NORMAL      / 15  / 120 / true     / 100 / 1 / 0 
 POISON_STING      / POISON      / 35  / 15  / true     / 100 / 1 / 0 
 TWINEEDLE         / BUG         / 20  / 25  / true     / 100 / 2 / 0
@@ -54,8 +54,8 @@ PECK              / FLYING      / 35  / 35  / true     / 100 / 1 / 0
 DRILL_PECK        / FLYING      / 20  / 80  / true     / 100 / 1 / 0
 SUBMISSION        / FIGHTING    / 25  / 80  / true     / 80  / 1 / 0
 LOW_KICK          / FIGHTING    / 20  / 50  / true     / 100 / 1 / 0
-COUNTER           / FIGHTING    / 20  / 0   / true     / 100 / 1 / -1
-SEISMIC_TOSS      / FIGHTING    / 20  / 0   / true     / 100 / 1 / 0
+COUNTER           / FIGHTING    / 20  / 50  / true     / 100 / 1 / -1
+SEISMIC_TOSS      / FIGHTING    / 20  / 60  / true     / 100 / 1 / 0
 STRENGTH          / NORMAL      / 15  / 80  / true     / 100 / 1 / 0
 ABSORB            / GRASS       / 25  / 20  / false    / 100 / 1 / 0
 MEGA_DRAIN        / GRASS       / 15  / 40  / false    / 100 / 1 / 0
@@ -69,13 +69,13 @@ THUNDERNOLT       / ELECTRIC    / 15  / 95  / false    / 100 / 1 / 0
 THUNDER           / ELECTRIC    / 10  / 120 / false    / 70  / 1 / 0
 ROCK_THROW        / ROCK        / 15  / 50  / true     / 90  / 1 / 0
 EARTHQUAKE        / GROUND      / 10  / 100 / true     / 100 / 1 / 0
-FISSURE           / GROUND      / 5   / 0   / true     / 40  / 1 / 0
+FISSURE           / GROUND      / 5   / 70  / true     / 40  / 1 / 0
 DIG               / GROUND      / 10  / 80  / true     / 100 / 1 / 0
 CONFUSION         / PSYCHIC     / 25  / 50  / false    / 100 / 1 / 0
 PSYCHIC           / PSYCHIC     / 10  / 90  / false    / 100 / 1 / 0
 QUICK_ATTACK      / NORMAL      / 30  / 40  / true     / 100 / 1 / 1
 RAGE              / NORMAL      / 20  / 20  / true     / 100 / 1 / 0
-NIGHT_SHADE       / GHOST       / 15  / 0   / false    / 100 / 1 / 0
+NIGHT_SHADE       / GHOST       / 15  / 50  / false    / 100 / 1 / 0
 BIDE              / NORMAL      / 10  / 50  / true     / 100 / 1 / 0
 SELF_DESTRUCT     / NORMAL      / 5   / 200 / true     / 100 / 1 / 0
 EGG_BOMB          / NORMAL      / 10  / 100 / true     / 75  / 1 / 0
@@ -293,8 +293,3 @@ MAGMA_STORM       / FIRE        / 5   / 120 / false    / 70  / 1 / 0
 SEED_FLARE        / GRASS       / 5   / 120 / false    / 85  / 1 / 0
 OMINOUS_WIND      / GHOST       / 5   / 60  / false    / 100 / 1 / 0
 SHADOW_FORCE      / GHOST       / 5   / 120 / true     / 100 / 1 / 0
-
-
-
-
-
