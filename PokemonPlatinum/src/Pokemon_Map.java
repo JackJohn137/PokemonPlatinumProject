@@ -79,7 +79,7 @@ public class Pokemon_Map implements Serializable{
 	}
 	
 	public void setPokemon_map(String map_name) throws IOException{
-		this.pokemon_map = ImageIO.read(getClass().getResource("pokemon_map/" + map_name + ".png"));
+		this.pokemon_map = ImageIO.read(getClass().getResource("pokemon_map/" + map_name + "_Pt.png"));
 	}
 	
 	public void draw(Graphics g)
