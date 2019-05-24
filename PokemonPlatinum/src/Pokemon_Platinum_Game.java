@@ -137,6 +137,7 @@ public class Pokemon_Platinum_Game implements Serializable{
 										this.current_map.audio().swapTrack(m.audio());
 										this.current_map = m;
 										store=player.getY_coord()-6;
+										m.setPokemon_map(m.getMap_name());
 										System.out.println(this.current_map);
 										break;
 									}

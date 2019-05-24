@@ -25,6 +25,13 @@ public class Pokemon_Trainer_Movements implements Serializable{
 		this.right = new Movement(Direction.RIGHT);
 	}
 	
+	public void setMovements(Pokemon_Trainer_Movements images)
+	{
+		this.up = images.up;
+		this.down = images.down;
+		this.right = images.right;
+		this.left = images.left;
+	}
 	public Movement getUp() {
 		return up;
 	}

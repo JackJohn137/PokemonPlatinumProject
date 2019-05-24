@@ -48,7 +48,7 @@ public class Pokemon_Platinum_Runner{
 					game = (Pokemon_Platinum_Game) saveState.readObject();
 					saveState.close();
 					saveFile.close();
-					
+
 				}
 				catch (ClassNotFoundException | IOException e) 
 				{
@@ -60,7 +60,7 @@ public class Pokemon_Platinum_Runner{
 						e1.printStackTrace();
 					}
 				} 
-				
+
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					start();
@@ -76,6 +76,7 @@ public class Pokemon_Platinum_Runner{
 	}
 
 	private void start() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		
 		if (game.getCurrent_map().audio() == null)
 		{
 			loadSound();
@@ -84,7 +85,6 @@ public class Pokemon_Platinum_Runner{
 		{
 			loadImage();
 		}
-		System.out.println(game.getCurrent_map().getPokemon_map() );
 		game.getCurrent_map().audio().playSoundtrack();
 		JFrame frame = new JFrame("Pokemon_Platinum");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,16 +135,13 @@ public class Pokemon_Platinum_Runner{
 		{
 			loadSound();
 		}
-		if (game.getCurrent_map().getPokemon_map() == null)
-		{
-			loadImage();
-		}
+		loadImage();
 		if(game.getPlayer().isCan_move()==true) 
 		{
 			game.getCurrent_map().audio().playSoundtrack();
 		}
-		
-		
+
+
 		panel.repaint();//Repaints after each update
 
 		ticks++;//Adds to the timer
@@ -157,13 +154,21 @@ public class Pokemon_Platinum_Runner{
 
 	}
 
-	private void loadImage() {
-		try
+	private void loadImage() throws IOException {
+		try // this loads current map image
 		{
 			this.game.getCurrent_map().setPokemon_map(this.game.getCurrent_map().getMap_name());
-			System.out.println("Hey, take this image!");
 		}
 		catch (Exception e)
+		{
+
+		}
+		
+		try
+		{
+			this.game.getPlayer().getMovements().setMovements(new Pokemon_Trainer_Movements(this.game.getPlayer().getType()));;
+		}
+		catch (Exception e1)
 		{
 			
 		}
