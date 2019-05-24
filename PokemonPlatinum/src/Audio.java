@@ -12,9 +12,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Audio implements Serializable{
-	private String sound;
-	private Clip c;
-	private AudioInputStream a;
+	private transient String sound;
+	private transient Clip c;
+	private transient AudioInputStream a;
 	//input the name of the .wav file 
 	public Audio(String s)
 			throws UnsupportedAudioFileException, IOException, LineUnavailableException {
