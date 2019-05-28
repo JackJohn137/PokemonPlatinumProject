@@ -77,4 +77,117 @@ public class Pokedex implements Serializable{
 		}
 		return null;
 	}
+	
+	public void reloadPokedex() throws IOException
+	{
+		int burmy = 1, wormadam = 1, cherrim = 1, shellos = 1, gastrodon = 1, giratina = 1;
+		String add = "";
+		for (Pokemon pokemon : pokedex)
+		{
+			System.out.println(pokemon.getName());
+			if (pokemon.getName().toLowerCase().equals("burmy"))
+			{
+				switch (burmy)
+				{
+					case 1: add = "_grass";
+					burmy = 2;
+					break;
+					
+					case 2: add = "_sand";
+					burmy = 3;
+					break;
+					
+					case 3: add = "_trash";
+					burmy = 1;
+					break;
+				}
+			}
+			
+			if (pokemon.getName().toLowerCase().equals("wormadam"))
+			{
+				switch (wormadam)
+				{
+					case 1: add = "_grass";
+					wormadam = 2;
+					break;
+					
+					case 2: add = "_sand";
+					wormadam = 3;
+					break;
+					
+					case 3: add = "_trash";
+					wormadam = 1;
+					break;
+				}
+			}
+			
+			if (pokemon.getName().toLowerCase().equals("cherrim"))
+			{
+				switch (cherrim)
+				{
+					case 1: add = "_overcast";
+					cherrim = 2;
+					break;
+					
+					case 2: add = "_sunshine";
+					cherrim = 1;
+					break;
+				}
+			}
+			
+			if (pokemon.getName().toLowerCase().equals("shellos"))
+			{
+				switch (shellos)
+				{
+					case 1: add = "_west";
+					shellos = 2;
+					break;
+					
+					case 2: add = "_east";
+					shellos = 1;
+					break;
+				}
+			}
+			
+			if (pokemon.getName().toLowerCase().equals("gastrodon"))
+			{
+				switch (gastrodon)
+				{
+					case 1: add = "_west";
+					gastrodon = 2;
+					break;
+					
+					case 2: add = "_east";
+					gastrodon = 1;
+					break;
+				}
+			}
+			
+			if (pokemon.getName().toLowerCase().equals("giratina"))
+			{
+				switch (giratina)
+				{
+					case 1: add = "_altered";
+					giratina = 2;
+					break;
+					
+					case 2: add = "_origin";
+					giratina = 1;
+					break;
+				}
+			}
+			
+			if (pokemon.getFront_image() == null)
+			{
+				pokemon.setFront_image(ImageIO.read(getClass().getResource("pokemon_front/" + pokemon.getName().toLowerCase() + add + ".front.png")));
+			}
+			
+			if (pokemon.getBack_image() == null)
+			{
+				pokemon.setBack_image(ImageIO.read(getClass().getResource("pokemon_back/" + pokemon.getName().toLowerCase() + add + ".back.png")));
+			}
+			
+			add = "";
+		}
+	}
 }
