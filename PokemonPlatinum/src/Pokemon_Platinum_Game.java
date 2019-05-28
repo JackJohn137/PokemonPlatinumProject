@@ -63,12 +63,11 @@ public class Pokemon_Platinum_Game implements Serializable{
 	// What do you want to do when a key is hit?
 	public void keyHit(String s) throws IOException, UnsupportedAudioFileException, LineUnavailableException 
 	{
-		System.out.println();
-
 		Tile[][] temp = current_map.getGrid();
 		int r = player.getGrid_y();
 		int c = player.getGrid_x();
-
+		System.out.println("R" + r);
+		System.out.println("C" + c);
 		if (s.equals("up"))
 		{
 			player.setDirection(Direction.UP);
@@ -126,8 +125,12 @@ public class Pokemon_Platinum_Game implements Serializable{
 							break;
 
 						case 9:
+							System.out.println("WARPING1");
 							player.setGrid_y(this.current_map.getTile(r - 1, c).getWarp().getRow());
 							player.setGrid_x(this.current_map.getTile(r - 1, c).getWarp().getCol());
+							
+							System.out.println(player.getGrid_x());
+							System.out.println(player.getGrid_y());
 							for (Pokemon_Map m : map_storage.getMap_storage())
 							{
 								if (m.getMap_name().equals(this.current_map.getTile(r - 1, c).getWarp().getWarp_map_name()))
@@ -137,7 +140,7 @@ public class Pokemon_Platinum_Game implements Serializable{
 									if(m.audio()==null) {
 										m.setAudio();
 									}
-									this.transition=new Audio("Wilhelm-scream");
+									this.transition = new Audio("Wilhelm-scream");
 
 									this.transition.playEffect();
 									this.current_map.audio().swapTrack(m.audio());
@@ -154,6 +157,7 @@ public class Pokemon_Platinum_Game implements Serializable{
 					}
 					else if (temp[r][c].getType() == 9)
 					{
+						System.out.println("WARPING2");
 						player.setGrid_y(this.current_map.getTile(r, c).getWarp().getRow());
 						player.setGrid_x(this.current_map.getTile(r, c).getWarp().getCol());
 						for (Pokemon_Map m : map_storage.getMap_storage())
@@ -238,13 +242,11 @@ public class Pokemon_Platinum_Game implements Serializable{
 							break;
 
 						case 9:
+							System.out.println("WARPING1");
 							player.setGrid_y(this.current_map.getTile(r + 1, c).getWarp().getRow());
 							player.setGrid_x(this.current_map.getTile(r + 1, c).getWarp().getCol());
 							for (Pokemon_Map m : map_storage.getMap_storage())
 							{
-								System.out.println(m.getMap_name());
-								System.out.println(this.current_map.getTile(r + 1, c).getWarp().getWarp_map_name());
-
 								if (m.getMap_name().equals(this.current_map.getTile(r + 1, c).getWarp().getWarp_map_name()))
 								{
 									this.getCurrent_map().audio().stop();
@@ -269,7 +271,7 @@ public class Pokemon_Platinum_Game implements Serializable{
 					}
 					else if (temp[r][c].getType() == 9)
 					{
-						System.out.println("here");
+						System.out.println("WARPING2");
 						player.setGrid_y(this.current_map.getTile(r, c).getWarp().getRow());
 						player.setGrid_x(this.current_map.getTile(r, c).getWarp().getCol());
 						for (Pokemon_Map m : map_storage.getMap_storage())
@@ -407,7 +409,6 @@ public class Pokemon_Platinum_Game implements Serializable{
 
 				if (player.getDirection() == Direction.RIGHT)
 				{
-					System.out.println(temp[r].length-1);
 					if (temp[r][c + 1].getPokemon_trainer() != null)
 					{
 						System.out.println();
@@ -417,8 +418,6 @@ public class Pokemon_Platinum_Game implements Serializable{
 					}
 					else if (c < temp[r].length - 1)
 					{
-						System.out.println("b");
-						System.out.println(temp[r][c+1].getType());
 						switch (temp[r][c + 1].getType())
 						{
 						case 0:
