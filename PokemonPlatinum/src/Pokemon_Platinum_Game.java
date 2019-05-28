@@ -308,7 +308,6 @@ public class Pokemon_Platinum_Game implements Serializable{
 					}
 					else if (c > 0)
 					{
-						System.out.println(temp[r][c - 1].getType());
 						switch (temp[r][c - 1].getType())
 						{
 						case 0:
