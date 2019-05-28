@@ -59,5 +59,8 @@ public class Tile implements Serializable{
 	{
 		this.trainer = pt;
 	}
+	public String toString() {
+		return type+"";
+	}
 
 }

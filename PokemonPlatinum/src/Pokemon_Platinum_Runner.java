@@ -141,7 +141,6 @@ public class Pokemon_Platinum_Runner{
 			game.getCurrent_map().audio().playSoundtrack();
 		}
 
-
 		panel.repaint();//Repaints after each update
 
 		ticks++;//Adds to the timer

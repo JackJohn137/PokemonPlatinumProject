@@ -57,7 +57,6 @@ public class Audio implements Serializable{
 	}
   
 	public void playEffect() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-	c.loop(1);
 	c.start();
 	while(running()) {
 		System.out.println("a");

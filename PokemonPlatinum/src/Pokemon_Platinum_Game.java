@@ -45,8 +45,6 @@ public class Pokemon_Platinum_Game implements Serializable{
 
 		this.player.setGrid_x(8);
 		this.player.setGrid_y(12);
-		this.transition=new Audio("Wilhelm-scream");
-		this.transition.playEffect();
 	}
 
 	private void addTrainers() {
@@ -68,11 +66,13 @@ public class Pokemon_Platinum_Game implements Serializable{
 		int c = player.getGrid_x();
 		System.out.println("R" + r);
 		System.out.println("C" + c);
+		System.out.println(temp[r][c]);
 		if (s.equals("up"))
 		{
-			player.setDirection(Direction.UP);
+			
 			if (player.isCan_move() == true) 
 			{
+				player.setDirection(Direction.UP);
 				if (player.getDirection() == Direction.UP)
 				{
 					if (temp[r - 1][c].getPokemon_trainer() != null)
@@ -104,6 +104,8 @@ public class Pokemon_Platinum_Game implements Serializable{
 							break;
 
 						case 2:
+							store=player.getY_coord();
+
 							break;
 
 						case 3: 
@@ -183,12 +185,11 @@ public class Pokemon_Platinum_Game implements Serializable{
 		}
 		else if (s.equals("down"))
 		{
-			player.setDirection(Direction.DOWN);
+		
 			if (player.isCan_move() == true) 
-			{
+			{	player.setDirection(Direction.DOWN);
 				if (player.getDirection() == Direction.DOWN)
 				{
-					System.out.println("here?");
 					if (temp[r + 1][c].getPokemon_trainer() != null)
 					{
 						this.getCurrent_map().audio().stop();
@@ -199,7 +200,6 @@ public class Pokemon_Platinum_Game implements Serializable{
 
 					else if (r < temp.length - 1)
 					{
-						System.out.println("prob");
 						switch (temp[r + 1][c].getType())
 						{
 						case 0:
@@ -215,11 +215,8 @@ public class Pokemon_Platinum_Game implements Serializable{
 							break;
 
 						case 2:
-							player.setGrid_y(r + 1);
 							store=player.getY_coord();
-							player.setGrid_y(r);
-							System.out.println(store);
-							System.out.println(player.getY_coord());
+
 							break;
 
 						case 3: 
@@ -297,9 +294,10 @@ public class Pokemon_Platinum_Game implements Serializable{
 		}
 		else if (s.equals("left"))
 		{
-			player.setDirection(Direction.LEFT);
+			
 			if (player.isCan_move() == true) 
 			{
+				player.setDirection(Direction.LEFT);
 				if (player.getDirection() == Direction.LEFT)
 				{
 					if (temp[r][c - 1].getPokemon_trainer() != null)
@@ -323,12 +321,11 @@ public class Pokemon_Platinum_Game implements Serializable{
 							player.setGrid_x(c - 1);
 							store=player.getX_coord();
 							player.setGrid_x(c);
-							while(player.getX_coord()>store) {
-								player.setX_coord(player.getX_coord()-1);
-							}
 							break;
 
 						case 2:
+							store=player.getX_coord();
+
 							break;
 
 						case 3: 
@@ -403,9 +400,9 @@ public class Pokemon_Platinum_Game implements Serializable{
 		}
 		else if (s.equals("right"))
 		{
-			player.setDirection(Direction.RIGHT);
+		
 			if (player.isCan_move() == true) 
-			{
+			{	player.setDirection(Direction.RIGHT);
 
 				if (player.getDirection() == Direction.RIGHT)
 				{
@@ -433,6 +430,8 @@ public class Pokemon_Platinum_Game implements Serializable{
 							break;
 
 						case 2:
+							store=player.getX_coord();
+
 							break;
 
 						case 3: 
