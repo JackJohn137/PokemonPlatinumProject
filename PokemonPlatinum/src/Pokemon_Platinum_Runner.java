@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
@@ -46,6 +47,7 @@ public class Pokemon_Platinum_Runner{
 					FileInputStream saveFile = new FileInputStream("SaveState");
 					ObjectInputStream saveState = new ObjectInputStream(saveFile);
 					game = (Pokemon_Platinum_Game) saveState.readObject();
+					game.getPokedex().reloadPokedex();
 					saveState.close();
 					saveFile.close();
 				}
@@ -75,7 +77,6 @@ public class Pokemon_Platinum_Runner{
 	}
 
 	private void start() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-		
 		if (game.getCurrent_map().audio() == null)
 		{
 			loadSound();
@@ -162,14 +163,14 @@ public class Pokemon_Platinum_Runner{
 		{
 
 		}
-		
+
 		try
 		{
 			this.game.getPlayer().getMovements().setMovements(new Pokemon_Trainer_Movements(this.game.getPlayer().getType()));;
 		}
 		catch (Exception e1)
 		{
-			
+
 		}
 	}
 

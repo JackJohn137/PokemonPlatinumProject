@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
@@ -70,6 +71,7 @@ public class Pokemon_Battle_Runner{
 		textbox = new JLabel();
 		this.you = you;
 		this.opponent = opponent;
+		reloadOpponentPokemon();
 		this.you_field = you.getPokemon_storage().getPokemon_by_index(0);
 		this.opponent_field = opponent.getPokemon_storage().getPokemon_by_index(0);
 		try
@@ -193,6 +195,122 @@ public class Pokemon_Battle_Runner{
 				}
 			}
 		});
+	}
+
+	private void reloadOpponentPokemon() throws IOException {
+		System.out.println("Reloading images");
+		int burmy = 1, wormadam = 1, cherrim = 1, shellos = 1, gastrodon = 1, giratina = 1;
+		String add = "";
+		for (int i = 0; i < opponent.getPokemon_storage().getPokemon_storage().length; i++)
+		{
+			if (opponent.getPokemon_storage().getPokemon_storage()[i] == null)
+			{
+				break;
+			}
+			if (opponent.getPokemon_storage().getPokemon_storage()[i].getName().toLowerCase().equals("burmy"))
+			{
+				switch (burmy)
+				{
+					case 1: add = "_grass";
+					burmy = 2;
+					break;
+					
+					case 2: add = "_sand";
+					burmy = 3;
+					break;
+					
+					case 3: add = "_trash";
+					burmy = 1;
+					break;
+				}
+			}
+			
+			if (opponent.getPokemon_storage().getPokemon_storage()[i].getName().toLowerCase().equals("wormadam"))
+			{
+				switch (wormadam)
+				{
+					case 1: add = "_grass";
+					wormadam = 2;
+					break;
+					
+					case 2: add = "_sand";
+					wormadam = 3;
+					break;
+					
+					case 3: add = "_trash";
+					wormadam = 1;
+					break;
+				}
+			}
+			
+			if (opponent.getPokemon_storage().getPokemon_storage()[i].getName().toLowerCase().equals("cherrim"))
+			{
+				switch (cherrim)
+				{
+					case 1: add = "_overcast";
+					cherrim = 2;
+					break;
+					
+					case 2: add = "_sunshine";
+					cherrim = 1;
+					break;
+				}
+			}
+			
+			if (opponent.getPokemon_storage().getPokemon_storage()[i].getName().toLowerCase().equals("shellos"))
+			{
+				switch (shellos)
+				{
+					case 1: add = "_west";
+					shellos = 2;
+					break;
+					
+					case 2: add = "_east";
+					shellos = 1;
+					break;
+				}
+			}
+			
+			if (opponent.getPokemon_storage().getPokemon_storage()[i].getName().toLowerCase().equals("gastrodon"))
+			{
+				switch (gastrodon)
+				{
+					case 1: add = "_west";
+					gastrodon = 2;
+					break;
+					
+					case 2: add = "_east";
+					gastrodon = 1;
+					break;
+				}
+			}
+			
+			if (opponent.getPokemon_storage().getPokemon_storage()[i].getName().toLowerCase().equals("giratina"))
+			{
+				switch (giratina)
+				{
+					case 1: add = "_altered";
+					giratina = 2;
+					break;
+					
+					case 2: add = "_origin";
+					giratina = 1;
+					break;
+				}
+			}
+			
+			if (opponent.getPokemon_storage().getPokemon_storage()[i].getFront_image() == null)
+			{
+				opponent.getPokemon_storage().getPokemon_storage()[i].setFront_image(ImageIO.read(getClass().getResource("pokemon_front/" + opponent.getPokemon_storage().getPokemon_storage()[i].getName().toLowerCase() + add + ".front.png")));
+			}
+			
+			if (opponent.getPokemon_storage().getPokemon_storage()[i].getBack_image() == null)
+			{
+				opponent.getPokemon_storage().getPokemon_storage()[i].setBack_image(ImageIO.read(getClass().getResource("pokemon_back/" + opponent.getPokemon_storage().getPokemon_storage()[i].getName().toLowerCase() + add + ".back.png")));
+			}
+			
+			add = "";
+		}
 	}
 
 	private void set_up_menus() {
