@@ -537,12 +537,12 @@ public class Pokemon_Platinum_Game implements Serializable{
 			}}
 		if(player.getDirection().equals(Direction.LEFT)) {
 			if(!player.isTurned() && player.getX_coord()>store) {
-				if(Math.abs(player.getX_coord()-player.getSlide_x())<8) {
-					player.setX_coord(player.getSlide_x()-4);
+				if(Math.abs(player.getX_coord()-player.getSlide_x())<6) {
+					player.setX_coord(player.getSlide_x()-3);
 					g.drawImage(player.getMovements().getLeft().getMove_1(),player.getSlide_x(),player.getY_coord(),null);
 				}
 				else {
-					player.setX_coord(player.getSlide_x()-4);
+					player.setX_coord(player.getSlide_x()-3);
 					g.drawImage(player.getMovements().getLeft().getMove_2(),player.getSlide_x(),player.getY_coord(),null);
 				}
 			}
@@ -551,12 +551,12 @@ public class Pokemon_Platinum_Game implements Serializable{
 			}}
 		if(player.getDirection().equals(Direction.RIGHT)) {
 			if(!player.isTurned() && player.getX_coord()<store) {
-				if(Math.abs(player.getX_coord()-player.getSlide_x())<8) {
-					player.setX_coord(player.getSlide_x()+4);
+				if(Math.abs(player.getX_coord()-player.getSlide_x())<6) {
+					player.setX_coord(player.getSlide_x()+3);
 					g.drawImage(player.getMovements().getRight().getMove_1(),player.getSlide_x(),player.getY_coord(),null);
 				}
 				else {
-					player.setX_coord(player.getSlide_x()+4);
+					player.setX_coord(player.getSlide_x()+3);
 					g.drawImage(player.getMovements().getRight().getMove_2(),player.getSlide_x(),player.getY_coord(),null);
 				}
 			}
